@@ -1,4 +1,4 @@
-import { t } from "../../logic/i18n/t";
+import { buildStatusBarViewModel } from "../../logic/formatting/buildStatusBarViewModel";
 import type { CalcState } from "../../state/calculatorState";
 
 interface Props {
@@ -10,17 +10,15 @@ interface Props {
 }
 
 export function StatusBar({ state, onCycleAngleMode, onCycleDisplayMode, onIncreasePrecision, onDecreasePrecision }: Props) {
-  const angleLabel = state.isShifted ? t("shift-active") : t(`angle-${state.angleMode.toLowerCase()}`);
-  const dispLabel = t(`display-${state.displayMode.toLowerCase()}`);
-  const hasPrecision = state.displayMode !== "STD";
+  const vm = buildStatusBarViewModel(state);
   return (
     <div className="status-bar">
-      <button className={`status-badge angle-mode${state.isShifted ? " shifted" : ""}`} onClick={onCycleAngleMode} type="button">{angleLabel}</button>
+      <button className={`status-badge angle-mode${vm.isShifted ? " shifted" : ""}`} onClick={onCycleAngleMode} type="button">{vm.angleLabel}</button>
       <div className="status-right">
-        {hasPrecision && <button className="status-prec-btn" onClick={onDecreasePrecision} type="button">▼</button>}
-        {hasPrecision && <span className="status-prec">{state.displayPrecision}</span>}
-        {hasPrecision && <button className="status-prec-btn" onClick={onIncreasePrecision} type="button">▲</button>}
-        <button className="status-badge display-mode" onClick={onCycleDisplayMode} type="button">{dispLabel}</button>
+        {vm.hasPrecision && <button className="status-prec-btn" onClick={onDecreasePrecision} type="button">{vm.precDownLabel}</button>}
+        {vm.hasPrecision && <span className="status-prec">{vm.precision}</span>}
+        {vm.hasPrecision && <button className="status-prec-btn" onClick={onIncreasePrecision} type="button">{vm.precUpLabel}</button>}
+        <button className="status-badge display-mode" onClick={onCycleDisplayMode} type="button">{vm.displayLabel}</button>
       </div>
     </div>
   );

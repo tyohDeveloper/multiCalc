@@ -1,4 +1,4 @@
-import { label } from "../../logic/i18n/label";
+import { buildKeyButtonViewModel } from "../../logic/ui/buildKeyButtonViewModel";
 
 interface Props {
   labelKey: string;
@@ -11,20 +11,11 @@ interface Props {
 }
 
 export function KeyButton({ labelKey, shiftLabelKey, isShifted, onClick, category, colSpan, isActive }: Props) {
-  const mainLabel = label(labelKey);
-  const shiftLabel = shiftLabelKey ? label(shiftLabelKey) : undefined;
-  const displayLabel = isShifted && shiftLabel ? shiftLabel : mainLabel;
-  const cls = [
-    "key-button",
-    category ? `key-${category}` : "",
-    isActive ? "key-active" : "",
-    isShifted && shiftLabel ? "key-shiftable" : "",
-  ].filter(Boolean).join(" ");
-  const style = colSpan ? { gridColumn: `span ${colSpan}` } : undefined;
+  const vm = buildKeyButtonViewModel(labelKey, shiftLabelKey, isShifted, category, colSpan, isActive);
   return (
-    <button className={cls} style={style} onClick={onClick} type="button" aria-label={displayLabel}>
-      {shiftLabel && <span className="key-shift-label">{shiftLabel}</span>}
-      <span className="key-main-label">{displayLabel}</span>
+    <button className={vm.className} style={vm.colSpanStyle} onClick={onClick} type="button" aria-label={vm.ariaLabel}>
+      {vm.shiftLabel && <span className="key-shift-label">{vm.shiftLabel}</span>}
+      <span className="key-main-label">{vm.displayLabel}</span>
     </button>
   );
 }
