@@ -4,6 +4,15 @@
 
 pnpm workspace monorepo using TypeScript. Each package manages its own dependencies.
 
+## Artifacts
+
+### RPN Calculator (`artifacts/rpn-calc`)
+- **Path**: `/` (preview pane)
+- **Kind**: web (React + Vite, single-file HTML output)
+- **Description**: HP-48 style RPN calculator. Full 4-register stack (X/Y/Z/T), auto-lift, SHIFT mode, arithmetic operators, math functions (√, x², yˣ, ˣ√y, 1/x, LN, LOG, eˣ, 10ˣ), trig (SIN/COS/TAN + inverses), constants (π, e), stack ops (ENTER, DROP, SWAP, ROLL↑, ROLL↓, CLR, LSTx), number entry (EEX, +/-, backspace), DEG/RAD/GRAD modes, STD/FIX/SCI/ENG display modes.
+- **Build**: `pnpm build` outputs a single self-contained `dist/public/index.html` (all JS+CSS inlined).
+- **Conventions**: See `artifacts/rpn-calc/CONVENTIONS.md`. One function per file, pure functions, ≤25 lines, no logic in .tsx, JSON-externalized labels/locales, cascading resolver pattern.
+
 ## Stack
 
 - **Monorepo tool**: pnpm workspaces

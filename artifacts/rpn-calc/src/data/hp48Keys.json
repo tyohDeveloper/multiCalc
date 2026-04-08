@@ -1,0 +1,99 @@
+{
+  "sections": [
+    {
+      "id": "math",
+      "cols": 6,
+      "rows": [
+        {
+          "id": "math-0",
+          "keys": [
+            { "id": "sqrt",       "op": "SQRT",     "labelKey": "square-root",  "shiftOp": "SQUARE",           "shiftLabelKey": "square",       "category": "math" },
+            { "id": "power",      "op": "POWER",    "labelKey": "power",         "shiftOp": "XROOT",            "shiftLabelKey": "xroot",        "category": "math" },
+            { "id": "reciprocal", "op": "RECIPROCAL","labelKey": "reciprocal",                                                                    "category": "math" },
+            { "id": "sin",        "op": "SIN",      "labelKey": "sine",          "shiftOp": "ASIN",             "shiftLabelKey": "arc-sine",     "category": "trig" },
+            { "id": "cos",        "op": "COS",      "labelKey": "cosine",        "shiftOp": "ACOS",             "shiftLabelKey": "arc-cosine",   "category": "trig" },
+            { "id": "tan",        "op": "TAN",      "labelKey": "tangent",       "shiftOp": "ATAN",             "shiftLabelKey": "arc-tangent",  "category": "trig" }
+          ]
+        },
+        {
+          "id": "math-1",
+          "keys": [
+            { "id": "ln",         "op": "LN",       "labelKey": "natural-log",   "shiftOp": "EXP",              "shiftLabelKey": "exp",          "category": "math" },
+            { "id": "log",        "op": "LOG",      "labelKey": "log",           "shiftOp": "TENPOW",           "shiftLabelKey": "ten-pow",      "category": "math" },
+            { "id": "pi",         "op": "PI",       "labelKey": "pi",                                                                             "category": "const" },
+            { "id": "e-const",    "op": "E_CONST",  "labelKey": "e-const",                                                                        "category": "const" },
+            { "id": "percent",    "op": "PERCENT",  "labelKey": "percent",       "shiftOp": "PERCENT_CHANGE",   "shiftLabelKey": "percent-change","category": "math" },
+            { "id": "eex",        "op": "EEX_KEY",  "labelKey": "enter-exponent",                                                                 "category": "entry" }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "stack",
+      "cols": 5,
+      "rows": [
+        {
+          "id": "stack-0",
+          "keys": [
+            { "id": "enter",    "op": "ENTER",      "labelKey": "enter",     "colSpan": 2, "category": "stack" },
+            { "id": "roll-up",  "op": "ROLL_UP",    "labelKey": "roll-up",                 "category": "stack" },
+            { "id": "roll-down","op": "ROLL_DOWN",  "labelKey": "roll-down",               "category": "stack" },
+            { "id": "backspace","op": "BACKSPACE",  "labelKey": "backspace",               "category": "control" }
+          ]
+        },
+        {
+          "id": "stack-1",
+          "keys": [
+            { "id": "swap",     "op": "SWAP",       "labelKey": "swap",                    "category": "stack" },
+            { "id": "drop",     "op": "DROP",       "labelKey": "drop",                    "category": "stack" },
+            { "id": "clear",    "op": "CLEAR",      "labelKey": "clear",                   "category": "control" },
+            { "id": "last-x",   "op": "LAST_X",     "labelKey": "last-x",                  "category": "stack" },
+            { "id": "shift",    "op": "SHIFT_KEY",  "labelKey": "shift",                   "category": "control" }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "numbers",
+      "cols": 4,
+      "rows": [
+        {
+          "id": "num-0",
+          "keys": [
+            { "id": "n7",      "op": "DIGIT_7",   "labelKey": "digit-7",     "category": "digit" },
+            { "id": "n8",      "op": "DIGIT_8",   "labelKey": "digit-8",     "category": "digit" },
+            { "id": "n9",      "op": "DIGIT_9",   "labelKey": "digit-9",     "category": "digit" },
+            { "id": "divide",  "op": "DIVIDE",    "labelKey": "divide",      "category": "operator" }
+          ]
+        },
+        {
+          "id": "num-1",
+          "keys": [
+            { "id": "n4",      "op": "DIGIT_4",   "labelKey": "digit-4",     "category": "digit" },
+            { "id": "n5",      "op": "DIGIT_5",   "labelKey": "digit-5",     "category": "digit" },
+            { "id": "n6",      "op": "DIGIT_6",   "labelKey": "digit-6",     "category": "digit" },
+            { "id": "multiply","op": "MULTIPLY",  "labelKey": "multiply",    "category": "operator" }
+          ]
+        },
+        {
+          "id": "num-2",
+          "keys": [
+            { "id": "n1",      "op": "DIGIT_1",   "labelKey": "digit-1",     "category": "digit" },
+            { "id": "n2",      "op": "DIGIT_2",   "labelKey": "digit-2",     "category": "digit" },
+            { "id": "n3",      "op": "DIGIT_3",   "labelKey": "digit-3",     "category": "digit" },
+            { "id": "subtract","op": "SUBTRACT",  "labelKey": "subtract",    "category": "operator" }
+          ]
+        },
+        {
+          "id": "num-3",
+          "keys": [
+            { "id": "n0",      "op": "DIGIT_0",   "labelKey": "digit-0",     "category": "digit" },
+            { "id": "decimal", "op": "DECIMAL",   "labelKey": "decimal-point","category": "entry" },
+            { "id": "sign",    "op": "TOGGLE_SIGN","labelKey": "toggle-sign", "category": "entry" },
+            { "id": "add",     "op": "ADD",        "labelKey": "add",         "category": "operator" }
+          ]
+        }
+      ]
+    }
+  ]
+}

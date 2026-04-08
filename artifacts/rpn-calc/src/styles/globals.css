@@ -1,0 +1,46 @@
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --hp-cream: #c8b89a;
+  --hp-dark: #2a2a2a;
+  --hp-darkgray: #1e1e1e;
+  --hp-medgray: #444;
+  --hp-key-beige: #c5b7a0;
+  --hp-key-dark: #333;
+  --hp-key-blue: #3a6bbf;
+  --hp-key-gold: #b8960c;
+  --hp-screen-bg: #8aad7a;
+  --hp-screen-text: #0a1f0a;
+  --hp-accent: #cc3300;
+  --radius-key: 4px;
+  --shadow-key: 0 2px 4px rgba(0,0,0,0.5);
+  font-size: 14px;
+}
+
+body {
+  background: #1a1a1a;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  font-family: "Courier New", monospace;
+}
+
+#root {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  min-height: 100vh;
+}
+
+.app-root {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}

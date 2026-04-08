@@ -1,0 +1,14 @@
+{
+  "square-root": "SQRT",
+  "square": "SQ",
+  "power": "y^x",
+  "xroot": "x-RT",
+  "exp": "e^x",
+  "ten-pow": "10^x",
+  "roll-up": "R+",
+  "roll-down": "R-",
+  "swap": "X<>Y",
+  "multiply": "*",
+  "divide": "/",
+  "enter": "ENTR"
+}

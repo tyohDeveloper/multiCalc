@@ -1,0 +1,8 @@
+{
+  "modes": [
+    { "id": "STD", "labelKey": "display-std", "hasPrecision": false },
+    { "id": "FIX", "labelKey": "display-fix",  "hasPrecision": true, "defaultPrecision": 4 },
+    { "id": "SCI", "labelKey": "display-sci",  "hasPrecision": true, "defaultPrecision": 4 },
+    { "id": "ENG", "labelKey": "display-eng",  "hasPrecision": true, "defaultPrecision": 4 }
+  ]
+}
