@@ -435,6 +435,19 @@
   line-height: 1;
 }
 
+.key-cell-top-labels--has-math {
+  height: 22px;
+  overflow: visible;
+  align-items: flex-end;
+}
+
+.key-label-cyan math {
+  font-size: 18px;
+  color: #22bbcc;
+  display: inline-block;
+  vertical-align: bottom;
+}
+
 /* Alpha (alphabet) label below the key button */
 .key-label-alpha {
   font-family: Arial, Helvetica, sans-serif;

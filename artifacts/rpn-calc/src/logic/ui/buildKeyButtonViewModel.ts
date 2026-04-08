@@ -12,10 +12,12 @@ export function buildKeyButtonViewModel(
   isActive: boolean | undefined,
 ): KeyButtonVM {
   const displayLabel = label(labelKey);
+  const isMathML = displayLabel.trimStart().startsWith("<math");
+  const ariaLabel = isMathML ? labelKey : displayLabel;
   const parts = ["key-button", category ? `key-${category}` : "", isActive ? "key-active" : ""];
   return {
     displayLabel,
     className: parts.filter(Boolean).join(" "),
-    ariaLabel: displayLabel,
+    ariaLabel,
   };
 }

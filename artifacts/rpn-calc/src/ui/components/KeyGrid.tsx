@@ -14,6 +14,8 @@ const SOFTKEY_ALPHA = ["A", "B", "C", "D", "E", "F"];
 
 const ROW2_ALPHA = ["G", "H", "I", "J", "K", "L"];
 
+const ROW3_ALPHA = ["M", "N", "O", "P", "Q", "R"];
+
 export function KeyGrid({ isShifted, dispatch }: Props) {
   return (
     <div className="key-grid">
@@ -108,6 +110,37 @@ export function KeyGrid({ isShifted, dispatch }: Props) {
                               onClick={() => dispatch(resolveKeyAction(key.op, isShifted, key.shiftLabelKey ? key.shiftOp : undefined))}
                             />
                             <div className="key-label-alpha">{ROW2_ALPHA[idx] ?? ""}</div>
+                          </div>
+                        );
+                      })}
+                    </div>
+                  );
+                }
+
+                if (rowIdx === 2) {
+                  return (
+                    <div key={row.id} className="key-row" style={{ gridTemplateColumns: `repeat(${section.cols}, 1fr)` }}>
+                      {row.keys.map((key, idx) => {
+                        const k3 = key as { topCyan?: string } & typeof key;
+                        const cyan = k3.topCyan ?? "";
+                        const cyanIsMath = cyan.trimStart().startsWith("<math");
+                        return (
+                          <div key={key.id} className="key-cell-3zone">
+                            <div className={`key-cell-top-labels${cyanIsMath ? " key-cell-top-labels--has-math" : ""}`}>
+                              <span className="key-label-magenta" />
+                              {cyanIsMath ? (
+                                <span className="key-label-cyan" dangerouslySetInnerHTML={{ __html: cyan }} />
+                              ) : (
+                                <span className="key-label-cyan">{cyan}</span>
+                              )}
+                            </div>
+                            <KeyButton
+                              labelKey={key.labelKey}
+                              category={key.category}
+                              isActive={false}
+                              onClick={() => dispatch(resolveKeyAction(key.op, isShifted, undefined))}
+                            />
+                            <div className="key-label-alpha">{ROW3_ALPHA[idx] ?? ""}</div>
                           </div>
                         );
                       })}
