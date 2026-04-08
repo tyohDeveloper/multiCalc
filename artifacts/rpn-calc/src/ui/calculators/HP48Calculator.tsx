@@ -24,9 +24,11 @@ export function HP48Calculator() {
           <span className="hp48-logo">{label("calc-logo")}<span>®</span></span>
           <span className="hp48-brand">{label("calc-model")}</span>
         </div>
-        <div className="hp48-screen">
-          <StatusBar state={state} onCycleAngleMode={cycleAngle} onCycleDisplayMode={cycleDisplay} onIncreasePrecision={increasePrec} onDecreasePrecision={decreasePrec} />
-          <StackDisplay state={state} />
+        <div className="hp48-display-shell">
+          <div className="hp48-screen">
+            <StatusBar state={state} onCycleAngleMode={cycleAngle} onCycleDisplayMode={cycleDisplay} onIncreasePrecision={increasePrec} onDecreasePrecision={decreasePrec} />
+            <StackDisplay state={state} />
+          </div>
         </div>
         <div className="hp48-accent-strip" />
         <KeyGrid isShifted={state.isShifted} dispatch={dispatch} />

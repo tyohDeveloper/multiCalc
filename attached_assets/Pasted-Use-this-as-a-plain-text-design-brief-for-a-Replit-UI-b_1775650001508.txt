@@ -1,0 +1,72 @@
+Use this as a plain-text design brief for a Replit UI build of the HP-48G+. The HP-48G+ uses the same overall physical case and front-face layout as the HP-48G/GX family: a tall, narrow dark-gray calculator body about 18 cm high, 8 cm wide, and roughly 2.5–2.8 cm thick, with a large rectangular monochrome LCD at the top and a dense multi-row keyboard below.
+
+HP-48G+ UI reference description
+
+Overall shape:
+A vertically oriented handheld calculator with a slightly wedge-like slab shape. The body is dark charcoal gray, almost black, with softly rounded corners but mostly straight sides. It should feel sturdy, technical, and industrial rather than playful or glossy. The front face is visually divided into two main zones: a large display section on top and a large keyboard section below. The design is dense and information-rich.
+
+Color and finish:
+Main body color is deep matte charcoal gray. Keys are mostly dark gray to black. Accent printing uses several colors, especially white for primary legends and colored shifted functions. The look is late-1980s to 1990s HP engineering style: serious, utilitarian, compact, and slightly austere. Avoid bright modern gradients, glass effects, chrome, or rounded toy-like keys.
+
+Top display area:
+The screen occupies the upper portion of the device and is one of its dominant visual features. It is a wide landscape rectangle set into a bezel. The LCD is monochrome with a green-gray or olive-gray reflective look rather than blue or backlit. The visible screen area should feel broad relative to the body width, with a slightly raised or inset border around it. Above and around the display, keep the housing plain and functional, with only minimal branding and model labeling.
+
+Display proportions:
+The screen should be much wider than it is tall, spanning most of the calculator width but leaving a consistent bezel border on all sides. The bezel is dark and flat. The LCD itself should look pixel-based, crisp, and old-school, capable of showing multiple text lines and graphics. The top row of the LCD should allow for tiny annunciators or status indicators.
+
+Branding and labeling:
+Place a small HP logo near the top, above the keyboard and below or near the display area. Include the model label “HP 48G+” on the front face. The typography should be compact, technical, and understated. Branding should not dominate the face; the screen and keyboard are the main visual focus.
+
+Keyboard organization:
+The keyboard is dense and tightly packed, covering most of the lower two-thirds of the front panel. The keys are arranged in horizontal rows with very small gaps. The keyboard should look like a professional tool, not a consumer gadget. There are many keys, and the layout should feel systematic and layered. The keyboard is one of the defining visual traits of the HP-48G+ and should appear busy, compact, and highly functional.
+
+Key shape:
+Most keys are small rectangular keys with slightly rounded corners. They are generally wider than tall, though some are nearly square. The keys sit in a tight grid. The main Enter key is larger and more visually prominent than standard keys. The keys should not be circular. The top rows can be slightly flatter and more panel-like, while the main number and function keys should look tactile and pressable.
+
+Top keyboard row:
+Directly below the display is a row of six soft keys aligned with the display menu system. These are horizontally arranged and visually read as menu keys for on-screen functions. They should be small, consistent rectangular buttons spanning across the width. This row visually ties the screen to the keyboard and is important to replicate.
+
+Central navigation cluster:
+Below the soft keys and upper function area is a navigation/control cluster centered around the cursor pad. This area should include directional arrow keys arranged as a cross or compact cluster. Nearby are dedicated control keys such as alpha, shift, and other mode/navigation functions. This central region should look denser and more command-oriented than the numeric section.
+
+Numeric area:
+The numeric keypad occupies the lower middle portion of the keyboard in the familiar calculator pattern. Digits 0 through 9 are laid out in a standard grid, with arithmetic operators and punctuation nearby. Even though it is a graphing/RPL calculator, the numeric section should still read clearly as a calculator keypad embedded inside a much richer function layout.
+
+Enter key:
+The Enter key should be large and visually distinctive. On the classic HP-48 layout, it is a tall key on the right side of the main key field, noticeably larger than surrounding keys. It is one of the signature visual anchors of the keyboard and should stand out immediately.
+
+Legend system:
+Every key can have multiple legends. The primary label is printed on the key face, usually in white. Secondary and shifted functions are printed above the keys on the case surface in smaller colored text. This is essential to the look. The face should show a layered labeling system, with tiny text above many keys indicating alternate functions. The result should feel information-dense and slightly intimidating in a good way, like lab equipment.
+
+Color coding of legends:
+Primary legends should be light, usually white, on dark keys. Shifted and alternate legends should use contrasting accent colors. The exact colors can vary in your recreation, but the important part is that there are clearly multiple function layers visible at once. The HP-48 style depends heavily on this multi-color legend system.
+
+Visual hierarchy of keys:
+The top soft keys are small and uniform. The upper function/navigation rows are compact and technical. The central cursor and control keys are prominent but not oversized. The numeric keys are familiar and readable. The Enter key is the dominant large key. Overall the keyboard should feel like several functional zones stacked together rather than one uniform keypad.
+
+Spacing and density:
+Keep everything tight. The HP-48G+ is not airy or minimalist. The layout should feel efficient and compressed, with small margins and narrow key gaps. The screen is large, but the keyboard below is dense and packed. Preserve that compact engineering feel.
+
+Surface styling:
+The front panel should be mostly flat, with the screen recessed or framed and the keys slightly raised. Avoid glossy reflections and modern material design shadows. Any shadowing should be minimal and practical, just enough to separate keys from the panel. The whole object should feel molded plastic with subtle texture.
+
+Mood keywords:
+Technical, dense, utilitarian, programmable, engineering instrument, 1990s professional calculator, RPN/RPL workstation, serious, tactile, high-function, retro-industrial.
+
+Do not make it look like:
+A phone app keypad, a modern soft UI calculator, a TI-84, a bright toy-like school calculator, or a sleek glass touchscreen device.
+
+If building this as CSS/UI blocks:
+Use a tall portrait container.
+Place a wide monochrome screen at the top, about the upper quarter of the device.
+Place one row of six soft keys directly under the screen.
+Below that, build several dense rows of dark rectangular keys.
+Include a central arrow-key cluster.
+Include a standard numeric cluster in the lower middle.
+Place a large tall Enter key on the right side.
+Add tiny colored secondary labels above many keys.
+Use dark grays, muted olive-gray for the LCD, and restrained accent legend colors.
+Favor tight spacing, small radii, and a professional instrument look.
+
+Compact art-direction prompt:
+Create a realistic front view of an HP-48G+ style graphing calculator UI: dark charcoal body, large monochrome olive-gray LCD at top, six soft keys under screen, dense multi-row rectangular keyboard below, large vertical Enter key on right, central arrow-key cluster, numeric keypad integrated into lower section, white primary legends with small colored shifted legends above keys, tight spacing, industrial 1990s Hewlett-Packard engineering aesthetic, matte plastic, serious and technical, no modern glassy effects.

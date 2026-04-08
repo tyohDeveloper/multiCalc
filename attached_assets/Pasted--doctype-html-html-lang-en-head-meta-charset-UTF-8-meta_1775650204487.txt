@@ -1,0 +1,505 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>HP-48G+ UI Mockup</title>
+  <style>
+    :root {
+      --body: #2f3338;
+      --body-2: #262a2f;
+      --panel: #3a3f45;
+      --panel-2: #1f2328;
+      --screen-bezel: #2a2d31;
+      --screen: #aeb89b;
+      --screen-dark: #70795f;
+      --key: #3b4147;
+      --key-top: #4a5057;
+      --key-border: #171a1e;
+      --text: #f1f3f5;
+      --muted: #c8cdd2;
+      --purple: #c88cff;
+      --blue: #72b7ff;
+      --green: #7ad67a;
+      --accent: #d9dde2;
+      --shadow: rgba(0, 0, 0, 0.45);
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: grid;
+      place-items: center;
+      background:
+        radial-gradient(circle at top, #4b5563 0%, #1e2329 45%, #13161a 100%);
+      font-family: Arial, Helvetica, sans-serif;
+      color: var(--text);
+      padding: 24px;
+    }
+
+    .calculator {
+      width: 420px;
+      border-radius: 22px;
+      padding: 18px 18px 22px;
+      background:
+        linear-gradient(180deg, #3a4047 0%, #2b2f34 22%, #22262b 100%);
+      border: 2px solid #13161a;
+      box-shadow:
+        0 18px 45px var(--shadow),
+        inset 0 1px 0 rgba(255,255,255,0.07),
+        inset 0 -2px 8px rgba(0,0,0,0.35);
+    }
+
+    .top-labels {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      margin-bottom: 10px;
+      font-size: 13px;
+      color: #e7eaed;
+      letter-spacing: 0.04em;
+    }
+
+    .hp-mark {
+      font-weight: 700;
+      font-size: 18px;
+    }
+
+    .model {
+      font-weight: 700;
+    }
+
+    .display-shell {
+      background: linear-gradient(180deg, #3b4046 0%, #23272c 100%);
+      border: 2px solid #171a1d;
+      border-radius: 10px;
+      padding: 12px;
+      box-shadow:
+        inset 0 1px 0 rgba(255,255,255,0.05),
+        inset 0 -4px 10px rgba(0,0,0,0.35);
+    }
+
+    .display {
+      background: linear-gradient(180deg, #bbc5aa 0%, #aab497 70%, #98a285 100%);
+      color: #25301d;
+      border: 2px solid var(--screen-bezel);
+      border-radius: 6px;
+      padding: 10px 12px 8px;
+      box-shadow:
+        inset 0 1px 1px rgba(255,255,255,0.35),
+        inset 0 -3px 8px rgba(0,0,0,0.18);
+      aspect-ratio: 2.35 / 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      font-family: "Courier New", Courier, monospace;
+    }
+
+    .status {
+      display: flex;
+      justify-content: space-between;
+      font-size: 12px;
+      opacity: 0.9;
+      margin-bottom: 6px;
+    }
+
+    .stack {
+      display: grid;
+      gap: 4px;
+      font-size: 15px;
+      line-height: 1.2;
+    }
+
+    .menu {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 6px;
+      font-size: 11px;
+      margin-top: 8px;
+      text-transform: uppercase;
+    }
+
+    .menu span {
+      text-align: center;
+      padding-top: 4px;
+      border-top: 1px solid rgba(37,48,29,0.4);
+    }
+
+    .softkeys {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 8px;
+      margin: 12px 2px 14px;
+    }
+
+    .softkey {
+      height: 18px;
+      border-radius: 4px;
+      background: linear-gradient(180deg, #5b6168 0%, #373c42 100%);
+      border: 1px solid #15181b;
+      box-shadow:
+        0 1px 0 rgba(255,255,255,0.07),
+        inset 0 1px 0 rgba(255,255,255,0.08);
+    }
+
+    .keyboard {
+      margin-top: 4px;
+    }
+
+    .row {
+      display: grid;
+      gap: 8px;
+      margin-bottom: 11px;
+    }
+
+    .row-6 { grid-template-columns: repeat(6, 1fr); }
+    .row-5-enter { grid-template-columns: repeat(4, 1fr) 1.2fr; }
+
+    .key-wrap {
+      position: relative;
+      min-height: 58px;
+    }
+
+    .legend-top {
+      position: absolute;
+      top: -11px;
+      left: 4px;
+      right: 4px;
+      display: flex;
+      justify-content: space-between;
+      font-size: 10px;
+      font-weight: 700;
+      line-height: 1;
+      pointer-events: none;
+    }
+
+    .legend-top .left {
+      color: var(--purple);
+    }
+
+    .legend-top .right {
+      color: var(--blue);
+      text-align: right;
+    }
+
+    .legend-alpha {
+      position: absolute;
+      right: 6px;
+      bottom: 6px;
+      color: var(--green);
+      font-size: 10px;
+      font-weight: 700;
+      pointer-events: none;
+    }
+
+    .key {
+      width: 100%;
+      height: 58px;
+      border: 1px solid var(--key-border);
+      border-radius: 8px;
+      background: linear-gradient(180deg, var(--key-top) 0%, var(--key) 55%, #2f353b 100%);
+      color: var(--text);
+      font-weight: 700;
+      font-size: 16px;
+      letter-spacing: 0.02em;
+      box-shadow:
+        0 2px 0 #14171a,
+        0 5px 10px rgba(0,0,0,0.28),
+        inset 0 1px 0 rgba(255,255,255,0.08);
+      display: grid;
+      place-items: center;
+      user-select: none;
+    }
+
+    .key.small {
+      font-size: 13px;
+    }
+
+    .key.enter {
+      height: 127px;
+      grid-row: span 2;
+      font-size: 20px;
+    }
+
+    .cluster {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+      margin-bottom: 11px;
+    }
+
+    .cluster .spacer {
+      visibility: hidden;
+    }
+
+    .footer-note {
+      margin-top: 8px;
+      text-align: center;
+      font-size: 11px;
+      color: #b7bdc4;
+      letter-spacing: 0.08em;
+    }
+
+    @media (max-width: 520px) {
+      .calculator {
+        width: min(100%, 390px);
+        padding: 14px 14px 18px;
+      }
+
+      .key {
+        height: 52px;
+        font-size: 14px;
+      }
+
+      .key.enter {
+        height: 115px;
+      }
+
+      .key-wrap {
+        min-height: 52px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="calculator">
+    <div class="top-labels">
+      <div class="hp-mark">hp</div>
+      <div class="model">48G+</div>
+    </div>
+
+    <div class="display-shell">
+      <div class="display">
+        <div class="status">
+          <span>{ HOME }</span>
+          <span>RAD α</span>
+        </div>
+
+        <div class="stack">
+          <div>1:  3.141592654</div>
+          <div>2:  'X^2+1'</div>
+          <div>3:  { 1 2 3 }</div>
+          <div>4:  GRAPH</div>
+        </div>
+
+        <div class="menu">
+          <span>MTH</span>
+          <span>PRG</span>
+          <span>CST</span>
+          <span>VAR</span>
+          <span>MODE</span>
+          <span>TOOL</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="softkeys">
+      <div class="softkey"></div>
+      <div class="softkey"></div>
+      <div class="softkey"></div>
+      <div class="softkey"></div>
+      <div class="softkey"></div>
+      <div class="softkey"></div>
+    </div>
+
+    <div class="keyboard">
+      <div class="row row-6">
+        <div class="key-wrap">
+          <div class="legend-top"><span class="left">PURGE</span><span class="right">MODES</span></div>
+          <div class="key small">A</div>
+        </div>
+        <div class="key-wrap">
+          <div class="legend-top"><span class="left">ARG</span><span class="right">LIB</span></div>
+          <div class="key small">B</div>
+        </div>
+        <div class="key-wrap">
+          <div class="legend-top"><span class="left">STO</span><span class="right">RCL</span></div>
+          <div class="key small">C</div>
+        </div>
+        <div class="key-wrap">
+          <div class="legend-top"><span class="left">EVAL</span><span class="right">UNDO</span></div>
+          <div class="key small">D</div>
+        </div>
+        <div class="key-wrap">
+          <div class="legend-top"><span class="left">LEFT</span><span class="right">UP</span></div>
+          <div class="key small">E</div>
+        </div>
+        <div class="key-wrap">
+          <div class="legend-top"><span class="left">NXT</span><span class="right">HIST</span></div>
+          <div class="key small">F</div>
+        </div>
+      </div>
+
+      <div class="row row-6">
+        <div class="key-wrap">
+          <div class="legend-top"><span class="left">PRINT</span><span class="right">I/O</span></div>
+          <div class="key small">MTH</div>
+        </div>
+        <div class="key-wrap">
+          <div class="legend-top"><span class="left">CHARS</span><span class="right">PATH</span></div>
+          <div class="key small">PRG</div>
+        </div>
+        <div class="key-wrap">
+          <div class="legend-top"><span class="left">MODES</span><span class="right">MEMORY</span></div>
+          <div class="key small">CST</div>
+        </div>
+        <div class="key-wrap">
+          <div class="legend-top"><span class="left">CUSTOM</span><span class="right">VAR</span></div>
+          <div class="key small">VAR</div>
+        </div>
+        <div class="key-wrap">
+          <div class="legend-top"><span class="left">STACK</span><span class="right">EDIT</span></div>
+          <div class="key small">TOOL</div>
+        </div>
+        <div class="key-wrap">
+          <div class="legend-top"><span class="left">OFF</span><span class="right">ON</span></div>
+          <div class="key small">ON</div>
+        </div>
+      </div>
+
+      <div class="cluster">
+        <div class="key-wrap spacer"><div class="key"></div></div>
+        <div class="key-wrap">
+          <div class="legend-top"><span class="left">PAGE</span><span class="right">HOME</span></div>
+          <div class="key">↑</div>
+        </div>
+        <div class="key-wrap spacer"><div class="key"></div></div>
+
+        <div class="key-wrap">
+          <div class="legend-top"><span class="left">PREV</span><span class="right">BEGIN</span></div>
+          <div class="key">←</div>
+        </div>
+        <div class="key-wrap">
+          <div class="legend-top"><span class="left">ALPHA</span><span class="right">USER</span></div>
+          <div class="key small">α</div>
+        </div>
+        <div class="key-wrap">
+          <div class="legend-top"><span class="left">NEXT</span><span class="right">END</span></div>
+          <div class="key">→</div>
+        </div>
+
+        <div class="key-wrap spacer"><div class="key"></div></div>
+        <div class="key-wrap">
+          <div class="legend-top"><span class="left">DROP</span><span class="right">SWAP</span></div>
+          <div class="key">↓</div>
+        </div>
+        <div class="key-wrap spacer"><div class="key"></div></div>
+      </div>
+
+      <div class="row row-5-enter">
+        <div class="key-wrap">
+          <div class="legend-top"><span class="left">SIN</span><span class="right">ASIN</span></div>
+          <div class="legend-alpha">M</div>
+          <div class="key">7</div>
+        </div>
+        <div class="key-wrap">
+          <div class="legend-top"><span class="left">COS</span><span class="right">ACOS</span></div>
+          <div class="legend-alpha">N</div>
+          <div class="key">8</div>
+        </div>
+        <div class="key-wrap">
+          <div class="legend-top"><span class="left">TAN</span><span class="right">ATAN</span></div>
+          <div class="legend-alpha">O</div>
+          <div class="key">9</div>
+        </div>
+        <div class="key-wrap">
+          <div class="legend-top"><span class="left">SQ</span><span class="right">ROOT</span></div>
+          <div class="legend-alpha">P</div>
+          <div class="key">÷</div>
+        </div>
+        <div class="key-wrap" style="grid-row: span 2;">
+          <div class="legend-top"><span class="left">QUOTE</span><span class="right">NUM</span></div>
+          <div class="key enter">ENTER</div>
+        </div>
+
+        <div class="key-wrap">
+          <div class="legend-top"><span class="left">LOG</span><span class="right">10^X</span></div>
+          <div class="legend-alpha">J</div>
+          <div class="key">4</div>
+        </div>
+        <div class="key-wrap">
+          <div class="legend-top"><span class="left">LN</span><span class="right">E^X</span></div>
+          <div class="legend-alpha">K</div>
+          <div class="key">5</div>
+        </div>
+        <div class="key-wrap">
+          <div class="legend-top"><span class="left">Y^X</span><span class="right">1/X</span></div>
+          <div class="legend-alpha">L</div>
+          <div class="key">6</div>
+        </div>
+        <div class="key-wrap">
+          <div class="legend-top"><span class="left">NEG</span><span class="right">ABS</span></div>
+          <div class="legend-alpha">,</div>
+          <div class="key">×</div>
+        </div>
+      </div>
+
+      <div class="row row-6">
+        <div class="key-wrap">
+          <div class="legend-top"><span class="left">RAD</span><span class="right">DEG</span></div>
+          <div class="legend-alpha">G</div>
+          <div class="key">1</div>
+        </div>
+        <div class="key-wrap">
+          <div class="legend-top"><span class="left">POLAR</span><span class="right">RECT</span></div>
+          <div class="legend-alpha">H</div>
+          <div class="key">2</div>
+        </div>
+        <div class="key-wrap">
+          <div class="legend-top"><span class="left">TIME</span><span class="right">DATE</span></div>
+          <div class="legend-alpha">I</div>
+          <div class="key">3</div>
+        </div>
+        <div class="key-wrap">
+          <div class="legend-top"><span class="left">-</span><span class="right">CHS</span></div>
+          <div class="legend-alpha">;</div>
+          <div class="key">-</div>
+        </div>
+        <div class="key-wrap">
+          <div class="legend-top"><span class="left">DEL</span><span class="right">CLEAR</span></div>
+          <div class="key small">DEL</div>
+        </div>
+        <div class="key-wrap">
+          <div class="legend-top"><span class="left">BS</span><span class="right">DROP</span></div>
+          <div class="key small">←</div>
+        </div>
+      </div>
+
+      <div class="row row-6">
+        <div class="key-wrap">
+          <div class="legend-top"><span class="left">SPC</span><span class="right">0</span></div>
+          <div class="legend-alpha">A</div>
+          <div class="key">0</div>
+        </div>
+        <div class="key-wrap">
+          <div class="legend-top"><span class="left">.</span><span class="right">ANS</span></div>
+          <div class="legend-alpha">B</div>
+          <div class="key">.</div>
+        </div>
+        <div class="key-wrap">
+          <div class="legend-top"><span class="left">+/-</span><span class="right">EEX</span></div>
+          <div class="legend-alpha">C</div>
+          <div class="key">+/-</div>
+        </div>
+        <div class="key-wrap">
+          <div class="legend-top"><span class="left">+</span><span class="right">LAST</span></div>
+          <div class="legend-alpha">D</div>
+          <div class="key">+</div>
+        </div>
+        <div class="key-wrap">
+          <div class="legend-top"><span class="left">LEFT</span><span class="right">SHIFT</span></div>
+          <div class="key small">LS</div>
+        </div>
+        <div class="key-wrap">
+          <div class="legend-top"><span class="left">RIGHT</span><span class="right">SHIFT</span></div>
+          <div class="key small">RS</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-note">HP-48G+ inspired UI mockup</div>
+  </div>
+</body>
+</html>

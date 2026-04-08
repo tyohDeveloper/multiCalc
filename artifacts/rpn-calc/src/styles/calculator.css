@@ -6,28 +6,31 @@
 }
 
 .hp48-body {
-  background: var(--hp-body);
-  border-radius: 10px 10px 18px 18px;
-  padding: 14px 14px 18px;
-  width: 380px;
-  box-shadow: 0 10px 40px rgba(0,0,0,0.9), 0 2px 0 rgba(255,255,255,0.06) inset;
-  border: 2px solid var(--hp-body-border);
+  background: linear-gradient(180deg, #3a4047 0%, #2b2f34 20%, #22262b 100%);
+  border-radius: 20px 20px 24px 24px;
+  padding: 14px 16px 18px;
+  width: 400px;
+  box-shadow:
+    0 18px 50px rgba(0,0,0,0.92),
+    0 2px 0 rgba(255,255,255,0.06) inset,
+    0 -2px 8px rgba(0,0,0,0.4) inset;
+  border: 2px solid #13161a;
 }
 
 .hp48-header {
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: flex-end;
   margin-bottom: 10px;
   padding: 0 2px;
 }
 
 .hp48-logo {
   font-family: Arial, Helvetica, sans-serif;
-  font-size: 13px;
+  font-size: 18px;
   font-weight: 900;
   color: var(--hp-logo-color);
-  letter-spacing: 0px;
+  letter-spacing: -0.5px;
   line-height: 1;
 }
 
@@ -41,53 +44,41 @@
 
 .hp48-brand {
   font-family: Arial, Helvetica, sans-serif;
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 700;
   color: var(--hp-brand-color);
-  letter-spacing: 1px;
+  letter-spacing: 1.5px;
   line-height: 1;
 }
 
-.hp48-screen {
-  background: var(--hp-screen-bg);
-  border-radius: 3px;
-  padding: 8px 10px;
+/* Display shell */
+.hp48-display-shell {
+  background: linear-gradient(180deg, #3b4046 0%, #23272c 100%);
+  border: 2px solid #171a1d;
+  border-radius: 10px;
+  padding: 11px;
   margin-bottom: 0;
-  border: 3px solid #5a6050;
-  box-shadow: inset 0 3px 8px rgba(0,0,0,0.45), 0 1px 0 rgba(255,255,255,0.05);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.05),
+    inset 0 -4px 10px rgba(0,0,0,0.35);
+}
+
+.hp48-screen {
+  background: linear-gradient(180deg, #bbc5aa 0%, #aab497 70%, #98a285 100%);
+  border-radius: 6px;
+  padding: 8px 10px 6px;
+  border: 2px solid #2a2d31;
+  box-shadow:
+    inset 0 1px 1px rgba(255,255,255,0.35),
+    inset 0 -3px 8px rgba(0,0,0,0.18);
   font-family: "Courier New", monospace;
 }
 
 .hp48-accent-strip {
-  height: 8px;
+  height: 7px;
   background: linear-gradient(to bottom, var(--hp-accent-teal), #2a9090);
-  margin: 0 -14px;
-  margin-bottom: 10px;
+  margin: 0 -16px;
   box-shadow: 0 2px 4px rgba(0,0,0,0.4);
-}
-
-.pane-selector {
-  display: flex;
-  justify-content: center;
-  gap: 6px;
-  margin-bottom: 10px;
-}
-
-.pane-tab {
-  background: #2e2e31;
-  color: #777;
-  border: 1px solid #444;
-  border-radius: 3px;
-  padding: 4px 14px;
-  font-size: 11px;
-  font-family: "Courier New", monospace;
-  cursor: pointer;
-}
-
-.pane-tab-active {
-  background: #484848;
-  color: #ccc;
-  border-color: #555;
 }
 
 .status-bar {
@@ -146,7 +137,7 @@
 .stack-display {
   display: flex;
   flex-direction: column;
-  gap: 2px;
+  gap: 1px;
 }
 
 .stack-row {
@@ -155,7 +146,7 @@
   align-items: baseline;
   color: var(--hp-screen-text);
   font-size: 12px;
-  line-height: 1.5;
+  line-height: 1.45;
 }
 
 .stack-label {
@@ -172,45 +163,136 @@
   flex: 1;
 }
 
+/* Key grid layout */
+
 .key-grid {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 3px;
+  margin-top: 3px;
 }
 
 .key-section {
   display: flex;
   flex-direction: column;
-  gap: 5px;
+  gap: 3px;
+}
+
+/* Softkeys — blank tab buttons directly below accent strip */
+.key-section-softkeys {
+  background: linear-gradient(to bottom, #3a3a3d, #333336);
+  border-top: 7px solid var(--hp-accent-teal);
+  padding: 5px 0 5px;
+  margin: 0 -16px;
+  padding-left: 16px;
+  padding-right: 16px;
+}
+
+/* Top function row (A-F and MTH-ON) */
+.key-section-top-fn {
+  padding-top: 5px;
+  gap: 3px;
+}
+
+/* Navigation cluster — centered cross */
+.key-section-navcluster {
+  display: grid !important;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 4px;
+  margin: 3px 30px;
+}
+
+/* Numpad (flat, 5 cols, ENTER tall) */
+.key-section-numpad {
+  gap: 4px;
+  margin-top: 2px;
+}
+
+/* Lower rows */
+.key-section-lower {
+  gap: 3px;
+}
+
+/* Flat section base */
+.key-section-flat {
+  display: grid;
+  gap: 4px;
 }
 
 .key-row {
   display: grid;
-  gap: 5px;
+  gap: 4px;
 }
+
+.key-cell {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+/* Tall key cell (ENTER spans 2 rows) */
+.key-cell-tall {
+  align-self: stretch;
+}
+
+.key-cell-tall .key-button {
+  flex: 1;
+  min-height: unset;
+  height: 100%;
+}
+
+/* Spacer cell in navcluster cross */
+.key-spacer {
+  visibility: hidden;
+}
+
+/* Shift labels printed above keys on calculator body */
+.key-above-label {
+  font-size: 7px;
+  font-weight: bold;
+  font-family: Arial, Helvetica, sans-serif;
+  color: rgba(200, 140, 90, 0.55);
+  text-align: center;
+  height: 11px;
+  line-height: 11px;
+  letter-spacing: 0.3px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: clip;
+}
+
+.key-above-label.key-above-active {
+  color: #5dd;
+  text-shadow: 0 0 5px rgba(63,210,210,0.4);
+}
+
+/* Key buttons */
 
 .key-button {
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 6px 4px 5px;
-  border-radius: var(--radius-key);
-  border: none;
+  padding: 4px 3px;
+  border-radius: 7px;
+  border: 1px solid #14171a;
   cursor: pointer;
   font-family: "Courier New", monospace;
-  box-shadow: var(--shadow-key);
-  background: var(--hp-key-dark);
+  background: linear-gradient(180deg, #4a5057 0%, #3b4147 55%, #2f353b 100%);
   color: #d8d8d8;
   position: relative;
-  min-height: 36px;
-  transition: transform 0.05s, box-shadow 0.05s, filter 0.05s;
+  min-height: 38px;
+  width: 100%;
+  box-shadow:
+    0 2px 0 #14171a,
+    0 4px 8px rgba(0,0,0,0.3),
+    inset 0 1px 0 rgba(255,255,255,0.09);
+  transition: transform 0.05s, filter 0.05s;
 }
 
 .key-button:active {
   transform: translateY(1px);
-  box-shadow: 0 1px 1px rgba(0,0,0,0.6);
-  filter: brightness(0.85);
+  box-shadow: 0 1px 1px rgba(0,0,0,0.7);
+  filter: brightness(0.82);
 }
 
 .key-main-label {
@@ -218,72 +300,116 @@
   font-weight: bold;
   line-height: 1;
   color: #ddd;
+  pointer-events: none;
+  letter-spacing: 0.2px;
 }
 
-.key-shift-label {
-  font-size: 7px;
-  color: var(--hp-accent-teal);
-  line-height: 1;
-  margin-bottom: 2px;
-}
-
-.key-button.shifted .key-main-label {
-  color: var(--hp-accent-teal);
-}
-
+/* Operator keys — slightly different shade */
 .key-button.key-operator {
-  background: var(--hp-key-operator);
+  background: linear-gradient(180deg, #464c52 0%, #383d43 55%, #2c3137 100%);
   color: #e0e0e0;
 }
 
+/* Digit keys — lighter, more prominent */
 .key-button.key-digit {
-  background: var(--hp-key-digit);
-  color: #fff;
+  background: linear-gradient(180deg, #505760 0%, #404850 55%, #343c44 100%);
+  color: #f0f0f0;
 }
 
+.key-button.key-digit .key-main-label {
+  font-size: 13px;
+  color: #f0f0f0;
+}
+
+/* Stack keys */
 .key-button.key-stack {
-  background: #353538;
+  background: linear-gradient(180deg, #47484c 0%, #3a3b3f 55%, #2e2f32 100%);
   color: #d0d0d0;
 }
 
+/* Control keys */
 .key-button.key-control {
-  background: #313134;
+  background: linear-gradient(180deg, #444548 0%, #373839 55%, #2c2d30 100%);
   color: #c8c8c8;
 }
 
-.key-button.key-math {
-  background: #363639;
-  color: #d0d0d0;
-}
-
-.key-button.key-trig {
-  background: #343437;
-  color: #d0d0d0;
-}
-
-.key-button.key-const {
-  background: #333336;
-  color: #d0d0d0;
-}
-
+/* Entry keys (+/-, EEX, .) */
 .key-button.key-entry {
-  background: var(--hp-key-enter);
+  background: linear-gradient(180deg, #484a4e 0%, #3b3d41 55%, #2f3135 100%);
   color: #e0e0e0;
 }
 
+/* Function keys (MTH, PRG, etc.) */
+.key-button.key-func {
+  background: linear-gradient(180deg, #434548 0%, #363839 55%, #2b2d2f 100%);
+  color: #c8c8c8;
+}
+
+.key-button.key-func .key-main-label {
+  font-size: 10px;
+}
+
+/* Function keys (A-F, labeled) */
+.key-button.key-func-key {
+  background: linear-gradient(180deg, #464850 0%, #393b43 55%, #2d2f36 100%);
+  color: #ccc;
+}
+
+.key-button.key-func-key .key-main-label {
+  font-size: 11px;
+  font-weight: 900;
+}
+
+/* Navigation keys (arrows, alpha) */
+.key-button.key-nav {
+  background: linear-gradient(180deg, #434549 0%, #363840 55%, #2b2d34 100%);
+  color: #d8d8d8;
+  min-height: 42px;
+  border-radius: 8px;
+}
+
+.key-button.key-nav .key-main-label {
+  font-size: 14px;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Soft (blank tab) keys */
+.key-button.key-soft {
+  background: linear-gradient(180deg, #5b6168 0%, #434a50 100%);
+  color: #aaa;
+  min-height: 18px;
+  border-radius: 3px 3px 5px 5px;
+  box-shadow:
+    0 2px 0 #14171a,
+    0 3px 6px rgba(0,0,0,0.3),
+    inset 0 1px 0 rgba(255,255,255,0.1);
+}
+
+/* Shift key (LS) */
 .key-button.key-shift {
-  background: var(--hp-key-shift-left);
+  background: linear-gradient(180deg, #3a9898 0%, #2e7878 55%, #235858 100%);
   color: #fff;
+  border-color: #1a4444;
+  box-shadow:
+    0 2px 0 #0d2222,
+    0 4px 8px rgba(0,0,0,0.35),
+    inset 0 1px 0 rgba(255,255,255,0.15);
 }
 
 .key-button.key-shift .key-main-label {
+  font-size: 10px;
+  font-weight: 900;
   color: #fff;
+  letter-spacing: 0.5px;
 }
 
 .key-button.key-active {
-  background: #2e9090 !important;
+  background: linear-gradient(180deg, #3fbfbf 0%, #2e9595 55%, #1e6868 100%) !important;
   color: #fff;
-  box-shadow: 0 0 6px rgba(58,175,175,0.5), 0 1px 2px rgba(0,0,0,0.5);
+  box-shadow:
+    0 0 8px rgba(63,191,191,0.5),
+    0 2px 0 #0d2222,
+    inset 0 1px 0 rgba(255,255,255,0.2);
 }
 
 .key-button.key-active .key-main-label {
