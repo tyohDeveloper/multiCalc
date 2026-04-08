@@ -36,12 +36,12 @@
         {
           "id": "top-fn-1",
           "keys": [
-            { "id": "mth",  "op": "OP_MTH",  "labelKey": "mth",  "shiftOp": "OP_MTRX",   "shiftLabelKey": "mtrx",          "category": "func" },
-            { "id": "prg",  "op": "OP_PRG",  "labelKey": "prg",  "shiftOp": "OP_SYMB",   "shiftLabelKey": "symb",          "category": "func" },
-            { "id": "cst",  "op": "OP_CST",  "labelKey": "cst",  "shiftOp": "OP_SOLV",   "shiftLabelKey": "solv",          "category": "func" },
-            { "id": "var",  "op": "OP_VAR",  "labelKey": "var",  "shiftOp": "OP_DIR",    "shiftLabelKey": "dir",           "category": "func" },
-            { "id": "hist", "op": "OP_HIST", "labelKey": "hist", "shiftOp": "SIGMA_PLUS", "shiftLabelKey": "sigma-plus",   "category": "func" },
-            { "id": "on",   "op": "CLEAR",   "labelKey": "on-key","shiftOp": "OP_OFF",   "shiftLabelKey": "off",           "category": "control" }
+            { "id": "mth",  "op": "OP_MTH",  "labelKey": "mth",   "shiftOp": "OP_MTRX",   "shiftLabelKey": "mtrx",        "category": "func",    "topMagenta": "RAD",  "topCyan": "POLAR"  },
+            { "id": "prg",  "op": "OP_PRG",  "labelKey": "prg",   "shiftOp": "OP_SYMB",   "shiftLabelKey": "symb",        "category": "func",    "topMerged": "CHARS"                      },
+            { "id": "cst",  "op": "OP_CST",  "labelKey": "cst",   "shiftOp": "OP_SOLV",   "shiftLabelKey": "solv",        "category": "func",    "topMerged": "MODES"                      },
+            { "id": "var",  "op": "OP_VAR",  "labelKey": "var",   "shiftOp": "OP_DIR",    "shiftLabelKey": "dir",         "category": "func",    "topMerged": "MEMORY"                     },
+            { "id": "hist", "op": "OP_HIST", "labelKey": "hist",  "shiftOp": "SIGMA_PLUS","shiftLabelKey": "sigma-plus",  "category": "func",    "topMerged": "STACK"                      },
+            { "id": "on",   "op": "CLEAR",   "labelKey": "on-key","shiftOp": "OP_OFF",    "shiftLabelKey": "off",         "category": "control", "topMagenta": "PREV", "topCyan": "MENU"   }
           ]
         }
       ]

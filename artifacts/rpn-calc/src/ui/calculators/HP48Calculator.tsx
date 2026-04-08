@@ -30,7 +30,6 @@ export function HP48Calculator() {
             <StackDisplay state={state} />
           </div>
         </div>
-        <div className="hp48-accent-strip" />
         <KeyGrid isShifted={state.isShifted} dispatch={dispatch} />
       </div>
     </div>

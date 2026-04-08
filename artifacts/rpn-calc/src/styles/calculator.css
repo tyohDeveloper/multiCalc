@@ -8,8 +8,8 @@
 .hp48-body {
   background: linear-gradient(180deg, #3a4047 0%, #2b2f34 20%, #22262b 100%);
   border-radius: 20px 20px 24px 24px;
-  padding: 14px 16px 18px;
-  width: 400px;
+  padding: 14px 12px 18px;
+  width: 415px;
   box-shadow:
     0 18px 50px rgba(0,0,0,0.92),
     0 2px 0 rgba(255,255,255,0.06) inset,
@@ -57,7 +57,7 @@
   border: 2px solid #171a1d;
   border-radius: 10px;
   padding: 11px;
-  margin-bottom: 0;
+  margin-bottom: 3px;
   box-shadow:
     inset 0 1px 0 rgba(255,255,255,0.05),
     inset 0 -4px 10px rgba(0,0,0,0.35);
@@ -77,7 +77,7 @@
 .hp48-accent-strip {
   height: 7px;
   background: linear-gradient(to bottom, var(--hp-accent-teal), #2a9090);
-  margin: 0 -16px;
+  margin: 0 -12px;
   box-shadow: 0 2px 4px rgba(0,0,0,0.4);
 }
 
@@ -169,7 +169,7 @@
   display: flex;
   flex-direction: column;
   gap: 3px;
-  margin-top: 3px;
+  margin-top: 0;
 }
 
 .key-section {
@@ -181,16 +181,16 @@
 /* Softkeys — blank tab buttons directly below accent strip */
 .key-section-softkeys {
   background: linear-gradient(to bottom, #3a3a3d, #333336);
-  border-top: 7px solid var(--hp-accent-teal);
-  padding: 5px 0 5px;
-  margin: 0 -16px;
-  padding-left: 16px;
-  padding-right: 16px;
+  padding: 1px 0 4px;
+  margin: 0 -12px;
+  padding-left: 12px;
+  padding-right: 12px;
 }
 
 /* Top function row (A-F and MTH-ON) */
 .key-section-top-fn {
-  padding-top: 5px;
+  padding-top: 0;
+  margin-top: -1px;
   gap: 3px;
 }
 
@@ -272,15 +272,15 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 4px 3px;
-  border-radius: 7px;
+  padding: 2px 1px;
+  border-radius: 5px;
   border: 1px solid #14171a;
   cursor: pointer;
-  font-family: "Courier New", monospace;
+  font-family: Arial, Helvetica, sans-serif;
   background: linear-gradient(180deg, #4a5057 0%, #3b4147 55%, #2f353b 100%);
   color: #d8d8d8;
   position: relative;
-  min-height: 38px;
+  min-height: 26px;
   width: 100%;
   box-shadow:
     0 2px 0 #14171a,
@@ -296,7 +296,7 @@
 }
 
 .key-main-label {
-  font-size: 11px;
+  font-size: 16px;
   font-weight: bold;
   line-height: 1;
   color: #ddd;
@@ -346,7 +346,7 @@
 }
 
 .key-button.key-func .key-main-label {
-  font-size: 10px;
+  font-size: 15px;
 }
 
 /* Function keys (A-F, labeled) */
@@ -364,8 +364,8 @@
 .key-button.key-nav {
   background: linear-gradient(180deg, #434549 0%, #363840 55%, #2b2d34 100%);
   color: #d8d8d8;
-  min-height: 42px;
-  border-radius: 8px;
+  min-height: 30px;
+  border-radius: 6px;
 }
 
 .key-button.key-nav .key-main-label {
@@ -375,14 +375,88 @@
 
 /* Soft (blank tab) keys */
 .key-button.key-soft {
-  background: linear-gradient(180deg, #5b6168 0%, #434a50 100%);
-  color: #aaa;
+  background: #e8e5de;
+  color: #888;
   min-height: 18px;
   border-radius: 3px 3px 5px 5px;
+  border: 1px solid #b0a898;
   box-shadow:
-    0 2px 0 #14171a,
-    0 3px 6px rgba(0,0,0,0.3),
-    inset 0 1px 0 rgba(255,255,255,0.1);
+    0 2px 0 #8a837a,
+    0 3px 6px rgba(0,0,0,0.2),
+    inset 0 1px 0 rgba(255,255,255,0.5);
+}
+
+/* ── Three-zone key cell (row 2+) ── */
+
+/* Cell wrapper: top labels / button / alpha label */
+.key-cell-3zone {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+/* Top label row: magenta left, cyan right */
+.key-cell-top-labels {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  height: 12px;
+  padding: 0 2px;
+  overflow: hidden;
+}
+
+/* Top label row: single centered cyan label */
+.key-cell-top-labels--merged {
+  justify-content: center;
+}
+
+.key-cell-top-labels--merged .key-label-cyan {
+  width: 100%;
+  text-align: center;
+}
+
+.key-label-magenta {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 6.5px;
+  font-weight: bold;
+  color: #cc44aa;
+  text-transform: uppercase;
+  letter-spacing: 0.2px;
+  line-height: 1;
+}
+
+.key-label-cyan {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 6.5px;
+  font-weight: bold;
+  color: #22bbcc;
+  text-transform: uppercase;
+  letter-spacing: 0.2px;
+  line-height: 1;
+}
+
+/* Alpha (alphabet) label below the key button */
+.key-label-alpha {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 7px;
+  font-weight: bold;
+  color: rgba(220, 215, 200, 0.7);
+  text-align: right;
+  text-transform: uppercase;
+  line-height: 1;
+  padding: 1px 1px 0;
+}
+
+/* Softkey cell: alpha label bottom-right */
+.key-cell-soft {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.key-cell-soft .key-label-alpha {
+  font-size: 6.5px;
+  color: rgba(200, 190, 175, 0.65);
 }
 
 /* Shift key (LS) */
