@@ -1,6 +1,7 @@
 {
   "app-title": "RPN Calculator",
-  "calculator-hp48": "HP-48",
+  "calculator-hp48": "HP 48GX",
+  "calc-brand": "HP 48GX",
   "angle-deg": "DEG",
   "angle-rad": "RAD",
   "angle-grad": "GRAD",
@@ -13,8 +14,9 @@
   "stack-y": "Y",
   "stack-z": "Z",
   "stack-t": "T",
-  "error-invalid": "Error",
-  "error-overflow": "Overflow",
+  "error-nan": "Error",
+  "infinity-pos": "∞",
+  "infinity-neg": "-∞",
   "pane-switch-label": "Calculator",
-  "precision-label": "Precision"
+  "precision-label": "Prec"
 }

@@ -10,5 +10,7 @@
   "swap": "X<>Y",
   "multiply": "*",
   "divide": "/",
-  "enter": "ENTR"
+  "enter": "ENTR",
+  "prec-up": "+1",
+  "prec-down": "-1"
 }

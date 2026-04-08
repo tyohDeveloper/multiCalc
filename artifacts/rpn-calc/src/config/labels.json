@@ -1,4 +1,5 @@
 {
+  "calc-brand": "HP 48GX",
   "square-root": "√x",
   "square": "x²",
   "power": "yˣ",
@@ -43,5 +44,14 @@
   "digit-6": "6",
   "digit-7": "7",
   "digit-8": "8",
-  "digit-9": "9"
+  "digit-9": "9",
+  "angle-deg": "DEG",
+  "angle-rad": "RAD",
+  "angle-grad": "GRAD",
+  "display-std": "STD",
+  "display-fix": "FIX",
+  "display-sci": "SCI",
+  "display-eng": "ENG",
+  "prec-up": "▲",
+  "prec-down": "▼"
 }
