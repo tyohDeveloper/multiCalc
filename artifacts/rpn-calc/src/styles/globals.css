@@ -5,19 +5,25 @@
 }
 
 :root {
-  --hp-cream: #c8b89a;
-  --hp-dark: #2a2a2a;
+  --hp-body: #2b2b2e;
+  --hp-body-border: #1a1a1c;
+  --hp-dark: #1e1e20;
   --hp-darkgray: #1e1e1e;
   --hp-medgray: #444;
-  --hp-key-beige: #c5b7a0;
-  --hp-key-dark: #333;
-  --hp-key-blue: #3a6bbf;
-  --hp-key-gold: #b8960c;
-  --hp-screen-bg: #8aad7a;
-  --hp-screen-text: #0a1f0a;
-  --hp-accent: #cc3300;
-  --radius-key: 4px;
-  --shadow-key: 0 2px 4px rgba(0,0,0,0.5);
+  --hp-key-dark: #3c3c3f;
+  --hp-key-digit: #484848;
+  --hp-key-operator: #3a3a3d;
+  --hp-key-enter: #303033;
+  --hp-key-shift-left: #4a7c7e;
+  --hp-key-shift-right: #8a8a7a;
+  --hp-screen-bg: #b8c4a4;
+  --hp-screen-text: #111810;
+  --hp-accent-teal: #3fbfbf;
+  --hp-accent-strip: #3aafaf;
+  --hp-logo-color: #e0e0e0;
+  --hp-brand-color: #c8c8c8;
+  --radius-key: 3px;
+  --shadow-key: 0 2px 3px rgba(0,0,0,0.6), 0 1px 0 rgba(255,255,255,0.07) inset;
   font-size: 14px;
 }
 

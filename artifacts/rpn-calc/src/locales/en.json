@@ -2,6 +2,8 @@
   "app-title": "RPN Calculator",
   "calculator-hp48": "HP 48GX",
   "calc-brand": "HP 48GX",
+  "calc-logo": "HP",
+  "calc-model": "48GX",
   "angle-deg": "DEG",
   "angle-rad": "RAD",
   "angle-grad": "GRAD",

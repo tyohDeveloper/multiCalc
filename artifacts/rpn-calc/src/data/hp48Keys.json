@@ -48,7 +48,7 @@
             { "id": "drop",     "op": "DROP",       "labelKey": "drop",                    "category": "stack" },
             { "id": "clear",    "op": "CLEAR",      "labelKey": "clear",                   "category": "control" },
             { "id": "last-x",   "op": "LAST_X",     "labelKey": "last-x",                  "category": "stack" },
-            { "id": "shift",    "op": "SHIFT_KEY",  "labelKey": "shift",                   "category": "control" }
+            { "id": "shift",    "op": "SHIFT_KEY",  "labelKey": "shift",                   "category": "shift" }
           ]
         }
       ]
