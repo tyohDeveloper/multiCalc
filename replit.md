@@ -1,12 +1,14 @@
-# Workspace
+# MultiCalc
 
 ## Overview
 
-pnpm workspace monorepo using TypeScript. Each package manages its own dependencies.
+MultiCalc — pnpm workspace monorepo using TypeScript. Each package manages its own dependencies.
 
 ## Artifacts
 
 ### RPN Calculator (`artifacts/rpn-calc`)
+Note: "RPN Calculator" is the name of this calculator feature/artifact; the overall project is named MultiCalc.
+
 - **Path**: `/` (preview pane)
 - **Kind**: web (React + Vite, single-file HTML output)
 - **Description**: HP-48 style RPN calculator. Full 4-register stack (X/Y/Z/T), auto-lift, SHIFT mode, arithmetic operators, math functions (√, x², yˣ, ˣ√y, 1/x, LN, LOG, eˣ, 10ˣ), trig (SIN/COS/TAN + inverses), constants (π, e), stack ops (ENTER, DROP, SWAP, ROLL↑, ROLL↓, CLR, LSTx), number entry (EEX, +/-, backspace), DEG/RAD/GRAD modes, STD/FIX/SCI/ENG display modes.
