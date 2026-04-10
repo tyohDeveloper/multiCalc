@@ -44,9 +44,12 @@ function makeTestId(sectionId: string, rowId: string, keyId: string): string {
   return `${CALC_NS}__sec-${sectionId}__row-${rowId}__key-${keyId}`;
 }
 
-function resolveTopLabel(topMagenta: string | undefined, topCyan: string | undefined, topMerged: string | undefined, topMagentaMerged: string | undefined, shiftState: ShiftState) {
+function resolveTopLabel(topMagenta: string | undefined, topCyan: string | undefined, topMerged: string | undefined, topMagentaMerged: string | undefined, shiftState: ShiftState, topCyanMerged?: string) {
   if (topMagentaMerged) {
     return <span className={shiftState === "shiftedMagenta" ? "key-label-magenta key-label-active" : "key-label-magenta"}>{topMagentaMerged}</span>;
+  }
+  if (topCyanMerged) {
+    return <span className={shiftState === "shiftedCyan" ? "key-label-cyan key-label-active" : "key-label-cyan"}>{topCyanMerged}</span>;
   }
   if (topMerged) {
     return <span className={shiftState === "shiftedCyan" ? "key-label-cyan key-label-active" : "key-label-cyan"}>{topMerged}</span>;
@@ -120,8 +123,8 @@ export function KeyGrid({ shiftState, dispatch }: Props) {
                   return (
                     <div key={row.id} className="key-row" style={{ gridTemplateColumns: `repeat(${row.keys.length}, 1fr)` }}>
                       {row.keys.map((key, idx) => {
-                        const k = key as { topMagenta?: string; topCyan?: string; topMerged?: string; topColor?: string } & typeof key;
-                        const merged = Boolean(k.topMerged);
+                        const k = key as { topMagenta?: string; topCyan?: string; topMerged?: string; topCyanMerged?: string; topColor?: string } & typeof key;
+                        const merged = Boolean(k.topMerged) || Boolean(k.topCyanMerged);
                         const topColor = k.topColor;
                         const fnKey = makeKeyHandler(key.id, shiftState, dispatch);
                         const isActive = key.op === "SHIFT_MAGENTA" && shiftState === "shiftedMagenta"
@@ -140,7 +143,7 @@ export function KeyGrid({ shiftState, dispatch }: Props) {
                               <div className="key-cell-top-labels key-cell-top-labels--color-swatch" />
                             ) : (
                               <div className={`key-cell-top-labels${merged ? " key-cell-top-labels--merged" : ""}`}>
-                                {resolveTopLabel(k.topMagenta, k.topCyan, k.topMerged, undefined, shiftState)}
+                                {resolveTopLabel(k.topMagenta, k.topCyan, k.topMerged, undefined, shiftState, k.topCyanMerged)}
                               </div>
                             )}
                             <KeyButton
