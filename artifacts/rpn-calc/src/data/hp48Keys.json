@@ -54,9 +54,9 @@
             { "id": "fn-s", "op": "RECIPROCAL",  "labelKey": "key-s", "shiftOp": "PI",        "shiftLabelKey": "pi",            "category": "func", "topMagenta": "ASIN",  "topCyan": "∫",    "topCyanBig": true },
             { "id": "fn-t", "op": "POWER",        "labelKey": "key-t", "shiftOp": "SQUARE",    "shiftLabelKey": "square",        "category": "func", "topMagenta": "ACOS",  "topCyan": "∂",    "topCyanBig": true },
             { "id": "fn-u", "op": "ABS",          "labelKey": "key-u", "shiftOp": "SIGN",      "shiftLabelKey": "sign",          "category": "func", "topMagenta": "ATAN",  "topCyan": "∑",    "topCyanBig": true },
-            { "id": "fn-v", "op": "FLOOR",        "labelKey": "key-v", "shiftOp": "CEIL",      "shiftLabelKey": "ceil",          "category": "func", "topMagenta": "X²",    "topCyan": "ˣ√y", "topCyanBig": true },
-            { "id": "fn-w", "op": "MAX",          "labelKey": "key-w", "shiftOp": "MIN",       "shiftLabelKey": "min",           "category": "func", "topMagenta": "10ˣ",   "topCyan": "LOG"   },
-            { "id": "fn-x", "op": "MOD",          "labelKey": "key-x", "shiftOp": "INTDIV",    "shiftLabelKey": "intdiv",        "category": "func", "topMagenta": "eˣ",    "topCyan": "LN"    }
+            { "id": "fn-v", "op": "FLOOR",        "labelKey": "key-v", "shiftOp": "CEIL",      "shiftLabelKey": "ceil",          "category": "func", "topMagenta": "X²",    "topMagentaBig": true, "topCyan": "ˣ√y", "topCyanBig": true },
+            { "id": "fn-w", "op": "MAX",          "labelKey": "key-w", "shiftOp": "MIN",       "shiftLabelKey": "min",           "category": "func", "topMagenta": "10ˣ",   "topMagentaBig": true, "topCyan": "LOG"   },
+            { "id": "fn-x", "op": "MOD",          "labelKey": "key-x", "shiftOp": "INTDIV",    "shiftLabelKey": "intdiv",        "category": "func", "topMagenta": "eˣ",    "topMagentaBig": true, "topCyan": "LN"    }
           ]
         },
         {
@@ -76,7 +76,7 @@
             { "id": "fn-5b", "op": "OP_NONE", "labelKey": "digit-7", "category": "func", "topCyanMerged": "SOLVE" },
             { "id": "fn-5c", "op": "OP_NONE", "labelKey": "digit-8", "category": "func", "topCyanMerged": "PLOT" },
             { "id": "fn-5d", "op": "OP_NONE", "labelKey": "digit-9", "category": "func", "topCyanMerged": "SYMBOLIC" },
-            { "id": "fn-5e", "op": "OP_NONE", "labelKey": "divide", "category": "func", "topMagenta": "()", "topCyan": "#", "topCyanBig": true }
+            { "id": "fn-5e", "op": "OP_NONE", "labelKey": "divide", "category": "func", "topMagenta": "()", "topMagentaBig": true, "topCyan": "#", "topCyanBig": true }
           ]
         },
         {
@@ -86,7 +86,7 @@
             { "id": "fn-6b", "op": "OP_NONE", "labelKey": "key-r6-1", "category": "func", "topCyanMerged": "TIME" },
             { "id": "fn-6c", "op": "OP_NONE", "labelKey": "key-r6-2", "category": "func", "topCyanMerged": "STAT" },
             { "id": "fn-6d", "op": "OP_NONE", "labelKey": "key-r6-3", "category": "func", "topCyanMerged": "UNIT" },
-            { "id": "fn-6e", "op": "OP_NONE", "labelKey": "key-r6-4", "category": "func", "topMagenta": "[]", "topCyan": "_", "topCyanBig": true }
+            { "id": "fn-6e", "op": "OP_NONE", "labelKey": "key-r6-4", "category": "func", "topMagenta": "[]", "topMagentaBig": true, "topCyan": "_", "topCyanBig": true }
           ]
         },
         {
