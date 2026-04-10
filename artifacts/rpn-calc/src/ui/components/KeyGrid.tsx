@@ -15,12 +15,12 @@ const SOFTKEY_ALPHA = ["A", "B", "C", "D", "E", "F"];
 const ROW1_ALPHA = ["G", "H", "I", "J", "K", "L"];
 const ROW2_ALPHA = ["M", "N", "O", "P", "Q", "R"];
 const ROW3_ALPHA = ["S", "T", "U", "V", "W", "X"];
-const ROW4_ALPHA: (string | null)[] = [null, "Y", "Z", null, null];
+const ROW4_ALPHA = ["\u200B", "Y", "Z", "\u200B", "\u200B"];
 
-const ROW5_ALPHA = ["", "", "", "", "", ""];
-const ROW6_ALPHA = ["", "", "", "", "", ""];
-const ROW7_ALPHA = ["", "", "", "", "", ""];
-const ROW8_ALPHA = ["", "", "", "", "", ""];
+const ROW5_ALPHA = ["\u200B", "\u200B", "\u200B", "\u200B", "\u200B", "\u200B"];
+const ROW6_ALPHA = ["\u200B", "\u200B", "\u200B", "\u200B", "\u200B", "\u200B"];
+const ROW7_ALPHA = ["\u200B", "\u200B", "\u200B", "\u200B", "\u200B", "\u200B"];
+const ROW8_ALPHA = ["\u200B", "\u200B", "\u200B", "\u200B", "\u200B", "\u200B"];
 
 
 export function KeyGrid({ isShifted, dispatch }: Props) {
@@ -96,14 +96,21 @@ export function KeyGrid({ isShifted, dispatch }: Props) {
                   return (
                     <div key={row.id} className="key-row" style={{ gridTemplateColumns: `repeat(${section.cols}, 1fr)` }}>
                       {row.keys.map((key, idx) => {
-                        const colSpan = (key as { colSpan?: number }).colSpan;
+                        const k = key as { topMagenta?: string; topCyan?: string; topMerged?: string; colSpan?: number } & typeof key;
+                        const colSpan = k.colSpan;
                         const cellStyle: CSSProperties = colSpan ? { gridColumn: `span ${colSpan}` } : {};
-                        const alpha = ROW4_ALPHA[idx] ?? null;
+                        const merged = Boolean(k.topMerged);
                         return (
                           <div key={key.id} className="key-cell-3zone" style={cellStyle}>
-                            <div className="key-cell-top-labels">
-                              <span className="key-label-magenta"></span>
-                              <span className="key-label-cyan"></span>
+                            <div className={`key-cell-top-labels${merged ? " key-cell-top-labels--merged" : ""}`}>
+                              {merged ? (
+                                <span className="key-label-cyan">{k.topMerged}</span>
+                              ) : (
+                                <>
+                                  <span className="key-label-magenta">{k.topMagenta ?? ""}</span>
+                                  <span className="key-label-cyan">{k.topCyan ?? ""}</span>
+                                </>
+                              )}
                             </div>
                             <KeyButton
                               labelKey={key.labelKey}
@@ -111,7 +118,7 @@ export function KeyGrid({ isShifted, dispatch }: Props) {
                               isActive={false}
                               onClick={() => dispatch(resolveKeyAction(key.op, isShifted, undefined))}
                             />
-                            <div className="key-label-alpha">{alpha ?? ""}</div>
+                            <div className="key-label-alpha">{ROW4_ALPHA[idx] ?? ""}</div>
                           </div>
                         );
                       })}
