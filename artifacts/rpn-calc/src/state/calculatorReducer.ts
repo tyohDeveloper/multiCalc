@@ -4,7 +4,7 @@ import { applyEex } from "../logic/input/applyEex";
 import { applyBackspace } from "../logic/input/applyBackspace";
 import { applyEnter } from "../logic/stack/applyEnter";
 import { opRegistry } from "./opRegistry";
-import { PLACEHOLDER_OPS } from "./opCodes";
+import { isExecOpCode, isPlaceholderOpCode } from "./opCodes";
 import type { CalcState, CalcAction } from "./calculatorState";
 
 export function calculatorReducer(state: CalcState, action: CalcAction): CalcState {
@@ -34,9 +34,8 @@ export function calculatorReducer(state: CalcState, action: CalcAction): CalcSta
     }
     case "OP": {
       const s = { ...state, shiftState: "unshifted" as const };
-      const fn = (opRegistry as Record<string, ((st: CalcState) => CalcState) | undefined>)[action.op];
-      if (fn) return fn(s);
-      if (PLACEHOLDER_OPS.has(action.op)) return s;
+      if (isExecOpCode(action.op)) return opRegistry[action.op](s);
+      if (isPlaceholderOpCode(action.op)) return s;
       return { ...s, error: action.op };
     }
     case "ANGLE_MODE": return { ...state, angleMode: action.mode, shiftState: "unshifted" };
