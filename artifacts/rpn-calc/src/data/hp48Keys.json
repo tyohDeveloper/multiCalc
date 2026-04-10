@@ -43,17 +43,6 @@
             { "id": "hist", "op": "OP_HIST", "labelKey": "hist",  "shiftOp": "SIGMA_PLUS","shiftLabelKey": "sigma-plus",  "category": "func",    "topMerged": "STACK"                      },
             { "id": "on",   "op": "CLEAR",   "labelKey": "nxt",  "shiftOp": "OP_OFF",    "shiftLabelKey": "off",         "category": "control", "topMagenta": "PREV", "topCyan": "MENU"   }
           ]
-        },
-        {
-          "id": "top-fn-2",
-          "keys": [
-            { "id": "tm", "op": "OP_NONE", "labelKey": "key-m", "topCyan": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><mroot><mi>x</mi><mi>y</mi></mroot></math>", "category": "func" },
-            { "id": "tn", "op": "OP_NONE", "labelKey": "key-n",        "category": "func" },
-            { "id": "to", "op": "OP_NONE", "labelKey": "key-o",        "category": "func" },
-            { "id": "tp", "op": "OP_NONE", "labelKey": "key-p",        "category": "func" },
-            { "id": "tq", "op": "OP_NONE", "labelKey": "key-q",        "category": "func" },
-            { "id": "tr", "op": "OP_NONE", "labelKey": "key-r",        "category": "func" }
-          ]
         }
       ]
     },
