@@ -425,6 +425,14 @@
   padding-bottom: 2px;
 }
 
+.key-label-magenta--big {
+  font-size: 10pt;
+}
+
+.key-label-cyan--big {
+  font-size: 10pt;
+}
+
 /* Alpha (alphabet) label below the key button */
 .key-label-alpha {
   font-family: sans-serif;

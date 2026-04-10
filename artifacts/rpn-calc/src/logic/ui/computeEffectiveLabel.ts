@@ -7,6 +7,8 @@ export interface KeyLabelData {
   topCyan?: string;
   topMerged?: string;
   topMagentaMerged?: string;
+  topMagentaBig?: boolean;
+  topCyanBig?: boolean;
   alphaChar?: string;
 }
 
