@@ -9,6 +9,177 @@
 const keyLayoutData = {
   "sections": [
     {
+      "id": "matrix",
+      "cols": 6,
+      "suppressedBy": "noMatrix",
+      "rows": [
+        {
+          "id": "mtrx-0",
+          "keys": [
+            {
+              "id": "mtrx-trn",
+              "op": "MTRX_TRN",
+              "labelKey": "mtrx-trn",
+              "category": "func"
+            },
+            {
+              "id": "mtrx-det",
+              "op": "MTRX_DET",
+              "labelKey": "mtrx-det",
+              "category": "func"
+            },
+            {
+              "id": "mtrx-inv",
+              "op": "MTRX_INV",
+              "labelKey": "mtrx-inv",
+              "category": "func"
+            },
+            {
+              "id": "mtrx-scale",
+              "op": "MTRX_SCALE",
+              "labelKey": "mtrx-scale",
+              "category": "func"
+            },
+            {
+              "id": "mtrx-add",
+              "op": "MTRX_ADD",
+              "labelKey": "mtrx-add",
+              "category": "func"
+            },
+            {
+              "id": "mtrx-sub",
+              "op": "MTRX_SUB",
+              "labelKey": "mtrx-sub",
+              "category": "func"
+            }
+          ]
+        },
+        {
+          "id": "mtrx-1",
+          "keys": [
+            {
+              "id": "mtrx-mul",
+              "op": "MTRX_MUL",
+              "labelKey": "mtrx-mul",
+              "category": "func"
+            },
+            {
+              "id": "mtrx-idn",
+              "op": "MTRX_IDN",
+              "labelKey": "mtrx-idn",
+              "category": "func"
+            },
+            {
+              "id": "mtrx-con",
+              "op": "MTRX_CON",
+              "labelKey": "mtrx-con",
+              "category": "func"
+            },
+            {
+              "id": "mtrx-rnrm",
+              "op": "MTRX_RNRM",
+              "labelKey": "mtrx-rnrm",
+              "category": "func"
+            },
+            {
+              "id": "mtrx-cnrm",
+              "op": "MTRX_CNRM",
+              "labelKey": "mtrx-cnrm",
+              "category": "func"
+            },
+            {
+              "id": "mtrx-trace",
+              "op": "MTRX_TRACE",
+              "labelKey": "mtrx-trace",
+              "category": "func"
+            }
+          ]
+        },
+        {
+          "id": "mtrx-2",
+          "keys": [
+            {
+              "id": "mtrx-tran",
+              "op": "MTRX_TRAN",
+              "labelKey": "mtrx-tran",
+              "category": "func"
+            },
+            {
+              "id": "mtrx-rsd",
+              "op": "MTRX_RSD",
+              "labelKey": "mtrx-rsd",
+              "category": "func"
+            },
+            {
+              "id": "mtrx-svd",
+              "op": "MTRX_SVD",
+              "labelKey": "mtrx-svd",
+              "category": "func"
+            },
+            {
+              "id": "mtrx-schur",
+              "op": "MTRX_SCHUR",
+              "labelKey": "mtrx-schur",
+              "category": "func"
+            },
+            {
+              "id": "mtrx-eigv",
+              "op": "MTRX_EIGV",
+              "labelKey": "mtrx-eigv",
+              "category": "func"
+            },
+            {
+              "id": "mtrx-lu",
+              "op": "MTRX_LU",
+              "labelKey": "mtrx-lu",
+              "category": "func"
+            }
+          ]
+        },
+        {
+          "id": "mtrx-3",
+          "keys": [
+            {
+              "id": "mtrx-qr",
+              "op": "MTRX_QR",
+              "labelKey": "mtrx-qr",
+              "category": "func"
+            },
+            {
+              "id": "mtrx-none1",
+              "op": "OP_NONE",
+              "labelKey": "key-blank",
+              "category": "func"
+            },
+            {
+              "id": "mtrx-none2",
+              "op": "OP_NONE",
+              "labelKey": "key-blank",
+              "category": "func"
+            },
+            {
+              "id": "mtrx-none3",
+              "op": "OP_NONE",
+              "labelKey": "key-blank",
+              "category": "func"
+            },
+            {
+              "id": "mtrx-none4",
+              "op": "OP_NONE",
+              "labelKey": "key-blank",
+              "category": "func"
+            },
+            {
+              "id": "mtrx-none5",
+              "op": "OP_NONE",
+              "labelKey": "key-blank",
+              "category": "func"
+            }
+          ]
+        }
+      ]
+    },
+    {
       "id": "top-fn",
       "cols": 6,
       "rows": [
@@ -81,12 +252,24 @@ const keyLayoutData = {
               "shiftOp": "OP_RCL"
             },
             {
+              "id": "td",
+              "op": "EVAL_CMD",
+              "labelKey": "key-d",
+              "category": "func-key"
+            },
+            {
               "id": "te",
               "op": "CLEAR",
               "labelKey": "key-e",
               "category": "func-key",
               "shiftLabelKey": "square",
               "shiftOp": "SQUARE"
+            },
+            {
+              "id": "tf",
+              "op": "NXT_CMD",
+              "labelKey": "key-f",
+              "category": "func-key"
             }
           ]
         },
@@ -102,6 +285,24 @@ const keyLayoutData = {
               "topCyan": "POLAR",
               "shiftLabelKey": "mtrx",
               "shiftOp": "OP_MTRX"
+            },
+            {
+              "id": "prg",
+              "op": "OP_PRG",
+              "labelKey": "prg",
+              "category": "func"
+            },
+            {
+              "id": "cst",
+              "op": "CST_CMD",
+              "labelKey": "cst",
+              "category": "func"
+            },
+            {
+              "id": "var",
+              "op": "VAR_CMD",
+              "labelKey": "var",
+              "category": "func"
             },
             {
               "id": "hist",
@@ -128,6 +329,12 @@ const keyLayoutData = {
           "id": "top-fn-2",
           "keys": [
             {
+              "id": "fn-m",
+              "op": "SIN",
+              "labelKey": "key-m",
+              "category": "func"
+            },
+            {
               "id": "fn-n",
               "op": "COS",
               "labelKey": "sto",
@@ -146,6 +353,12 @@ const keyLayoutData = {
               "topCyan": "UNDO",
               "shiftLabelKey": "arc-tangent",
               "shiftOp": "ATAN"
+            },
+            {
+              "id": "fn-p",
+              "op": "LOG",
+              "labelKey": "key-p",
+              "category": "func"
             },
             {
               "id": "fn-q",
@@ -243,6 +456,31 @@ const keyLayoutData = {
           "id": "top-fn-4",
           "keys": [
             {
+              "id": "fn-wide",
+              "op": "OP_NONE",
+              "labelKey": "key-r4-01",
+              "category": "func",
+              "colSpan": 2
+            },
+            {
+              "id": "fn-y",
+              "op": "EDIT_CMD",
+              "labelKey": "key-r4-2",
+              "category": "func"
+            },
+            {
+              "id": "fn-z",
+              "op": "PURGE",
+              "labelKey": "key-r4-3",
+              "category": "func"
+            },
+            {
+              "id": "fn-4d",
+              "op": "MENU_CMD",
+              "labelKey": "key-r4-4",
+              "category": "func"
+            },
+            {
               "id": "fn-4e",
               "op": "OP_NONE",
               "labelKey": "key-r4-5",
@@ -261,6 +499,18 @@ const keyLayoutData = {
               "category": "shift-bottom",
               "topMagenta": "USER",
               "topCyan": "ENTRY"
+            },
+            {
+              "id": "fn-5b",
+              "op": "USER_MODE",
+              "labelKey": "digit-7",
+              "category": "func"
+            },
+            {
+              "id": "fn-5c",
+              "op": "OP_NONE",
+              "labelKey": "digit-8",
+              "category": "func"
             },
             {
               "id": "fn-5d",
@@ -377,6 +627,14 @@ const keyLayoutData = {
               "category": "func",
               "topMagenta": "CONT",
               "topCyan": "OFF"
+            },
+            {
+              "id": "fn-8b",
+              "op": "UPDIR_CMD",
+              "labelKey": "key-r8-1",
+              "category": "func",
+              "topMagentaBig": true,
+              "topCyanBig": true
             },
             {
               "id": "fn-8c",

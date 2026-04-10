@@ -45,10 +45,16 @@ if (NO_PROGRAMMING) activeSuppressions.add("noProgramming");
 if (NO_MATRIX)      activeSuppressions.add("noMatrix");
 
 // Label fields that are stripped when a key is suppressed
-const LABEL_FIELDS = ["topCyan", "topCyanMerged", "topMagenta", "topMagentaMerged", "topMerged", "cyanOp"];
+// Includes top-label fields (shift colours), shift-label key/op, and associated ops
+const LABEL_FIELDS = [
+  "topCyan", "topCyanMerged", "topMagenta", "topMagentaMerged", "topMerged", "cyanOp",
+  "shiftLabelKey", "shiftOp",
+];
 
-function stripSuppressedLabels(key) {
-  if (!key.suppressedBy || !activeSuppressions.has(key.suppressedBy)) return key;
+// Strip suppressed label fields from a key object.
+// effectivelySuppressed: true if the key (or its parent section/row) is suppressed.
+function stripSuppressedLabels(key, effectivelySuppressed) {
+  if (!effectivelySuppressed) return key;
   const stripped = { ...key };
   for (const field of LABEL_FIELDS) {
     delete stripped[field];
@@ -196,39 +202,39 @@ function alphaActionLiteral(char) {
 const noOpLiteral = `{ type: "OP", op: "OP_NONE" }`;
 
 // --- Check if a key is suppressed at build time ---
-function isKeySuppressed(key) {
-  return !!key.suppressedBy && activeSuppressions.has(key.suppressedBy);
+// A key is suppressed if its own suppressedBy matches, OR if the section/row it belongs to is suppressed.
+function isKeySuppressed(key, section, row) {
+  if (key.suppressedBy && activeSuppressions.has(key.suppressedBy)) return true;
+  if (row && row.suppressedBy && activeSuppressions.has(row.suppressedBy)) return true;
+  if (section && section.suppressedBy && activeSuppressions.has(section.suppressedBy)) return true;
+  return false;
 }
 
 // --- Process keys ---
 const tableEntries = [];
 
 for (const section of keyData.sections) {
-  // Skip entire section if its suppressedBy flag is active
-  if (section.suppressedBy && activeSuppressions.has(section.suppressedBy)) continue;
   for (const row of section.rows) {
-    // Skip entire row if its suppressedBy flag is active
-    if (row.suppressedBy && activeSuppressions.has(row.suppressedBy)) continue;
     row.keys.forEach((rawKey, idx) => {
-      const key = stripSuppressedLabels(rawKey);
-      const context = `section "${section.id}", row "${row.id}", key "${key.id}"`;
+      const suppressed = isKeySuppressed(rawKey, section, row);
+      const key = stripSuppressedLabels(rawKey, suppressed);
+      const context = `section "${section.id}", row "${row.id}", key "${rawKey.id}"`;
 
-      checkDuplicateId(key.id, context);
+      checkDuplicateId(rawKey.id, context);
 
       // Primary op (required)
-      if (!key.op) {
+      if (!rawKey.op) {
         errors.push(`Missing "op" field in ${context}`);
         return;
       }
 
-      const suppressed = isKeySuppressed(rawKey);
-      const isShiftKey = SHIFT_OPS.has(key.op);
+      const isShiftKey = SHIFT_OPS.has(rawKey.op);
 
       // Always validate the primary op, even for suppressed keys, to catch bad op codes in the JSON
-      requireKnownOp(key.op, context);
+      requireKnownOp(rawKey.op, context);
 
       // unshifted action — suppressed keys always produce OP_NONE
-      const unshiftedAction = suppressed ? noOpLiteral : resolveActionLiteral(key.op, context);
+      const unshiftedAction = suppressed ? noOpLiteral : resolveActionLiteral(rawKey.op, context);
 
       let magentaAction;
       let cyanAction;
@@ -237,9 +243,9 @@ for (const section of keyData.sections) {
       if (suppressed) {
         // Suppressed keys: validate any shift ops to catch bad op codes in the JSON,
         // but emit OP_NONE for all states — nothing from a suppressed key reaches the reducer
-        if (key.shiftOp) requireKnownOp(key.shiftOp, `${context} [shiftOp]`);
-        if (key.magentaOp) requireKnownOp(key.magentaOp, `${context} [magentaOp]`);
-        if (key.cyanOp) requireKnownOp(key.cyanOp, `${context} [cyanOp]`);
+        if (rawKey.shiftOp) requireKnownOp(rawKey.shiftOp, `${context} [shiftOp]`);
+        if (rawKey.magentaOp) requireKnownOp(rawKey.magentaOp, `${context} [magentaOp]`);
+        if (rawKey.cyanOp) requireKnownOp(rawKey.cyanOp, `${context} [cyanOp]`);
         magentaAction = noOpLiteral;
         cyanAction    = noOpLiteral;
         bottomAction  = noOpLiteral;
@@ -337,9 +343,10 @@ console.log(`[codegen] Generated ${tableEntries.length} key action entries → $
 // are absent from the compiled bundle rather than just hidden at runtime.
 const LAYOUT_PATH = getArg("--layout-out", join(ROOT, "src/generated/keyLayoutData.ts"));
 
-function filterKeyForLayout(rawKey) {
-  const key = stripSuppressedLabels(rawKey);
-  // Return a clean object with only the fields KeyGrid needs, minus suppressed ones
+function filterKeyForLayout(rawKey, section, row) {
+  const effectivelySuppressed = isKeySuppressed(rawKey, section, row);
+  const key = stripSuppressedLabels(rawKey, effectivelySuppressed);
+  // Return a clean object with only the fields KeyGrid needs, minus suppressed label fields
   const result = {};
   const keep = [
     "id", "op", "labelKey", "category", "colSpan",
@@ -354,16 +361,12 @@ function filterKeyForLayout(rawKey) {
 }
 
 const filteredSections = keyData.sections
-  .filter((section) => !(section.suppressedBy && activeSuppressions.has(section.suppressedBy)))
   .map((section) => ({
     ...section,
     rows: section.rows
-      .filter((row) => !(row.suppressedBy && activeSuppressions.has(row.suppressedBy)))
       .map((row) => ({
         ...row,
-        keys: row.keys
-          .filter((rawKey) => !(rawKey.suppressedBy && activeSuppressions.has(rawKey.suppressedBy)))
-          .map(filterKeyForLayout),
+        keys: row.keys.map((rawKey) => filterKeyForLayout(rawKey, section, row)),
       })),
   }));
 
