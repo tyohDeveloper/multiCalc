@@ -96,14 +96,16 @@ export function KeyGrid({ isShifted, dispatch }: Props) {
                   return (
                     <div key={row.id} className="key-row" style={{ gridTemplateColumns: `repeat(${section.cols}, 1fr)` }}>
                       {row.keys.map((key, idx) => {
-                        const k = key as { topMagenta?: string; topCyan?: string; topMerged?: string; colSpan?: number } & typeof key;
+                        const k = key as { topMagenta?: string; topCyan?: string; topMerged?: string; topMagentaMerged?: string; colSpan?: number } & typeof key;
                         const colSpan = k.colSpan;
                         const cellStyle: CSSProperties = colSpan ? { gridColumn: `span ${colSpan}` } : {};
-                        const merged = Boolean(k.topMerged);
+                        const merged = Boolean(k.topMerged) || Boolean(k.topMagentaMerged);
                         return (
                           <div key={key.id} className="key-cell-3zone" style={cellStyle}>
                             <div className={`key-cell-top-labels${merged ? " key-cell-top-labels--merged" : ""}`}>
-                              {merged ? (
+                              {k.topMagentaMerged ? (
+                                <span className="key-label-magenta">{k.topMagentaMerged}</span>
+                              ) : merged ? (
                                 <span className="key-label-cyan">{k.topMerged}</span>
                               ) : (
                                 <>

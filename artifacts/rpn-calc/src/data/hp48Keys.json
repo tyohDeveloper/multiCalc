@@ -69,11 +69,11 @@
         {
           "id": "top-fn-4",
           "keys": [
-            { "id": "fn-wide", "op": "OP_NONE", "labelKey": "key-r4-01", "colSpan": 2, "category": "func", "topMagenta": "magenta", "topCyan": "cyan" },
-            { "id": "fn-y",    "op": "OP_NONE", "labelKey": "key-r4-2",  "category": "func", "topMagenta": "magenta", "topCyan": "cyan" },
-            { "id": "fn-z",    "op": "OP_NONE", "labelKey": "key-r4-3",  "category": "func", "topMagenta": "magenta", "topCyan": "cyan" },
-            { "id": "fn-4d",   "op": "OP_NONE", "labelKey": "key-r4-4",  "category": "func", "topMagenta": "magenta", "topCyan": "cyan" },
-            { "id": "fn-4e",   "op": "OP_NONE", "labelKey": "key-r4-5",  "category": "func", "topMagenta": "magenta", "topCyan": "cyan" }
+            { "id": "fn-wide", "op": "OP_NONE", "labelKey": "key-r4-01", "colSpan": 2, "category": "func", "topMagenta": "EQUATION", "topCyan": "MATRIX" },
+            { "id": "fn-y",    "op": "OP_NONE", "labelKey": "key-r4-2",  "category": "func", "topMagenta": "EDIT", "topCyan": "CMD" },
+            { "id": "fn-z",    "op": "OP_NONE", "labelKey": "key-r4-3",  "category": "func", "topMagenta": "PURG", "topCyan": "ARG" },
+            { "id": "fn-4d",   "op": "OP_NONE", "labelKey": "key-r4-4",  "category": "func", "topMagentaMerged": "CLEAR" },
+            { "id": "fn-4e",   "op": "OP_NONE", "labelKey": "key-r4-5",  "category": "func", "topMagentaMerged": "DROP" }
           ]
         },
         {
