@@ -13,7 +13,7 @@ export function applyUnaryOp(
     stack: [result, s.stack[1], s.stack[2], s.stack[3]],
     lastX: x,
     enterFlag: false,
-    isShifted: false,
+    shiftState: "unshifted",
     error: null,
   };
 }

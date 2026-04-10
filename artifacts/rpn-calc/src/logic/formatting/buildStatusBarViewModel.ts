@@ -18,13 +18,14 @@ export interface StatusBarVM {
 }
 
 export function buildStatusBarViewModel(state: CalcState): StatusBarVM {
+  const isShifted = state.shiftState !== "unshifted";
   return {
-    angleLabel: state.isShifted ? t("shift-active") : t(`angle-${state.angleMode.toLowerCase()}`),
+    angleLabel: isShifted ? t("shift-active") : t(`angle-${state.angleMode.toLowerCase()}`),
     displayLabel: t(`display-${state.displayMode.toLowerCase()}`),
     hasPrecision: modeHasPrecision(state.displayMode),
     precision: state.displayPrecision,
     precDownLabel: label("prec-down"),
     precUpLabel: label("prec-up"),
-    isShifted: state.isShifted,
+    isShifted,
   };
 }

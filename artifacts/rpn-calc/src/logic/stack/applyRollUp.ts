@@ -7,7 +7,7 @@ export function applyRollUp(state: CalcState): CalcState {
     ...s,
     stack: [s.stack[3], s.stack[0], s.stack[1], s.stack[2]],
     enterFlag: false,
-    isShifted: false,
+    shiftState: "unshifted",
     error: null,
   };
 }

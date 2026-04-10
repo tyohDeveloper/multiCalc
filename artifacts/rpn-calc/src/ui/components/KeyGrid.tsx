@@ -1,12 +1,14 @@
 import type { CSSProperties } from "react";
+import { useMemo } from "react";
 import { KeyButton } from "./KeyButton";
-import { resolveKeyAction } from "../../logic/input/resolveKeyAction";
 import { resolveShiftLabel } from "../../logic/ui/resolveShiftLabel";
+import { buildKeyFunctionRegistry } from "../../logic/input/buildKeyFunctionRegistry";
+import { resolveKeyFn } from "../../logic/input/keyFunctions";
 import keyData from "../../data/hp48Keys.json";
-import type { CalcAction } from "../../state/calculatorState";
+import type { CalcAction, ShiftState } from "../../state/calculatorState";
 
 interface Props {
-  isShifted: boolean;
+  shiftState: ShiftState;
   dispatch: (action: CalcAction) => void;
 }
 
@@ -22,8 +24,50 @@ const ROW6_ALPHA = ["\u200B", "\u200B", "\u200B", "\u200B", "\u200B", "\u200B"];
 const ROW7_ALPHA = ["\u200B", "\u200B", "\u200B", "\u200B", "\u200B", "\u200B"];
 const ROW8_ALPHA = ["\u200B", "\u200B", "\u200B", "\u200B", "\u200B", "\u200B"];
 
+const ALPHA_ROWS: Record<string, string[]> = {
+  "soft-0": SOFTKEY_ALPHA,
+  "top-fn-1": ROW1_ALPHA,
+  "top-fn-2": ROW2_ALPHA,
+  "top-fn-3": ROW3_ALPHA,
+  "top-fn-4": ROW4_ALPHA,
+  "top-fn-5": ROW5_ALPHA,
+  "top-fn-6": ROW6_ALPHA,
+  "top-fn-7": ROW7_ALPHA,
+  "top-fn-8": ROW8_ALPHA,
+};
 
-export function KeyGrid({ isShifted, dispatch }: Props) {
+const THREE_ZONE_ROWS = new Set(["top-fn-1", "top-fn-2", "top-fn-3", "top-fn-5", "top-fn-6", "top-fn-7", "top-fn-8"]);
+const THREE_ZONE_ROW4 = "top-fn-4";
+
+const ROW_ALPHA_MAP: Record<string, string[]> = {
+  "top-fn-1": ROW1_ALPHA,
+  "top-fn-2": ROW2_ALPHA,
+  "top-fn-3": ROW3_ALPHA,
+  "top-fn-4": ROW4_ALPHA,
+  "top-fn-5": ROW5_ALPHA,
+  "top-fn-6": ROW6_ALPHA,
+  "top-fn-7": ROW7_ALPHA,
+  "top-fn-8": ROW8_ALPHA,
+};
+
+function resolveTopLabel(topMagenta: string | undefined, topCyan: string | undefined, topMerged: string | undefined, topMagentaMerged: string | undefined, shiftState: ShiftState) {
+  if (topMagentaMerged) {
+    return <span className={shiftState === "shiftedMagenta" ? "key-label-magenta key-label-active" : "key-label-magenta"}>{topMagentaMerged}</span>;
+  }
+  if (topMerged) {
+    return <span className={shiftState === "shiftedCyan" ? "key-label-cyan key-label-active" : "key-label-cyan"}>{topMerged}</span>;
+  }
+  return (
+    <>
+      <span className={shiftState === "shiftedMagenta" && topMagenta ? "key-label-magenta key-label-active" : "key-label-magenta"}>{topMagenta ?? ""}</span>
+      <span className={shiftState === "shiftedCyan" && topCyan ? "key-label-cyan key-label-active" : "key-label-cyan"}>{topCyan ?? ""}</span>
+    </>
+  );
+}
+
+export function KeyGrid({ shiftState, dispatch }: Props) {
+  const registry = useMemo(() => buildKeyFunctionRegistry(dispatch, ALPHA_ROWS), [dispatch]);
+
   return (
     <div className="key-grid">
       {keyData.sections.map((section) => {
@@ -34,17 +78,21 @@ export function KeyGrid({ isShifted, dispatch }: Props) {
             <div key={section.id} className={`key-section key-section-${section.id}`}>
               {section.rows.map((row) => (
                 <div key={row.id} className="key-row" style={{ gridTemplateColumns: `repeat(${section.cols}, 1fr)` }}>
-                  {row.keys.map((key, idx) => (
-                    <div key={key.id} className="key-cell-soft">
-                      <KeyButton
-                        labelKey={key.labelKey}
-                        category={key.category}
-                        isActive={false}
-                        onClick={() => dispatch(resolveKeyAction(key.op, isShifted, undefined))}
-                      />
-                      <div className="key-label-alpha">{SOFTKEY_ALPHA[idx] ?? ""}</div>
-                    </div>
-                  ))}
+                  {row.keys.map((key, idx) => {
+                    const fns = registry[key.id];
+                    const fnKey = fns ? resolveKeyFn(fns, shiftState) : () => {};
+                    return (
+                      <div key={key.id} className="key-cell-soft">
+                        <KeyButton
+                          labelKey={key.labelKey}
+                          category={key.category}
+                          isActive={false}
+                          onClick={fnKey}
+                        />
+                        <div className="key-label-alpha">{SOFTKEY_ALPHA[idx] ?? ""}</div>
+                      </div>
+                    );
+                  })}
                 </div>
               ))}
             </div>
@@ -54,37 +102,58 @@ export function KeyGrid({ isShifted, dispatch }: Props) {
         if (section.id === "top-fn") {
           return (
             <div key={section.id} className={`key-section key-section-${section.id}`}>
-              {section.rows.map((row, rowIdx) => {
-                if (rowIdx === 0) {
+              {section.rows.map((row) => {
+                if (row.id === "top-fn-0") {
                   return null;
                 }
 
-                if (rowIdx === 1 || rowIdx === 2 || rowIdx === 3) {
-                  const alphaRow = rowIdx === 1 ? ROW1_ALPHA : rowIdx === 2 ? ROW2_ALPHA : ROW3_ALPHA;
+                if (row.id === "top-fn-shift") {
+                  return (
+                    <div key={row.id} className="key-row key-row-shifts" style={{ gridTemplateColumns: `repeat(${row.keys.length}, auto) 1fr` }}>
+                      {row.keys.map((key) => {
+                        const fns = registry[key.id];
+                        const fnKey = fns ? resolveKeyFn(fns, shiftState) : () => {};
+                        const isActive = (key.op === "SHIFT_MAGENTA" && shiftState === "shiftedMagenta")
+                          || (key.op === "SHIFT_CYAN" && shiftState === "shiftedCyan")
+                          || (key.op === "SHIFT_BOTTOM" && shiftState === "shiftedBottom");
+                        return (
+                          <KeyButton
+                            key={key.id}
+                            labelKey={key.labelKey}
+                            category={key.category}
+                            isActive={isActive}
+                            onClick={fnKey}
+                          />
+                        );
+                      })}
+                    </div>
+                  );
+                }
+
+                if (THREE_ZONE_ROWS.has(row.id)) {
+                  const alphaRow = ROW_ALPHA_MAP[row.id] ?? [];
                   return (
                     <div key={row.id} className="key-row" style={{ gridTemplateColumns: `repeat(${section.cols}, 1fr)` }}>
                       {row.keys.map((key, idx) => {
                         const k = key as { topMagenta?: string; topCyan?: string; topMerged?: string } & typeof key;
                         const merged = Boolean(k.topMerged);
+                        const fns = registry[key.id];
+                        const fnKey = fns ? resolveKeyFn(fns, shiftState) : () => {};
+                        const isActive = key.op === "SHIFT_MAGENTA" && shiftState === "shiftedMagenta"
+                          || key.op === "SHIFT_CYAN" && shiftState === "shiftedCyan"
+                          || key.op === "SHIFT_BOTTOM" && shiftState === "shiftedBottom";
                         return (
                           <div key={key.id} className="key-cell-3zone">
                             <div className={`key-cell-top-labels${merged ? " key-cell-top-labels--merged" : ""}`}>
-                              {merged ? (
-                                <span className="key-label-cyan">{k.topMerged}</span>
-                              ) : (
-                                <>
-                                  <span className="key-label-magenta">{k.topMagenta ?? ""}</span>
-                                  <span className="key-label-cyan">{k.topCyan ?? ""}</span>
-                                </>
-                              )}
+                              {resolveTopLabel(k.topMagenta, k.topCyan, k.topMerged, undefined, shiftState)}
                             </div>
                             <KeyButton
                               labelKey={key.labelKey}
                               category={key.category}
-                              isActive={key.op === "SHIFT_KEY" && isShifted}
-                              onClick={() => dispatch(resolveKeyAction(key.op, isShifted, key.shiftLabelKey ? key.shiftOp : undefined))}
+                              isActive={isActive}
+                              onClick={fnKey}
                             />
-                            <div className="key-label-alpha">{alphaRow[idx] ?? ""}</div>
+                            <div className={shiftState === "shiftedBottom" && alphaRow[idx] && alphaRow[idx] !== "\u200B" ? "key-label-alpha key-label-active" : "key-label-alpha"}>{alphaRow[idx] ?? ""}</div>
                           </div>
                         );
                       })}
@@ -92,7 +161,8 @@ export function KeyGrid({ isShifted, dispatch }: Props) {
                   );
                 }
 
-                if (rowIdx === 4) {
+                if (row.id === THREE_ZONE_ROW4) {
+                  const alphaRow = ROW_ALPHA_MAP[row.id] ?? [];
                   return (
                     <div key={row.id} className="key-row" style={{ gridTemplateColumns: `repeat(${section.cols}, 1fr)` }}>
                       {row.keys.map((key, idx) => {
@@ -100,60 +170,20 @@ export function KeyGrid({ isShifted, dispatch }: Props) {
                         const colSpan = k.colSpan;
                         const cellStyle: CSSProperties = colSpan ? { gridColumn: `span ${colSpan}` } : {};
                         const merged = Boolean(k.topMerged) || Boolean(k.topMagentaMerged);
+                        const fns = registry[key.id];
+                        const fnKey = fns ? resolveKeyFn(fns, shiftState) : () => {};
                         return (
                           <div key={key.id} className="key-cell-3zone" style={cellStyle}>
                             <div className={`key-cell-top-labels${merged ? " key-cell-top-labels--merged" : ""}`}>
-                              {k.topMagentaMerged ? (
-                                <span className="key-label-magenta">{k.topMagentaMerged}</span>
-                              ) : merged ? (
-                                <span className="key-label-cyan">{k.topMerged}</span>
-                              ) : (
-                                <>
-                                  <span className="key-label-magenta">{k.topMagenta ?? ""}</span>
-                                  <span className="key-label-cyan">{k.topCyan ?? ""}</span>
-                                </>
-                              )}
+                              {resolveTopLabel(k.topMagenta, k.topCyan, k.topMerged, k.topMagentaMerged, shiftState)}
                             </div>
                             <KeyButton
                               labelKey={key.labelKey}
                               category={key.category}
                               isActive={false}
-                              onClick={() => dispatch(resolveKeyAction(key.op, isShifted, undefined))}
+                              onClick={fnKey}
                             />
-                            <div className="key-label-alpha">{ROW4_ALPHA[idx] ?? ""}</div>
-                          </div>
-                        );
-                      })}
-                    </div>
-                  );
-                }
-
-                if (rowIdx === 5 || rowIdx === 6 || rowIdx === 7 || rowIdx === 8) {
-                  const alphaRow = rowIdx === 5 ? ROW5_ALPHA : rowIdx === 6 ? ROW6_ALPHA : rowIdx === 7 ? ROW7_ALPHA : ROW8_ALPHA;
-                  return (
-                    <div key={row.id} className="key-row" style={{ gridTemplateColumns: `repeat(${section.cols}, 1fr)` }}>
-                      {row.keys.map((key, idx) => {
-                        const k = key as { topMagenta?: string; topCyan?: string; topMerged?: string } & typeof key;
-                        const merged = Boolean(k.topMerged);
-                        return (
-                          <div key={key.id} className="key-cell-3zone">
-                            <div className={`key-cell-top-labels${merged ? " key-cell-top-labels--merged" : ""}`}>
-                              {merged ? (
-                                <span className="key-label-cyan">{k.topMerged}</span>
-                              ) : (
-                                <>
-                                  <span className="key-label-magenta">{k.topMagenta ?? ""}</span>
-                                  <span className="key-label-cyan">{k.topCyan ?? ""}</span>
-                                </>
-                              )}
-                            </div>
-                            <KeyButton
-                              labelKey={key.labelKey}
-                              category={key.category}
-                              isActive={false}
-                              onClick={() => dispatch(resolveKeyAction(key.op, isShifted, undefined))}
-                            />
-                            <div className="key-label-alpha">{alphaRow[idx] ?? ""}</div>
+                            <div className={shiftState === "shiftedBottom" && alphaRow[idx] && alphaRow[idx] !== "\u200B" ? "key-label-alpha key-label-active" : "key-label-alpha"}>{alphaRow[idx] ?? ""}</div>
                           </div>
                         );
                       })}
@@ -164,10 +194,16 @@ export function KeyGrid({ isShifted, dispatch }: Props) {
                 return (
                   <div key={row.id} className="key-row" style={{ gridTemplateColumns: `repeat(${section.cols}, 1fr)` }}>
                     {row.keys.map((key) => {
-                      const shiftLabel = resolveShiftLabel(key.shiftLabelKey);
-                      const aboveClass = `key-above-label${isShifted && shiftLabel ? " key-above-active" : ""}`;
-                      const colSpan = (key as { colSpan?: number }).colSpan;
+                      const k = key as { shiftLabelKey?: string; colSpan?: number } & typeof key;
+                      const shiftLabel = resolveShiftLabel(k.shiftLabelKey);
+                      const aboveClass = `key-above-label${shiftState === "shiftedMagenta" && shiftLabel ? " key-above-active" : ""}`;
+                      const colSpan = k.colSpan;
                       const cellStyle = colSpan ? { gridColumn: `span ${colSpan}` } : undefined;
+                      const fns = registry[key.id];
+                      const fnKey = fns ? resolveKeyFn(fns, shiftState) : () => {};
+                      const isActive = key.op === "SHIFT_MAGENTA" && shiftState === "shiftedMagenta"
+                        || key.op === "SHIFT_CYAN" && shiftState === "shiftedCyan"
+                        || key.op === "SHIFT_BOTTOM" && shiftState === "shiftedBottom";
                       return (
                         <div key={key.id} className="key-cell" style={cellStyle}>
                           {!isCompact && (
@@ -176,8 +212,8 @@ export function KeyGrid({ isShifted, dispatch }: Props) {
                           <KeyButton
                             labelKey={key.labelKey}
                             category={key.category}
-                            isActive={key.op === "SHIFT_KEY" && isShifted}
-                            onClick={() => dispatch(resolveKeyAction(key.op, isShifted, key.shiftLabelKey ? key.shiftOp : undefined))}
+                            isActive={isActive}
+                            onClick={fnKey}
                           />
                         </div>
                       );

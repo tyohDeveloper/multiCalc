@@ -34,6 +34,14 @@
           ]
         },
         {
+          "id": "top-fn-shift",
+          "keys": [
+            { "id": "shift-magenta", "op": "SHIFT_MAGENTA", "labelKey": "shift", "category": "shift-magenta" },
+            { "id": "shift-cyan",    "op": "SHIFT_CYAN",    "labelKey": "shift", "category": "shift-cyan"    },
+            { "id": "shift-bottom",  "op": "SHIFT_BOTTOM",  "labelKey": "alpha", "category": "shift-bottom"  }
+          ]
+        },
+        {
           "id": "top-fn-1",
           "keys": [
             { "id": "mth",  "op": "OP_MTH",  "labelKey": "mth",   "shiftOp": "OP_MTRX",   "shiftLabelKey": "mtrx",        "category": "func",    "topMagenta": "RAD",  "topCyan": "POLAR"  },

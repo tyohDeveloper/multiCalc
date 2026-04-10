@@ -7,7 +7,7 @@ export function applyEnter(state: CalcState): CalcState {
     ...s,
     stack: [s.stack[0], s.stack[0], s.stack[1], s.stack[2]],
     enterFlag: true,
-    isShifted: false,
+    shiftState: "unshifted",
     error: null,
   };
 }

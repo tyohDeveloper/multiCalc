@@ -19,10 +19,21 @@ export function calculatorReducer(state: CalcState, action: CalcAction): CalcSta
     case "EEX": return applyEex(state);
     case "BACKSPACE": return applyBackspace(state);
     case "ENTER": return applyEnter(state);
-    case "SHIFT": return { ...state, isShifted: !state.isShifted };
-    case "OP": return applyOp({ ...state, isShifted: false }, action.op);
-    case "ANGLE_MODE": return { ...state, angleMode: action.mode, isShifted: false };
-    case "DISPLAY_MODE": return { ...state, displayMode: action.mode, displayPrecision: action.precision ?? state.displayPrecision, isShifted: false };
+    case "SHIFT": {
+      const next = state.shiftState === action.target ? "unshifted" : action.target;
+      return { ...state, shiftState: next };
+    }
+    case "ALPHA_CHAR": {
+      const char = action.char;
+      if (!char || char === "\u200B") return state;
+      const entry = state.entry.isActive
+        ? { ...state.entry, buffer: state.entry.buffer + char }
+        : { isActive: true, buffer: char, hasDecimal: false, isEnteringExp: false };
+      return { ...state, entry, shiftState: "unshifted" };
+    }
+    case "OP": return applyOp({ ...state, shiftState: "unshifted" }, action.op);
+    case "ANGLE_MODE": return { ...state, angleMode: action.mode, shiftState: "unshifted" };
+    case "DISPLAY_MODE": return { ...state, displayMode: action.mode, displayPrecision: action.precision ?? state.displayPrecision, shiftState: "unshifted" };
     case "CLEAR_ERROR": return { ...state, error: null };
     default: return state;
   }

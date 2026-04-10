@@ -14,7 +14,7 @@ export function applyBinaryOp(
     stack: [result, s.stack[2], s.stack[3], s.stack[3]],
     lastX: x,
     enterFlag: false,
-    isShifted: false,
+    shiftState: "unshifted",
     error: null,
   };
 }

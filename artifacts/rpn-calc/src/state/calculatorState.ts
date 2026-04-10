@@ -1,5 +1,6 @@
 export type AngleMode = "DEG" | "RAD" | "GRAD";
 export type DisplayMode = "STD" | "FIX" | "SCI" | "ENG";
+export type ShiftState = "unshifted" | "shiftedMagenta" | "shiftedCyan" | "shiftedBottom";
 
 export interface EntryState {
   isActive: boolean;
@@ -16,7 +17,7 @@ export interface CalcState {
   angleMode: AngleMode;
   displayMode: DisplayMode;
   displayPrecision: number;
-  isShifted: boolean;
+  shiftState: ShiftState;
   error: string | null;
 }
 
@@ -26,7 +27,8 @@ export type CalcAction =
   | { type: "EEX" }
   | { type: "BACKSPACE" }
   | { type: "ENTER" }
-  | { type: "SHIFT" }
+  | { type: "SHIFT"; target: ShiftState }
+  | { type: "ALPHA_CHAR"; char: string }
   | { type: "OP"; op: string }
   | { type: "ANGLE_MODE"; mode: AngleMode }
   | { type: "DISPLAY_MODE"; mode: DisplayMode; precision?: number }
@@ -47,7 +49,7 @@ export const initialState: CalcState = {
   angleMode: "DEG",
   displayMode: "STD",
   displayPrecision: 4,
-  isShifted: false,
+  shiftState: "unshifted",
   error: null,
 };
 

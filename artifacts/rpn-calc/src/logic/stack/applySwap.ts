@@ -7,7 +7,7 @@ export function applySwap(state: CalcState): CalcState {
     ...s,
     stack: [s.stack[1], s.stack[0], s.stack[2], s.stack[3]],
     enterFlag: false,
-    isShifted: false,
+    shiftState: "unshifted",
     error: null,
   };
 }

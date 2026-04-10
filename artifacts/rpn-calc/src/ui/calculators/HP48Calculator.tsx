@@ -30,7 +30,7 @@ export function HP48Calculator() {
             <StackDisplay state={state} />
           </div>
         </div>
-        <KeyGrid isShifted={state.isShifted} dispatch={dispatch} />
+        <KeyGrid shiftState={state.shiftState} dispatch={dispatch} />
       </div>
     </div>
   );
