@@ -50,6 +50,12 @@ const ROW_ALPHA_MAP: Record<string, string[]> = {
   "top-fn-8": ROW8_ALPHA,
 };
 
+const CALC_NS = "calc-hp48gx";
+
+function makeTestId(sectionId: string, rowId: string, keyId: string): string {
+  return `${CALC_NS}__sec-${sectionId}__row-${rowId}__key-${keyId}`;
+}
+
 function resolveTopLabel(topMagenta: string | undefined, topCyan: string | undefined, topMerged: string | undefined, topMagentaMerged: string | undefined, shiftState: ShiftState) {
   if (topMagentaMerged) {
     return <span className={shiftState === "shiftedMagenta" ? "key-label-magenta key-label-active" : "key-label-magenta"}>{topMagentaMerged}</span>;
@@ -88,6 +94,8 @@ export function KeyGrid({ shiftState, dispatch }: Props) {
                           category={key.category}
                           isActive={false}
                           onClick={fnKey}
+                          testId={makeTestId(section.id, row.id, key.id)}
+                          keyOp={key.op}
                         />
                         <div className="key-label-alpha">{SOFTKEY_ALPHA[idx] ?? ""}</div>
                       </div>
@@ -123,6 +131,8 @@ export function KeyGrid({ shiftState, dispatch }: Props) {
                             category={key.category}
                             isActive={isActive}
                             onClick={fnKey}
+                            testId={makeTestId(section.id, row.id, key.id)}
+                            keyOp={key.op}
                           />
                         );
                       })}
@@ -152,6 +162,8 @@ export function KeyGrid({ shiftState, dispatch }: Props) {
                               category={key.category}
                               isActive={isActive}
                               onClick={fnKey}
+                              testId={makeTestId(section.id, row.id, key.id)}
+                              keyOp={key.op}
                             />
                             <div className={shiftState === "shiftedBottom" && alphaRow[idx] && alphaRow[idx] !== "\u200B" ? "key-label-alpha key-label-active" : "key-label-alpha"}>{alphaRow[idx] ?? ""}</div>
                           </div>
@@ -182,6 +194,8 @@ export function KeyGrid({ shiftState, dispatch }: Props) {
                               category={key.category}
                               isActive={false}
                               onClick={fnKey}
+                              testId={makeTestId(section.id, row.id, key.id)}
+                              keyOp={key.op}
                             />
                             <div className={shiftState === "shiftedBottom" && alphaRow[idx] && alphaRow[idx] !== "\u200B" ? "key-label-alpha key-label-active" : "key-label-alpha"}>{alphaRow[idx] ?? ""}</div>
                           </div>
@@ -214,6 +228,8 @@ export function KeyGrid({ shiftState, dispatch }: Props) {
                             category={key.category}
                             isActive={isActive}
                             onClick={fnKey}
+                            testId={makeTestId(section.id, row.id, key.id)}
+                            keyOp={key.op}
                           />
                         </div>
                       );
