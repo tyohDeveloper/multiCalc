@@ -332,7 +332,7 @@ const keyActionTable: KeyActionTable = {
     shiftedBottom: { type: "OP", op: "OP_NONE" },
   },
   "fn-8a": {
-    unshifted:     { type: "OP", op: "OP_NONE" },
+    unshifted:     { type: "OP", op: "CLEAR" },
     shiftedMagenta: { type: "OP", op: "OP_NONE" },
     shiftedCyan:   { type: "OP", op: "OP_NONE" },
     shiftedBottom: { type: "OP", op: "OP_NONE" },

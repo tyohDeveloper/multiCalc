@@ -102,7 +102,7 @@
         {
           "id": "top-fn-8",
           "keys": [
-            { "id": "fn-8a", "op": "OP_NONE", "labelKey": "key-r8-0", "category": "func", "topMagenta": "magenta", "topCyan": "cyan" },
+            { "id": "fn-8a", "op": "CLEAR", "labelKey": "on-key", "category": "func" },
             { "id": "fn-8b", "op": "OP_NONE", "labelKey": "key-r8-1", "category": "func", "topMagenta": "magenta", "topCyan": "cyan" },
             { "id": "fn-8c", "op": "OP_NONE", "labelKey": "key-r8-2", "category": "func", "topMagenta": "magenta", "topCyan": "cyan" },
             { "id": "fn-8d", "op": "OP_NONE", "labelKey": "key-r8-3", "category": "func", "topMagenta": "magenta", "topCyan": "cyan" },
