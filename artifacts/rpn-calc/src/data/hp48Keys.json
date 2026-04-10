@@ -56,7 +56,7 @@
             { "id": "fn-u", "op": "ABS",          "labelKey": "key-u", "shiftOp": "SIGN",      "shiftLabelKey": "sign",          "category": "func", "topMagenta": "ATAN",  "topCyan": "∑",    "topCyanBig": true },
             { "id": "fn-v", "op": "FLOOR",        "labelKey": "key-v", "shiftOp": "CEIL",      "shiftLabelKey": "ceil",          "category": "func", "topMagenta": "X²",    "topMagentaBig": true, "topCyan": "ˣ√y", "topCyanBig": true },
             { "id": "fn-w", "op": "MAX",          "labelKey": "key-w", "shiftOp": "MIN",       "shiftLabelKey": "min",           "category": "func", "topMagenta": "10ˣ",   "topMagentaBig": true, "topCyan": "LOG"   },
-            { "id": "fn-x", "op": "MOD",          "labelKey": "key-x", "shiftOp": "INTDIV",    "shiftLabelKey": "intdiv",        "category": "func", "topMagenta": "eˣ",    "topMagentaBig": true, "topCyan": "LN"    }
+            { "id": "fn-x", "op": "MOD",          "labelKey": "key-x", "shiftOp": "INTDIV",    "shiftLabelKey": "intdiv",        "category": "func", "topMagenta": "𝑒ˣ",    "topMagentaBig": true, "topCyan": "LN"    }
           ]
         },
         {
