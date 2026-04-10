@@ -19,21 +19,24 @@ import { opPercent } from "../logic/math/opPercent";
 import { opPercentChange } from "../logic/math/opPercentChange";
 import type { CalcState } from "./calculatorState";
 
-const BINARY: Record<string, (y: number, x: number) => number> = {
-  ADD: opAdd, SUBTRACT: opSubtract, MULTIPLY: opMultiply, DIVIDE: opDivide,
-  POWER: opPower, XROOT: opXroot,
-};
-const UNARY: Record<string, (x: number) => number> = {
-  SQRT: opSqrt, SQUARE: opSquare, EXP: opExp, LN: opLn,
-  LOG: opLog, TENPOW: opTenPow, RECIPROCAL: opReciprocal,
-};
+type StateOp = (state: CalcState) => CalcState;
 
-export function applyMathOp(state: CalcState, op: string): CalcState | null {
-  if (BINARY[op]) return applyBinaryOp(state, BINARY[op]);
-  if (UNARY[op]) return applyUnaryOp(state, UNARY[op]);
-  if (op === "PI") return applyPushConstant(state, Math.PI);
-  if (op === "E_CONST") return applyPushConstant(state, Math.E);
-  if (op === "PERCENT") return applyPreservingYOp(state, opPercent);
-  if (op === "PERCENT_CHANGE") return applyPreservingYOp(state, opPercentChange);
-  return null;
-}
+export const mathRegistry: Record<string, StateOp> = {
+  ADD: s => applyBinaryOp(s, opAdd),
+  SUBTRACT: s => applyBinaryOp(s, opSubtract),
+  MULTIPLY: s => applyBinaryOp(s, opMultiply),
+  DIVIDE: s => applyBinaryOp(s, opDivide),
+  POWER: s => applyBinaryOp(s, opPower),
+  XROOT: s => applyBinaryOp(s, opXroot),
+  SQRT: s => applyUnaryOp(s, opSqrt),
+  SQUARE: s => applyUnaryOp(s, opSquare),
+  EXP: s => applyUnaryOp(s, opExp),
+  LN: s => applyUnaryOp(s, opLn),
+  LOG: s => applyUnaryOp(s, opLog),
+  TENPOW: s => applyUnaryOp(s, opTenPow),
+  RECIPROCAL: s => applyUnaryOp(s, opReciprocal),
+  PI: s => applyPushConstant(s, Math.PI),
+  E_CONST: s => applyPushConstant(s, Math.E),
+  PERCENT: s => applyPreservingYOp(s, opPercent),
+  PERCENT_CHANGE: s => applyPreservingYOp(s, opPercentChange),
+};

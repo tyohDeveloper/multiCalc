@@ -3,7 +3,8 @@ import { applyDecimal } from "../logic/input/applyDecimal";
 import { applyEex } from "../logic/input/applyEex";
 import { applyBackspace } from "../logic/input/applyBackspace";
 import { applyEnter } from "../logic/stack/applyEnter";
-import { applyOp } from "./applyOp";
+import { opRegistry } from "./opRegistry";
+import { PLACEHOLDER_OPS } from "./opCodes";
 import type { CalcState, CalcAction } from "./calculatorState";
 
 export function calculatorReducer(state: CalcState, action: CalcAction): CalcState {
@@ -31,7 +32,13 @@ export function calculatorReducer(state: CalcState, action: CalcAction): CalcSta
         : { isActive: true, buffer: char, hasDecimal: false, isEnteringExp: false };
       return { ...state, entry, shiftState: "unshifted" };
     }
-    case "OP": return applyOp({ ...state, shiftState: "unshifted" }, action.op);
+    case "OP": {
+      const s = { ...state, shiftState: "unshifted" as const };
+      const fn = opRegistry[action.op];
+      if (fn) return fn(s);
+      if (PLACEHOLDER_OPS.has(action.op)) return s;
+      return { ...s, error: action.op };
+    }
     case "ANGLE_MODE": return { ...state, angleMode: action.mode, shiftState: "unshifted" };
     case "DISPLAY_MODE": return { ...state, displayMode: action.mode, displayPrecision: action.precision ?? state.displayPrecision, shiftState: "unshifted" };
     case "CLEAR_ERROR": return { ...state, error: null };
