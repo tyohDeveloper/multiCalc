@@ -97,11 +97,11 @@
   "display-eng": "ENG",
   "prec-up": "▲",
   "prec-down": "▼",
-  "key-m": "M",
-  "key-n": "N",
-  "key-o": "O",
-  "key-p": "P",
-  "key-q": "Q",
-  "key-r": "R",
+  "key-m": "I",
+  "key-n": "▽",
+  "key-o": "◁",
+  "key-p": "\u25C0",
+  "key-q": "\u25BC",
+  "key-r": "\u25B6",
   "xroot-mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><mroot><mi>x</mi><mi>y</mi></mroot></math>"
 }

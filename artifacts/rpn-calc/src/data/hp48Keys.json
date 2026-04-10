@@ -47,12 +47,12 @@
         {
           "id": "top-fn-2",
           "keys": [
-            { "id": "fn-m", "op": "SIN",         "labelKey": "key-m", "shiftOp": "ASIN",      "shiftLabelKey": "arc-sine",      "category": "func", "topMagenta": "ASIN",  "topCyan": "D→R"    },
-            { "id": "fn-n", "op": "COS",         "labelKey": "key-n", "shiftOp": "ACOS",      "shiftLabelKey": "arc-cosine",    "category": "func", "topMagenta": "ACOS",  "topCyan": "R→D"    },
-            { "id": "fn-o", "op": "TAN",         "labelKey": "key-o", "shiftOp": "ATAN",      "shiftLabelKey": "arc-tangent",   "category": "func", "topMerged": "HYP"                       },
-            { "id": "fn-p", "op": "LOG",         "labelKey": "key-p", "shiftOp": "POWER",     "shiftLabelKey": "power",         "category": "func", "topMagenta": "10^X",  "topCyan": "Y^X"    },
-            { "id": "fn-q", "op": "LN",          "labelKey": "key-q", "shiftOp": "EXP",       "shiftLabelKey": "exp",           "category": "func", "topMagenta": "E^X",   "topCyan": "EXP"    },
-            { "id": "fn-r", "op": "SQRT",        "labelKey": "key-r", "shiftOp": "SQUARE",    "shiftLabelKey": "square",        "category": "func", "topMagenta": "SQ",    "topCyan": "XROOT"  }
+            { "id": "fn-m", "op": "SIN",         "labelKey": "key-m", "shiftOp": "ASIN",      "shiftLabelKey": "arc-sine",      "category": "func", "topMagenta": "UP",      "topCyan": "HOME"   },
+            { "id": "fn-n", "op": "COS",         "labelKey": "sto",   "shiftOp": "ACOS",      "shiftLabelKey": "arc-cosine",    "category": "func", "topMagenta": "DEF",     "topCyan": "RCL"    },
+            { "id": "fn-o", "op": "TAN",         "labelKey": "eval",  "shiftOp": "ATAN",      "shiftLabelKey": "arc-tangent",   "category": "func", "topMagenta": "→NUM",    "topCyan": "UNDO"   },
+            { "id": "fn-p", "op": "LOG",         "labelKey": "key-p", "shiftOp": "POWER",     "shiftLabelKey": "power",         "category": "func", "topMerged": "PICTURE"                      },
+            { "id": "fn-q", "op": "LN",          "labelKey": "key-q", "shiftOp": "EXP",       "shiftLabelKey": "exp",           "category": "func", "topMerged": "VIEW"                         },
+            { "id": "fn-r", "op": "SQRT",        "labelKey": "key-r", "shiftOp": "SQUARE",    "shiftLabelKey": "square",        "category": "func", "topMerged": "SWAP"                         }
           ]
         }
       ]
