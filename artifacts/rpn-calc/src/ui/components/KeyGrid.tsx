@@ -18,10 +18,10 @@ const ROW2_ALPHA = ["M", "N", "O", "P", "Q", "R"];
 const ROW3_ALPHA = ["S", "T", "U", "V", "W", "X"];
 const ROW4_ALPHA = ["\u200B", "Y", "Z", "\u200B", "\u200B"];
 
-const ROW5_ALPHA = ["\u200B", "\u200B", "\u200B", "\u200B", "\u200B", "\u200B"];
-const ROW6_ALPHA = ["\u200B", "\u200B", "\u200B", "\u200B", "\u200B", "\u200B"];
-const ROW7_ALPHA = ["\u200B", "\u200B", "\u200B", "\u200B", "\u200B", "\u200B"];
-const ROW8_ALPHA = ["\u200B", "\u200B", "\u200B", "\u200B", "\u200B", "\u200B"];
+const ROW5_ALPHA = ["\u200B", "\u200B", "\u200B", "\u200B", "\u200B"];
+const ROW6_ALPHA = ["\u200B", "\u200B", "\u200B", "\u200B", "\u200B"];
+const ROW7_ALPHA = ["\u200B", "\u200B", "\u200B", "\u200B", "\u200B"];
+const ROW8_ALPHA = ["\u200B", "\u200B", "\u200B", "\u200B", "\u200B"];
 
 const ROW_ALPHA_MAP: Record<string, string[]> = {
   "soft-0": SOFTKEY_ALPHA,
@@ -118,7 +118,7 @@ export function KeyGrid({ shiftState, dispatch }: Props) {
                 if (THREE_ZONE_ROWS.has(row.id)) {
                   const alphaRow = ROW_ALPHA_MAP[row.id] ?? [];
                   return (
-                    <div key={row.id} className="key-row" style={{ gridTemplateColumns: `repeat(${section.cols}, 1fr)` }}>
+                    <div key={row.id} className="key-row" style={{ gridTemplateColumns: `repeat(${row.keys.length}, 1fr)` }}>
                       {row.keys.map((key, idx) => {
                         const k = key as { topMagenta?: string; topCyan?: string; topMerged?: string; topColor?: string } & typeof key;
                         const merged = Boolean(k.topMerged);

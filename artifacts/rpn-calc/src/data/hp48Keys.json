@@ -73,11 +73,10 @@
           "id": "top-fn-5",
           "keys": [
             { "id": "fn-5a", "op": "SHIFT_BOTTOM", "labelKey": "key-r5-0", "category": "shift-bottom" },
-            { "id": "fn-5b", "op": "OP_NONE", "labelKey": "key-r5-1", "category": "func", "topMagenta": "magenta", "topCyan": "cyan" },
-            { "id": "fn-5c", "op": "OP_NONE", "labelKey": "key-r5-2", "category": "func", "topMagenta": "magenta", "topCyan": "cyan" },
-            { "id": "fn-5d", "op": "OP_NONE", "labelKey": "key-r5-3", "category": "func", "topMagenta": "magenta", "topCyan": "cyan" },
-            { "id": "fn-5e", "op": "OP_NONE", "labelKey": "key-r5-4", "category": "func", "topMagenta": "magenta", "topCyan": "cyan" },
-            { "id": "fn-5f", "op": "OP_NONE", "labelKey": "key-r5-5", "category": "func", "topMagenta": "magenta", "topCyan": "cyan" }
+            { "id": "fn-5b", "op": "OP_NONE", "labelKey": "digit-7", "category": "func", "topMagenta": "magenta", "topCyan": "cyan" },
+            { "id": "fn-5c", "op": "OP_NONE", "labelKey": "digit-8", "category": "func", "topMagenta": "magenta", "topCyan": "cyan" },
+            { "id": "fn-5d", "op": "OP_NONE", "labelKey": "digit-9", "category": "func", "topMagenta": "magenta", "topCyan": "cyan" },
+            { "id": "fn-5e", "op": "OP_NONE", "labelKey": "divide", "category": "func", "topMagenta": "magenta", "topCyan": "cyan" }
           ]
         },
         {
@@ -87,8 +86,7 @@
             { "id": "fn-6b", "op": "OP_NONE", "labelKey": "key-r6-1", "category": "func", "topMagenta": "magenta", "topCyan": "cyan" },
             { "id": "fn-6c", "op": "OP_NONE", "labelKey": "key-r6-2", "category": "func", "topMagenta": "magenta", "topCyan": "cyan" },
             { "id": "fn-6d", "op": "OP_NONE", "labelKey": "key-r6-3", "category": "func", "topMagenta": "magenta", "topCyan": "cyan" },
-            { "id": "fn-6e", "op": "OP_NONE", "labelKey": "key-r6-4", "category": "func", "topMagenta": "magenta", "topCyan": "cyan" },
-            { "id": "fn-6f", "op": "OP_NONE", "labelKey": "key-r6-5", "category": "func", "topMagenta": "magenta", "topCyan": "cyan" }
+            { "id": "fn-6e", "op": "OP_NONE", "labelKey": "key-r6-4", "category": "func", "topMagenta": "magenta", "topCyan": "cyan" }
           ]
         },
         {
@@ -98,8 +96,7 @@
             { "id": "fn-7b", "op": "OP_NONE", "labelKey": "key-r7-1", "category": "func", "topMagenta": "magenta", "topCyan": "cyan" },
             { "id": "fn-7c", "op": "OP_NONE", "labelKey": "key-r7-2", "category": "func", "topMagenta": "magenta", "topCyan": "cyan" },
             { "id": "fn-7d", "op": "OP_NONE", "labelKey": "key-r7-3", "category": "func", "topMagenta": "magenta", "topCyan": "cyan" },
-            { "id": "fn-7e", "op": "OP_NONE", "labelKey": "key-r7-4", "category": "func", "topMagenta": "magenta", "topCyan": "cyan" },
-            { "id": "fn-7f", "op": "OP_NONE", "labelKey": "key-r7-5", "category": "func", "topMagenta": "magenta", "topCyan": "cyan" }
+            { "id": "fn-7e", "op": "OP_NONE", "labelKey": "key-r7-4", "category": "func", "topMagenta": "magenta", "topCyan": "cyan" }
           ]
         },
         {
@@ -109,8 +106,7 @@
             { "id": "fn-8b", "op": "OP_NONE", "labelKey": "key-r8-1", "category": "func", "topMagenta": "magenta", "topCyan": "cyan" },
             { "id": "fn-8c", "op": "OP_NONE", "labelKey": "key-r8-2", "category": "func", "topMagenta": "magenta", "topCyan": "cyan" },
             { "id": "fn-8d", "op": "OP_NONE", "labelKey": "key-r8-3", "category": "func", "topMagenta": "magenta", "topCyan": "cyan" },
-            { "id": "fn-8e", "op": "OP_NONE", "labelKey": "key-r8-4", "category": "func", "topMagenta": "magenta", "topCyan": "cyan" },
-            { "id": "fn-8f", "op": "OP_NONE", "labelKey": "key-r8-5", "category": "func", "topMagenta": "magenta", "topCyan": "cyan" }
+            { "id": "fn-8e", "op": "OP_NONE", "labelKey": "key-r8-4", "category": "func", "topMagenta": "magenta", "topCyan": "cyan" }
           ]
         }
       ]
