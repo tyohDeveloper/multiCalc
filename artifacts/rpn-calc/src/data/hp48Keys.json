@@ -21,26 +21,26 @@
             { "id": "ta", "op": "SWAP",     "labelKey": "key-a", "shiftOp": "ROLL_UP",   "shiftLabelKey": "roll-up",       "category": "func-key" },
             { "id": "tb", "op": "DROP",     "labelKey": "key-b", "shiftOp": "ROLL_DOWN",  "shiftLabelKey": "roll-down",     "category": "func-key" },
             { "id": "tc", "op": "OP_STO",   "labelKey": "key-c", "shiftOp": "OP_RCL",    "shiftLabelKey": "rcl",           "category": "func-key" },
-            { "id": "td", "op": "OP_EVAL",  "labelKey": "key-d", "shiftOp": "LAST_X",    "shiftLabelKey": "last-x",        "category": "func-key" },
+            { "id": "td", "op": "EVAL_CMD", "labelKey": "key-d", "shiftOp": "LAST_X",    "shiftLabelKey": "last-x",        "category": "func-key", "suppressedBy": "noProgramming" },
             { "id": "te", "op": "CLEAR",    "labelKey": "key-e", "shiftOp": "SQUARE",     "shiftLabelKey": "square",        "category": "func-key" },
-            { "id": "tf", "op": "OP_NXT",   "labelKey": "key-f", "shiftOp": "OP_PREV",   "shiftLabelKey": "prev",          "category": "func-key" }
+            { "id": "tf", "op": "NXT_CMD",  "labelKey": "key-f", "shiftOp": "PREV_CMD",  "shiftLabelKey": "prev",          "category": "func-key", "suppressedBy": "noProgramming" }
           ]
         },
         {
           "id": "top-fn-1",
           "keys": [
-            { "id": "mth",  "op": "OP_MTH",  "labelKey": "mth",   "shiftOp": "OP_MTRX",   "shiftLabelKey": "mtrx",        "category": "func",    "topMagenta": "RAD",  "topCyan": "POLAR"  },
-            { "id": "prg",  "op": "OP_PRG",  "labelKey": "prg",   "shiftOp": "OP_SYMB",   "shiftLabelKey": "symb",        "category": "func",    "topMerged": "CHARS"                      },
-            { "id": "cst",  "op": "OP_CST",  "labelKey": "cst",   "shiftOp": "OP_SOLV",   "shiftLabelKey": "solv",        "category": "func",    "topMerged": "MODES"                      },
-            { "id": "var",  "op": "OP_VAR",  "labelKey": "var",   "shiftOp": "OP_DIR",    "shiftLabelKey": "dir",         "category": "func",    "topMerged": "MEM"                        },
+            { "id": "mth",  "op": "OP_MTH",   "labelKey": "mth",   "shiftOp": "OP_MTRX",   "shiftLabelKey": "mtrx",        "category": "func",    "topMagenta": "RAD",  "topCyan": "POLAR"  },
+            { "id": "prg",  "op": "OP_PRG",  "labelKey": "prg",   "shiftOp": "OP_SYMB",   "shiftLabelKey": "symb",        "category": "func",    "topMerged": "CHARS",  "suppressedBy": "noProgramming"           },
+            { "id": "cst",  "op": "CST_CMD", "labelKey": "cst",   "shiftOp": "OP_SOLV",   "shiftLabelKey": "solv",        "category": "func",    "topMerged": "MODES",  "suppressedBy": "noProgramming"           },
+            { "id": "var",  "op": "VAR_CMD", "labelKey": "var",   "shiftOp": "OP_DIR",    "shiftLabelKey": "dir",         "category": "func",    "topMerged": "MEM",    "suppressedBy": "noProgramming"           },
             { "id": "hist", "op": "OP_HIST", "labelKey": "hist",  "shiftOp": "SIGMA_PLUS","shiftLabelKey": "sigma-plus",  "category": "func",    "topMerged": "STACK"                      },
-            { "id": "on",   "op": "CLEAR",   "labelKey": "nxt",  "shiftOp": "OP_OFF",    "shiftLabelKey": "off",         "category": "control", "topMagenta": "PREV", "topCyan": "MENU"   }
+            { "id": "on",   "op": "CLEAR",   "labelKey": "nxt",   "shiftOp": "OP_OFF",    "shiftLabelKey": "off",         "category": "control", "topMagenta": "PREV", "topCyan": "MENU"   }
           ]
         },
         {
           "id": "top-fn-2",
           "keys": [
-            { "id": "fn-m", "op": "SIN",         "labelKey": "key-m", "shiftOp": "ASIN",      "shiftLabelKey": "arc-sine",      "category": "func", "topMagenta": "UP",      "topCyan": "HOME"   },
+            { "id": "fn-m", "op": "SIN",         "labelKey": "key-m", "shiftOp": "ASIN",      "shiftLabelKey": "arc-sine",      "category": "func", "topMagenta": "UP",      "topCyan": "HOME",   "cyanOp": "HOME_CMD",   "suppressedBy": "noProgramming"   },
             { "id": "fn-n", "op": "COS",         "labelKey": "sto",   "shiftOp": "ACOS",      "shiftLabelKey": "arc-cosine",    "category": "func", "topMagenta": "DEF",     "topCyan": "RCL"    },
             { "id": "fn-o", "op": "TAN",         "labelKey": "eval",  "shiftOp": "ATAN",      "shiftLabelKey": "arc-tangent",   "category": "func", "topMagenta": "NUM",     "topCyan": "UNDO"   },
             { "id": "fn-p", "op": "LOG",         "labelKey": "key-p", "shiftOp": "POWER",     "shiftLabelKey": "power",         "category": "func", "topMerged": "PICT", "suppressedBy": "noGraphics"              },
@@ -62,10 +62,10 @@
         {
           "id": "top-fn-4",
           "keys": [
-            { "id": "fn-wide", "op": "OP_NONE", "labelKey": "key-r4-01", "colSpan": 2, "category": "func", "topMagenta": "EQUATION", "topCyan": "MATRIX" },
-            { "id": "fn-y",    "op": "OP_NONE", "labelKey": "key-r4-2",  "category": "func", "topMagenta": "EDIT", "topCyan": "CMD" },
-            { "id": "fn-z",    "op": "OP_NONE", "labelKey": "key-r4-3",  "category": "func", "topMagenta": "PURG", "topCyan": "ARG" },
-            { "id": "fn-4d",   "op": "OP_NONE", "labelKey": "key-r4-4",  "category": "func", "topMagentaMerged": "CLEAR" },
+            { "id": "fn-wide", "op": "OP_NONE",  "labelKey": "key-r4-01", "colSpan": 2, "category": "func", "topMagenta": "EQUATION", "topCyan": "MATRIX" },
+            { "id": "fn-y",    "op": "EDIT_CMD", "labelKey": "key-r4-2",  "category": "func", "topMagenta": "EDIT", "topCyan": "CMD", "suppressedBy": "noProgramming" },
+            { "id": "fn-z",    "op": "PURGE",    "labelKey": "key-r4-3",  "category": "func", "topMagenta": "PURG", "topCyan": "ARG", "suppressedBy": "noProgramming" },
+            { "id": "fn-4d",   "op": "MENU_CMD", "labelKey": "key-r4-4",  "category": "func", "topMagentaMerged": "CLEAR", "suppressedBy": "noProgramming" },
             { "id": "fn-4e",   "op": "OP_NONE", "labelKey": "key-r4-5",  "category": "func", "topMagentaMerged": "DROP" }
           ]
         },
@@ -73,7 +73,7 @@
           "id": "top-fn-5",
           "keys": [
             { "id": "fn-5a", "op": "SHIFT_BOTTOM", "labelKey": "key-r5-0", "category": "shift-bottom", "topMagenta": "USER", "topCyan": "ENTRY" },
-            { "id": "fn-5b", "op": "OP_NONE", "labelKey": "digit-7", "category": "func", "topCyanMerged": "SOLVE" },
+            { "id": "fn-5b", "op": "USER_MODE", "labelKey": "digit-7", "category": "func", "topCyanMerged": "SOLVE", "suppressedBy": "noProgramming" },
             { "id": "fn-5c", "op": "OP_NONE", "labelKey": "digit-8", "category": "func", "topCyanMerged": "PLOT", "suppressedBy": "noGraphics" },
             { "id": "fn-5d", "op": "OP_NONE", "labelKey": "digit-9", "category": "func", "topCyanMerged": "SYMBOLIC" },
             { "id": "fn-5e", "op": "OP_NONE", "labelKey": "divide", "category": "func", "topMagenta": "()", "topMagentaBig": true, "topCyan": "#", "topCyanBig": true }
@@ -103,7 +103,7 @@
           "id": "top-fn-8",
           "keys": [
             { "id": "fn-8a", "op": "CLEAR", "labelKey": "on-key", "category": "func", "topMagenta": "CONT", "topCyan": "OFF" },
-            { "id": "fn-8b", "op": "OP_NONE", "labelKey": "key-r8-1", "category": "func", "topMagenta": "=", "topCyan": "→", "topMagentaBig": true, "topCyanBig": true },
+            { "id": "fn-8b", "op": "UPDIR_CMD", "labelKey": "key-r8-1", "category": "func", "topMagenta": "=", "topCyan": "→", "topMagentaBig": true, "topCyanBig": true, "suppressedBy": "noProgramming" },
             { "id": "fn-8c", "op": "OP_NONE", "labelKey": "key-r8-2", "category": "func", "topMagenta": ",", "topCyan": "↵", "topMagentaBig": true, "topCyanBig": true },
             { "id": "fn-8d", "op": "OP_NONE", "labelKey": "key-r8-3", "category": "func", "topMagenta": "𝝅", "topCyan": "∡", "topMagentaBig": true, "topCyanBig": true },
             { "id": "fn-8e", "op": "OP_NONE", "labelKey": "key-r8-4", "category": "func", "topMagenta": "{}", "topCyan": "::", "topMagentaBig": true, "topCyanBig": true }

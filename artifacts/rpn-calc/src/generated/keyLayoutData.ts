@@ -82,7 +82,7 @@ const keyLayoutData = {
             },
             {
               "id": "td",
-              "op": "OP_EVAL",
+              "op": "EVAL_CMD",
               "labelKey": "key-d",
               "category": "func-key",
               "shiftLabelKey": "last-x",
@@ -98,11 +98,11 @@ const keyLayoutData = {
             },
             {
               "id": "tf",
-              "op": "OP_NXT",
+              "op": "NXT_CMD",
               "labelKey": "key-f",
               "category": "func-key",
               "shiftLabelKey": "prev",
-              "shiftOp": "OP_PREV"
+              "shiftOp": "PREV_CMD"
             }
           ]
         },
@@ -124,25 +124,22 @@ const keyLayoutData = {
               "op": "OP_PRG",
               "labelKey": "prg",
               "category": "func",
-              "topMerged": "CHARS",
               "shiftLabelKey": "symb",
               "shiftOp": "OP_SYMB"
             },
             {
               "id": "cst",
-              "op": "OP_CST",
+              "op": "CST_CMD",
               "labelKey": "cst",
               "category": "func",
-              "topMerged": "MODES",
               "shiftLabelKey": "solv",
               "shiftOp": "OP_SOLV"
             },
             {
               "id": "var",
-              "op": "OP_VAR",
+              "op": "VAR_CMD",
               "labelKey": "var",
               "category": "func",
-              "topMerged": "MEM",
               "shiftLabelKey": "dir",
               "shiftOp": "OP_DIR"
             },
@@ -175,8 +172,6 @@ const keyLayoutData = {
               "op": "SIN",
               "labelKey": "key-m",
               "category": "func",
-              "topMagenta": "UP",
-              "topCyan": "HOME",
               "shiftLabelKey": "arc-sine",
               "shiftOp": "ASIN"
             },
@@ -314,26 +309,21 @@ const keyLayoutData = {
             },
             {
               "id": "fn-y",
-              "op": "OP_NONE",
+              "op": "EDIT_CMD",
               "labelKey": "key-r4-2",
-              "category": "func",
-              "topMagenta": "EDIT",
-              "topCyan": "CMD"
+              "category": "func"
             },
             {
               "id": "fn-z",
-              "op": "OP_NONE",
+              "op": "PURGE",
               "labelKey": "key-r4-3",
-              "category": "func",
-              "topMagenta": "PURG",
-              "topCyan": "ARG"
+              "category": "func"
             },
             {
               "id": "fn-4d",
-              "op": "OP_NONE",
+              "op": "MENU_CMD",
               "labelKey": "key-r4-4",
-              "category": "func",
-              "topMagentaMerged": "CLEAR"
+              "category": "func"
             },
             {
               "id": "fn-4e",
@@ -357,10 +347,9 @@ const keyLayoutData = {
             },
             {
               "id": "fn-5b",
-              "op": "OP_NONE",
+              "op": "USER_MODE",
               "labelKey": "digit-7",
-              "category": "func",
-              "topCyanMerged": "SOLVE"
+              "category": "func"
             },
             {
               "id": "fn-5c",
@@ -486,11 +475,9 @@ const keyLayoutData = {
             },
             {
               "id": "fn-8b",
-              "op": "OP_NONE",
+              "op": "UPDIR_CMD",
               "labelKey": "key-r8-1",
               "category": "func",
-              "topMagenta": "=",
-              "topCyan": "→",
               "topMagentaBig": true,
               "topCyanBig": true
             },

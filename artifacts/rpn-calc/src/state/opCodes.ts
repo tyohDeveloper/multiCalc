@@ -9,11 +9,23 @@ export type MathOpCode =
 export type TrigOpCode = "SIN" | "COS" | "TAN" | "ASIN" | "ACOS" | "ATAN";
 
 export type StackOpCode =
-  | "DROP" | "SWAP" | "ROLL_UP" | "ROLL_DOWN" | "CLEAR" | "LAST_X" | "TOGGLE_SIGN";
+  | "DROP" | "SWAP" | "ROLL_UP" | "ROLL_DOWN" | "CLEAR" | "LAST_X" | "TOGGLE_SIGN"
+  | "DUP" | "OVER" | "ROT" | "PICK" | "ROLL" | "ROLLD";
 
 export type InputOpCode = "IMAG_SEP";
 
-export type ExecOpCode = MathOpCode | TrigOpCode | StackOpCode | InputOpCode;
+export type ProgOpCode =
+  | "PROG_OPEN" | "PROG_CLOSE" | "STO_ARROW" | "TO_LIST" | "TO_ARRY" | "TO_STR" | "TO_Q"
+  | "IF" | "THEN" | "ELSE" | "END_IF" | "CASE" | "END_CASE"
+  | "FOR" | "NEXT_LOOP" | "START_LOOP" | "STEP_LOOP"
+  | "DO" | "UNTIL" | "WHILE" | "REPEAT" | "IFERR"
+  | "IFT" | "IFTE"
+  | "GET" | "PUT" | "GETI" | "PUTI" | "HEAD" | "TAIL"
+  | "EXPORT" | "INPUT_CMD" | "MSGBOX" | "MENU_CMD" | "CST_CMD" | "VAR_CMD" | "EVAL_CMD" | "EDIT_CMD"
+  | "ASM" | "CHOOSE" | "PURGE" | "CRDIR" | "RCLF" | "STOF" | "SF" | "CF"
+  | "UPDIR_CMD" | "HOME_CMD" | "USER_MODE" | "NXT_CMD" | "PREV_CMD";
+
+export type ExecOpCode = MathOpCode | TrigOpCode | StackOpCode | InputOpCode | ProgOpCode;
 
 export type PlaceholderOpCode =
   | "OP_NONE" | "OP_MTH" | "OP_PRG" | "OP_CST" | "OP_VAR" | "OP_HIST"
@@ -37,7 +49,17 @@ const EXEC_OPS_SET: ReadonlySet<string> = new Set<ExecOpCode>([
   "MOD", "INTDIV", "MAX", "MIN",
   "SIN", "COS", "TAN", "ASIN", "ACOS", "ATAN",
   "DROP", "SWAP", "ROLL_UP", "ROLL_DOWN", "CLEAR", "LAST_X", "TOGGLE_SIGN",
+  "DUP", "OVER", "ROT", "PICK", "ROLL", "ROLLD",
   "IMAG_SEP",
+  "PROG_OPEN", "PROG_CLOSE", "STO_ARROW", "TO_LIST", "TO_ARRY", "TO_STR", "TO_Q",
+  "IF", "THEN", "ELSE", "END_IF", "CASE", "END_CASE",
+  "FOR", "NEXT_LOOP", "START_LOOP", "STEP_LOOP",
+  "DO", "UNTIL", "WHILE", "REPEAT", "IFERR",
+  "IFT", "IFTE",
+  "GET", "PUT", "GETI", "PUTI", "HEAD", "TAIL",
+  "EXPORT", "INPUT_CMD", "MSGBOX", "MENU_CMD", "CST_CMD", "VAR_CMD", "EVAL_CMD", "EDIT_CMD",
+  "ASM", "CHOOSE", "PURGE", "CRDIR", "RCLF", "STOF", "SF", "CF",
+  "UPDIR_CMD", "HOME_CMD", "USER_MODE", "NXT_CMD", "PREV_CMD",
 ]);
 
 export const PLACEHOLDER_OPS: ReadonlySet<string> = new Set<PlaceholderOpCode>([
@@ -62,7 +84,19 @@ export function isPlaceholderOpCode(op: string): op is PlaceholderOpCode {
 
 export type SuppressionFlag = "noGraphics" | "noProgramming" | "noMatrix";
 
-const PROGRAMMING_OPS: ReadonlySet<string> = new Set<KeyOpCode>(["OP_PRG", "OP_EVAL"]);
+const PROGRAMMING_OPS: ReadonlySet<string> = new Set<string>([
+  "OP_PRG", "OP_EVAL",
+  "PROG_OPEN", "PROG_CLOSE", "STO_ARROW", "TO_LIST", "TO_ARRY", "TO_STR", "TO_Q",
+  "IF", "THEN", "ELSE", "END_IF", "CASE", "END_CASE",
+  "FOR", "NEXT_LOOP", "START_LOOP", "STEP_LOOP",
+  "DO", "UNTIL", "WHILE", "REPEAT", "IFERR",
+  "IFT", "IFTE",
+  "GET", "PUT", "GETI", "PUTI", "HEAD", "TAIL",
+  "DUP", "OVER", "ROT", "PICK", "ROLL", "ROLLD",
+  "EXPORT", "INPUT_CMD", "MSGBOX", "MENU_CMD", "CST_CMD", "VAR_CMD", "EVAL_CMD", "EDIT_CMD",
+  "ASM", "CHOOSE", "PURGE", "CRDIR", "RCLF", "STOF", "SF", "CF",
+  "UPDIR_CMD", "HOME_CMD", "USER_MODE", "NXT_CMD", "PREV_CMD",
+]);
 const MATRIX_OPS: ReadonlySet<string> = new Set<KeyOpCode>(["OP_MTRX"]);
 const GRAPHICS_OPS: ReadonlySet<string> = new Set<KeyOpCode>([
   "OP_SYMB", "OP_SOLV", "SIGMA_PLUS",

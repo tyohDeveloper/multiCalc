@@ -68,7 +68,7 @@ const keyActionTable: KeyActionTable = {
     shiftedBottom: { type: "OP", op: "OP_NONE" },
   },
   "td": {
-    unshifted:     { type: "OP", op: "OP_EVAL" },
+    unshifted:     { type: "OP", op: "EVAL_CMD" },
     shiftedMagenta: { type: "OP", op: "LAST_X" },
     shiftedCyan:   { type: "OP", op: "OP_NONE" },
     shiftedBottom: { type: "OP", op: "OP_NONE" },
@@ -80,8 +80,8 @@ const keyActionTable: KeyActionTable = {
     shiftedBottom: { type: "OP", op: "OP_NONE" },
   },
   "tf": {
-    unshifted:     { type: "OP", op: "OP_NXT" },
-    shiftedMagenta: { type: "OP", op: "OP_PREV" },
+    unshifted:     { type: "OP", op: "NXT_CMD" },
+    shiftedMagenta: { type: "OP", op: "PREV_CMD" },
     shiftedCyan:   { type: "OP", op: "OP_NONE" },
     shiftedBottom: { type: "OP", op: "OP_NONE" },
   },
@@ -98,13 +98,13 @@ const keyActionTable: KeyActionTable = {
     shiftedBottom: { type: "ALPHA_CHAR", char: "H" },
   },
   "cst": {
-    unshifted:     { type: "OP", op: "OP_CST" },
+    unshifted:     { type: "OP", op: "CST_CMD" },
     shiftedMagenta: { type: "OP", op: "OP_SOLV" },
     shiftedCyan:   { type: "OP", op: "OP_NONE" },
     shiftedBottom: { type: "ALPHA_CHAR", char: "I" },
   },
   "var": {
-    unshifted:     { type: "OP", op: "OP_VAR" },
+    unshifted:     { type: "OP", op: "VAR_CMD" },
     shiftedMagenta: { type: "OP", op: "OP_DIR" },
     shiftedCyan:   { type: "OP", op: "OP_NONE" },
     shiftedBottom: { type: "ALPHA_CHAR", char: "J" },
@@ -200,19 +200,19 @@ const keyActionTable: KeyActionTable = {
     shiftedBottom: { type: "OP", op: "OP_NONE" },
   },
   "fn-y": {
-    unshifted:     { type: "OP", op: "OP_NONE" },
+    unshifted:     { type: "OP", op: "EDIT_CMD" },
     shiftedMagenta: { type: "OP", op: "OP_NONE" },
     shiftedCyan:   { type: "OP", op: "OP_NONE" },
     shiftedBottom: { type: "ALPHA_CHAR", char: "Y" },
   },
   "fn-z": {
-    unshifted:     { type: "OP", op: "OP_NONE" },
+    unshifted:     { type: "OP", op: "PURGE" },
     shiftedMagenta: { type: "OP", op: "OP_NONE" },
     shiftedCyan:   { type: "OP", op: "OP_NONE" },
     shiftedBottom: { type: "ALPHA_CHAR", char: "Z" },
   },
   "fn-4d": {
-    unshifted:     { type: "OP", op: "OP_NONE" },
+    unshifted:     { type: "OP", op: "MENU_CMD" },
     shiftedMagenta: { type: "OP", op: "OP_NONE" },
     shiftedCyan:   { type: "OP", op: "OP_NONE" },
     shiftedBottom: { type: "OP", op: "OP_NONE" },
@@ -230,7 +230,7 @@ const keyActionTable: KeyActionTable = {
     shiftedBottom: { type: "SHIFT", target: "shiftedBottom" },
   },
   "fn-5b": {
-    unshifted:     { type: "OP", op: "OP_NONE" },
+    unshifted:     { type: "OP", op: "USER_MODE" },
     shiftedMagenta: { type: "OP", op: "OP_NONE" },
     shiftedCyan:   { type: "OP", op: "OP_NONE" },
     shiftedBottom: { type: "OP", op: "OP_NONE" },
@@ -320,7 +320,7 @@ const keyActionTable: KeyActionTable = {
     shiftedBottom: { type: "OP", op: "OP_NONE" },
   },
   "fn-8b": {
-    unshifted:     { type: "OP", op: "OP_NONE" },
+    unshifted:     { type: "OP", op: "UPDIR_CMD" },
     shiftedMagenta: { type: "OP", op: "OP_NONE" },
     shiftedCyan:   { type: "OP", op: "OP_NONE" },
     shiftedBottom: { type: "OP", op: "OP_NONE" },

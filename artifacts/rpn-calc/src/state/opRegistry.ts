@@ -2,6 +2,7 @@ import { mathRegistry } from "./mathRegistry";
 import { trigRegistry } from "./trigRegistry";
 import { stackRegistry } from "./stackRegistry";
 import { inputRegistry } from "./inputRegistry";
+import { progRegistry } from "./progRegistry";
 import type { ExecOpCode } from "./opCodes";
 import type { CalcState } from "./calculatorState";
 
@@ -12,4 +13,5 @@ export const opRegistry: Record<ExecOpCode, StateOp> = {
   ...trigRegistry,
   ...stackRegistry,
   ...inputRegistry,
+  ...progRegistry,
 } as Record<ExecOpCode, StateOp>;
