@@ -79,7 +79,7 @@
         {
           "id": "top-fn-5",
           "keys": [
-            { "id": "fn-5a", "op": "SHIFT_BOTTOM", "labelKey": "key-r5-0", "category": "shift-bottom", "topMagenta": "magenta", "topCyan": "cyan" },
+            { "id": "fn-5a", "op": "SHIFT_BOTTOM", "labelKey": "key-r5-0", "category": "shift-bottom" },
             { "id": "fn-5b", "op": "OP_NONE", "labelKey": "key-r5-1", "category": "func", "topMagenta": "magenta", "topCyan": "cyan" },
             { "id": "fn-5c", "op": "OP_NONE", "labelKey": "key-r5-2", "category": "func", "topMagenta": "magenta", "topCyan": "cyan" },
             { "id": "fn-5d", "op": "OP_NONE", "labelKey": "key-r5-3", "category": "func", "topMagenta": "magenta", "topCyan": "cyan" },
@@ -90,7 +90,7 @@
         {
           "id": "top-fn-6",
           "keys": [
-            { "id": "fn-6a", "op": "SHIFT_MAGENTA", "labelKey": "key-r6-0", "category": "shift-magenta", "topMagenta": "magenta", "topCyan": "cyan" },
+            { "id": "fn-6a", "op": "SHIFT_MAGENTA", "labelKey": "key-r6-0", "category": "shift-magenta", "topColor": "magenta" },
             { "id": "fn-6b", "op": "OP_NONE", "labelKey": "key-r6-1", "category": "func", "topMagenta": "magenta", "topCyan": "cyan" },
             { "id": "fn-6c", "op": "OP_NONE", "labelKey": "key-r6-2", "category": "func", "topMagenta": "magenta", "topCyan": "cyan" },
             { "id": "fn-6d", "op": "OP_NONE", "labelKey": "key-r6-3", "category": "func", "topMagenta": "magenta", "topCyan": "cyan" },
@@ -101,7 +101,7 @@
         {
           "id": "top-fn-7",
           "keys": [
-            { "id": "fn-7a", "op": "SHIFT_CYAN", "labelKey": "key-r7-0", "category": "shift-cyan", "topMagenta": "magenta", "topCyan": "cyan" },
+            { "id": "fn-7a", "op": "SHIFT_CYAN", "labelKey": "key-r7-0", "category": "shift-cyan", "topColor": "cyan" },
             { "id": "fn-7b", "op": "OP_NONE", "labelKey": "key-r7-1", "category": "func", "topMagenta": "magenta", "topCyan": "cyan" },
             { "id": "fn-7c", "op": "OP_NONE", "labelKey": "key-r7-2", "category": "func", "topMagenta": "magenta", "topCyan": "cyan" },
             { "id": "fn-7d", "op": "OP_NONE", "labelKey": "key-r7-3", "category": "func", "topMagenta": "magenta", "topCyan": "cyan" },

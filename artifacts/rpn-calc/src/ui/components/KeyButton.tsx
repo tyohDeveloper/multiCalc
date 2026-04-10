@@ -7,6 +7,7 @@ interface Props {
   isActive?: boolean;
   testId?: string;
   keyOp?: string;
+  topColor?: string;
 }
 
 export function KeyButton({ labelKey, onClick, category, isActive, testId, keyOp }: Props) {

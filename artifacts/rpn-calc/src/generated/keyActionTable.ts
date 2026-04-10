@@ -85,24 +85,6 @@ const keyActionTable: KeyActionTable = {
     shiftedCyan:   { type: "OP", op: "OP_NONE" },
     shiftedBottom: { type: "OP", op: "OP_NONE" },
   },
-  "shift-magenta": {
-    unshifted:     { type: "SHIFT", target: "shiftedMagenta" },
-    shiftedMagenta: { type: "SHIFT", target: "shiftedMagenta" },
-    shiftedCyan:   { type: "SHIFT", target: "shiftedMagenta" },
-    shiftedBottom: { type: "SHIFT", target: "shiftedMagenta" },
-  },
-  "shift-cyan": {
-    unshifted:     { type: "SHIFT", target: "shiftedCyan" },
-    shiftedMagenta: { type: "SHIFT", target: "shiftedCyan" },
-    shiftedCyan:   { type: "SHIFT", target: "shiftedCyan" },
-    shiftedBottom: { type: "SHIFT", target: "shiftedCyan" },
-  },
-  "shift-bottom": {
-    unshifted:     { type: "SHIFT", target: "shiftedBottom" },
-    shiftedMagenta: { type: "SHIFT", target: "shiftedBottom" },
-    shiftedCyan:   { type: "SHIFT", target: "shiftedBottom" },
-    shiftedBottom: { type: "SHIFT", target: "shiftedBottom" },
-  },
   "mth": {
     unshifted:     { type: "OP", op: "OP_MTH" },
     shiftedMagenta: { type: "OP", op: "OP_MTRX" },
@@ -242,10 +224,10 @@ const keyActionTable: KeyActionTable = {
     shiftedBottom: { type: "OP", op: "OP_NONE" },
   },
   "fn-5a": {
-    unshifted:     { type: "OP", op: "OP_NONE" },
-    shiftedMagenta: { type: "OP", op: "OP_NONE" },
-    shiftedCyan:   { type: "OP", op: "OP_NONE" },
-    shiftedBottom: { type: "OP", op: "OP_NONE" },
+    unshifted:     { type: "SHIFT", target: "shiftedBottom" },
+    shiftedMagenta: { type: "SHIFT", target: "shiftedBottom" },
+    shiftedCyan:   { type: "SHIFT", target: "shiftedBottom" },
+    shiftedBottom: { type: "SHIFT", target: "shiftedBottom" },
   },
   "fn-5b": {
     unshifted:     { type: "OP", op: "OP_NONE" },
@@ -278,10 +260,10 @@ const keyActionTable: KeyActionTable = {
     shiftedBottom: { type: "OP", op: "OP_NONE" },
   },
   "fn-6a": {
-    unshifted:     { type: "OP", op: "OP_NONE" },
-    shiftedMagenta: { type: "OP", op: "OP_NONE" },
-    shiftedCyan:   { type: "OP", op: "OP_NONE" },
-    shiftedBottom: { type: "OP", op: "OP_NONE" },
+    unshifted:     { type: "SHIFT", target: "shiftedMagenta" },
+    shiftedMagenta: { type: "SHIFT", target: "shiftedMagenta" },
+    shiftedCyan:   { type: "SHIFT", target: "shiftedMagenta" },
+    shiftedBottom: { type: "SHIFT", target: "shiftedMagenta" },
   },
   "fn-6b": {
     unshifted:     { type: "OP", op: "OP_NONE" },
@@ -314,10 +296,10 @@ const keyActionTable: KeyActionTable = {
     shiftedBottom: { type: "OP", op: "OP_NONE" },
   },
   "fn-7a": {
-    unshifted:     { type: "OP", op: "OP_NONE" },
-    shiftedMagenta: { type: "OP", op: "OP_NONE" },
-    shiftedCyan:   { type: "OP", op: "OP_NONE" },
-    shiftedBottom: { type: "OP", op: "OP_NONE" },
+    unshifted:     { type: "SHIFT", target: "shiftedCyan" },
+    shiftedMagenta: { type: "SHIFT", target: "shiftedCyan" },
+    shiftedCyan:   { type: "SHIFT", target: "shiftedCyan" },
+    shiftedBottom: { type: "SHIFT", target: "shiftedCyan" },
   },
   "fn-7b": {
     unshifted:     { type: "OP", op: "OP_NONE" },

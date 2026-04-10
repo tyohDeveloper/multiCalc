@@ -460,7 +460,18 @@
   color: rgba(200, 190, 175, 0.65);
 }
 
-/* Shift key (LS) */
+/* Shift key (alpha / shift-bottom) — no special background, inherits default key style */
+.key-button.key-shift-bottom .key-main-label {
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.key-button.key-shift-bottom.key-active .key-main-label {
+  color: #fff;
+  text-shadow: 0 0 6px rgba(255,255,255,0.7);
+}
+
+/* Shift key (LS) — legacy alias kept for backward compatibility */
 .key-button.key-shift {
   background: linear-gradient(180deg, #3a9898 0%, #2e7878 55%, #235858 100%);
   color: #fff;
@@ -476,6 +487,64 @@
   font-weight: 900;
   color: #fff;
   letter-spacing: 0.5px;
+}
+
+/* Magenta shift key — dim by default, bright when active */
+.key-button.key-shift-magenta {
+  background: #661133;
+  color: #fff;
+  border-color: #440022;
+  box-shadow:
+    0 2px 0 #220011,
+    0 4px 8px rgba(0,0,0,0.4),
+    inset 0 1px 0 rgba(255,255,255,0.1);
+}
+
+.key-button.key-shift-magenta .key-main-label {
+  font-size: 12px;
+  font-weight: 900;
+  color: #fff;
+}
+
+.key-button.key-shift-magenta.key-active {
+  background: #cc44aa !important;
+  box-shadow:
+    0 0 10px rgba(204,68,170,0.6),
+    0 2px 0 #220011,
+    inset 0 1px 0 rgba(255,255,255,0.25);
+}
+
+.key-button.key-shift-magenta.key-active .key-main-label {
+  color: #000;
+}
+
+/* Cyan shift key — dim by default, bright when active */
+.key-button.key-shift-cyan {
+  background: #0d5566;
+  color: #fff;
+  border-color: #083344;
+  box-shadow:
+    0 2px 0 #031a22,
+    0 4px 8px rgba(0,0,0,0.4),
+    inset 0 1px 0 rgba(255,255,255,0.1);
+}
+
+.key-button.key-shift-cyan .key-main-label {
+  font-size: 12px;
+  font-weight: 900;
+  color: #fff;
+}
+
+.key-button.key-shift-cyan.key-active {
+  background: #22bbcc !important;
+  box-shadow:
+    0 0 10px rgba(34,187,204,0.6),
+    0 2px 0 #031a22,
+    inset 0 1px 0 rgba(255,255,255,0.25);
+}
+
+.key-button.key-shift-cyan.key-active .key-main-label {
+  color: #000;
 }
 
 .key-button.key-active {

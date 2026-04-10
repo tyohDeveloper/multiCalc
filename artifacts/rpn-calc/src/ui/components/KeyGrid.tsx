@@ -135,17 +135,22 @@ export function KeyGrid({ shiftState, dispatch }: Props) {
                   return (
                     <div key={row.id} className="key-row" style={{ gridTemplateColumns: `repeat(${section.cols}, 1fr)` }}>
                       {row.keys.map((key, idx) => {
-                        const k = key as { topMagenta?: string; topCyan?: string; topMerged?: string } & typeof key;
+                        const k = key as { topMagenta?: string; topCyan?: string; topMerged?: string; topColor?: string } & typeof key;
                         const merged = Boolean(k.topMerged);
+                        const topColor = k.topColor;
                         const fnKey = makeKeyHandler(key.id, shiftState, dispatch);
                         const isActive = key.op === "SHIFT_MAGENTA" && shiftState === "shiftedMagenta"
                           || key.op === "SHIFT_CYAN" && shiftState === "shiftedCyan"
                           || key.op === "SHIFT_BOTTOM" && shiftState === "shiftedBottom";
                         return (
                           <div key={key.id} className="key-cell-3zone">
-                            <div className={`key-cell-top-labels${merged ? " key-cell-top-labels--merged" : ""}`}>
-                              {resolveTopLabel(k.topMagenta, k.topCyan, k.topMerged, undefined, shiftState)}
-                            </div>
+                            {topColor ? (
+                              <div className="key-cell-top-labels key-cell-top-labels--color-swatch" />
+                            ) : (
+                              <div className={`key-cell-top-labels${merged ? " key-cell-top-labels--merged" : ""}`}>
+                                {resolveTopLabel(k.topMagenta, k.topCyan, k.topMerged, undefined, shiftState)}
+                              </div>
+                            )}
                             <KeyButton
                               labelKey={key.labelKey}
                               category={key.category}
@@ -153,6 +158,7 @@ export function KeyGrid({ shiftState, dispatch }: Props) {
                               onClick={fnKey}
                               testId={makeTestId(section.id, row.id, key.id)}
                               keyOp={key.op}
+                              topColor={topColor}
                             />
                             <div className={shiftState === "shiftedBottom" && alphaRow[idx] && alphaRow[idx] !== "\u200B" ? "key-label-alpha key-label-active" : "key-label-alpha"}>{alphaRow[idx] ?? ""}</div>
                           </div>
