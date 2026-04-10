@@ -546,3 +546,128 @@
 .key-button.key-active .key-main-label {
   color: #fff;
 }
+
+/* ── MatrixWriter Modal ───────────────────────────────────────────────────── */
+
+.matrix-writer-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.matrix-writer-modal {
+  background: #2b2f34;
+  border: 2px solid #13161a;
+  border-radius: 12px;
+  padding: 20px;
+  min-width: 280px;
+  max-width: 90vw;
+  max-height: 90vh;
+  overflow: auto;
+  box-shadow: 0 18px 50px rgba(0, 0, 0, 0.9);
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.matrix-writer-title {
+  color: #e0e0e0;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.matrix-writer-dim-row {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+}
+
+.matrix-writer-dim-label {
+  color: #aaa;
+  font-size: 12px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.matrix-writer-dim-input {
+  width: 52px;
+  padding: 4px 6px;
+  background: #1a1e22;
+  border: 1px solid #444;
+  border-radius: 4px;
+  color: #e0e0e0;
+  font-size: 13px;
+  text-align: center;
+}
+
+.matrix-writer-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  overflow: auto;
+}
+
+.matrix-writer-row {
+  display: flex;
+  gap: 4px;
+}
+
+.matrix-writer-cell {
+  width: 60px;
+  padding: 5px 6px;
+  background: #1a1e22;
+  border: 1px solid #444;
+  border-radius: 4px;
+  color: #c8e6a0;
+  font-size: 13px;
+  font-family: monospace;
+  text-align: right;
+}
+
+.matrix-writer-cell:focus,
+.matrix-writer-cell-focused {
+  outline: 2px solid #3fbfbf;
+  border-color: #3fbfbf;
+}
+
+.matrix-writer-actions {
+  display: flex;
+  gap: 10px;
+  justify-content: flex-end;
+}
+
+.matrix-writer-btn {
+  padding: 7px 18px;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+.matrix-writer-cancel {
+  background: #3a4047;
+  color: #aaa;
+}
+
+.matrix-writer-cancel:hover {
+  background: #464d55;
+}
+
+.matrix-writer-confirm {
+  background: linear-gradient(180deg, #3fbfbf 0%, #2e9595 100%);
+  color: #fff;
+}
+
+.matrix-writer-confirm:hover {
+  background: linear-gradient(180deg, #50cfcf 0%, #3aacac 100%);
+}

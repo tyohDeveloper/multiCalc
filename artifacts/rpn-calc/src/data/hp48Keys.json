@@ -52,6 +52,57 @@
       ]
     },
     {
+      "id": "matr-softkeys",
+      "cols": 6,
+      "suppressedBy": "noMatrix",
+      "rows": [
+        {
+          "id": "matr-sk-0",
+          "keys": [
+            { "id": "matr-add",    "op": "MATR_ADD",    "labelKey": "matr-add",    "category": "func", "suppressedBy": "noMatrix" },
+            { "id": "matr-sub",    "op": "MATR_SUB",    "labelKey": "matr-sub",    "category": "func", "suppressedBy": "noMatrix" },
+            { "id": "matr-mul",    "op": "MATR_MUL",    "labelKey": "matr-mul",    "category": "func", "suppressedBy": "noMatrix" },
+            { "id": "matr-trn",    "op": "MATR_TRN",    "labelKey": "matr-trn",    "category": "func", "suppressedBy": "noMatrix" },
+            { "id": "matr-det",    "op": "MATR_DET",    "labelKey": "matr-det",    "category": "func", "suppressedBy": "noMatrix" },
+            { "id": "matr-sk0-nxt","op": "MATR_NXT",    "labelKey": "matr-nxt",    "category": "func", "suppressedBy": "noMatrix" }
+          ]
+        },
+        {
+          "id": "matr-sk-1",
+          "keys": [
+            { "id": "matr-idn",    "op": "MATR_IDN",    "labelKey": "matr-idn",    "category": "func", "suppressedBy": "noMatrix" },
+            { "id": "matr-ranm",   "op": "MATR_RANM",   "labelKey": "matr-ranm",   "category": "func", "suppressedBy": "noMatrix" },
+            { "id": "matr-trace",  "op": "MATR_TRACE",  "labelKey": "matr-trace",  "category": "func", "suppressedBy": "noMatrix" },
+            { "id": "matr-inv",    "op": "MATR_INV",    "labelKey": "matr-inv",    "category": "func", "suppressedBy": "noMatrix" },
+            { "id": "matr-size",   "op": "MATR_SIZE",   "labelKey": "matr-size",   "category": "func", "suppressedBy": "noMatrix" },
+            { "id": "matr-sk1-nxt","op": "MATR_NXT",    "labelKey": "matr-nxt",    "category": "func", "suppressedBy": "noMatrix" }
+          ]
+        },
+        {
+          "id": "matr-sk-2",
+          "keys": [
+            { "id": "matr-dim",    "op": "MATR_DIM",    "labelKey": "matr-dim",    "category": "func", "suppressedBy": "noMatrix" },
+            { "id": "matr-editmat","op": "MATR_EDITMAT","labelKey": "matr-editmat","category": "func", "suppressedBy": "noMatrix" },
+            { "id": "matr-writer", "op": "MATR_WRITER", "labelKey": "matr-writer", "category": "func", "suppressedBy": "noMatrix" },
+            { "id": "matr-dot",    "op": "MATR_DOT",    "labelKey": "matr-dot",    "category": "func", "suppressedBy": "noMatrix" },
+            { "id": "matr-cross",  "op": "MATR_CROSS",  "labelKey": "matr-cross",  "category": "func", "suppressedBy": "noMatrix" },
+            { "id": "matr-sk2-prv","op": "MATR_PREV",   "labelKey": "matr-prev",   "category": "func", "suppressedBy": "noMatrix" }
+          ]
+        },
+        {
+          "id": "matr-sk-3",
+          "keys": [
+            { "id": "matr-con",    "op": "MATR_CON",    "labelKey": "matr-con",    "category": "func", "suppressedBy": "noMatrix" },
+            { "id": "matr-rdm",    "op": "MATR_RDM",    "labelKey": "matr-rdm",    "category": "func", "suppressedBy": "noMatrix" },
+            { "id": "matr-solve",  "op": "MATR_SOLVE",  "labelKey": "matr-solve",  "category": "func", "suppressedBy": "noMatrix" },
+            { "id": "matr-none1",  "op": "OP_NONE",     "labelKey": "key-blank",   "category": "func", "suppressedBy": "noMatrix" },
+            { "id": "matr-none2",  "op": "OP_NONE",     "labelKey": "key-blank",   "category": "func", "suppressedBy": "noMatrix" },
+            { "id": "matr-sk3-prv","op": "MATR_PREV",   "labelKey": "matr-prev",   "category": "func", "suppressedBy": "noMatrix" }
+          ]
+        }
+      ]
+    },
+    {
       "id": "top-fn",
       "cols": 6,
       "rows": [

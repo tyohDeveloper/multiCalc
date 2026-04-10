@@ -1,10 +1,13 @@
 import type { KeyOpCode } from "./opCodes";
 import type { Complex } from "../logic/complex/complex";
 import { ZERO } from "../logic/complex/complex";
+import type { Matrix } from "../logic/matrix/matrixType";
 
 export type AngleMode = "DEG" | "RAD" | "GRAD";
 export type DisplayMode = "STD" | "FIX" | "SCI" | "ENG";
 export type ShiftState = "unshifted" | "shiftedMagenta" | "shiftedCyan" | "shiftedBottom";
+
+export type StackValue = Complex | Matrix;
 
 export interface EntryState {
   isActive: boolean;
@@ -18,9 +21,9 @@ export interface EntryState {
 }
 
 export interface CalcState {
-  stack: [Complex, Complex, Complex, Complex];
-  lastX: Complex;
-  registers: Complex[];
+  stack: [StackValue, StackValue, StackValue, StackValue];
+  lastX: StackValue;
+  registers: StackValue[];
   entry: EntryState;
   enterFlag: boolean;
   angleMode: AngleMode;
@@ -28,6 +31,10 @@ export interface CalcState {
   displayPrecision: number;
   shiftState: ShiftState;
   error: string | null;
+  matrixWriterOpen: boolean;
+  matrixWriterSeed: Matrix | null;
+  matrMenuPage: number;
+  matrCatalogOpen: boolean;
 }
 
 export type CalcAction =
@@ -43,7 +50,10 @@ export type CalcAction =
   | { type: "RCL"; reg: number }
   | { type: "ANGLE_MODE"; mode: AngleMode }
   | { type: "DISPLAY_MODE"; mode: DisplayMode; precision?: number }
-  | { type: "CLEAR_ERROR" };
+  | { type: "CLEAR_ERROR" }
+  | { type: "MATRIX_WRITER_OPEN"; seed?: Matrix }
+  | { type: "MATRIX_WRITER_CLOSE" }
+  | { type: "MATRIX_WRITER_PUSH"; matrix: Matrix };
 
 export { type KeyOpCode } from "./opCodes";
 
@@ -61,7 +71,7 @@ const clearedEntry: EntryState = {
 export const initialState: CalcState = {
   stack: [ZERO, ZERO, ZERO, ZERO],
   lastX: ZERO,
-  registers: Array(10).fill(ZERO) as Complex[],
+  registers: Array(10).fill(ZERO) as StackValue[],
   entry: clearedEntry,
   enterFlag: false,
   angleMode: "DEG",
@@ -69,6 +79,10 @@ export const initialState: CalcState = {
   displayPrecision: 4,
   shiftState: "unshifted",
   error: null,
+  matrixWriterOpen: false,
+  matrixWriterSeed: null,
+  matrMenuPage: 0,
+  matrCatalogOpen: false,
 };
 
 export const CLEARED_ENTRY: EntryState = clearedEntry;

@@ -16,6 +16,7 @@ import { applyBinaryOp } from "../shared/applyBinaryOp";
 import { commitEntry } from "../shared/commitEntry";
 import type { Complex } from "../complex/complex";
 import { cx, NAN_COMPLEX } from "../complex/complex";
+import type { StackValue } from "../../state/calculatorState";
 
 // ── Scalar implementations ────────────────────────────────────────────────
 
@@ -87,7 +88,7 @@ export function mtrxTran(x: Complex): Complex {
  */
 export function applyMtrxIdn(state: CalcState): CalcState {
   const s = commitEntry(state);
-  const n = s.stack[0];
+  const n = s.stack[0] as Complex;
   if (n.im !== 0 || n.re !== Math.round(n.re) || n.re < 1) {
     return { ...s, error: "Bad argument", enterFlag: false };
   }

@@ -9,6 +9,9 @@ import { label } from "../../logic/i18n/label";
 import { StackDisplay } from "../components/StackDisplay";
 import { StatusBar } from "../components/StatusBar";
 import { KeyGrid } from "../components/KeyGrid";
+import { MatrixWriter } from "../components/MatrixWriter";
+
+const NO_MATRIX = import.meta.env.VITE_NO_MATRIX === "true";
 
 export function HP48Calculator() {
   const [state, dispatch] = useReducer(calculatorReducer, initialState);
@@ -30,8 +33,11 @@ export function HP48Calculator() {
             <StackDisplay state={state} />
           </div>
         </div>
-        <KeyGrid shiftState={state.shiftState} dispatch={dispatch} />
+        <KeyGrid shiftState={state.shiftState} dispatch={dispatch} matrMenuPage={state.matrMenuPage} matrCatalogOpen={state.matrCatalogOpen} />
       </div>
+      {!NO_MATRIX && (
+        <MatrixWriter state={state} dispatch={dispatch} noMatrix={NO_MATRIX} />
+      )}
     </div>
   );
 }

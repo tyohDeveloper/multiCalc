@@ -180,6 +180,177 @@ const keyLayoutData = {
       ]
     },
     {
+      "id": "matr-softkeys",
+      "cols": 6,
+      "suppressedBy": "noMatrix",
+      "rows": [
+        {
+          "id": "matr-sk-0",
+          "keys": [
+            {
+              "id": "matr-add",
+              "op": "MATR_ADD",
+              "labelKey": "matr-add",
+              "category": "func"
+            },
+            {
+              "id": "matr-sub",
+              "op": "MATR_SUB",
+              "labelKey": "matr-sub",
+              "category": "func"
+            },
+            {
+              "id": "matr-mul",
+              "op": "MATR_MUL",
+              "labelKey": "matr-mul",
+              "category": "func"
+            },
+            {
+              "id": "matr-trn",
+              "op": "MATR_TRN",
+              "labelKey": "matr-trn",
+              "category": "func"
+            },
+            {
+              "id": "matr-det",
+              "op": "MATR_DET",
+              "labelKey": "matr-det",
+              "category": "func"
+            },
+            {
+              "id": "matr-sk0-nxt",
+              "op": "MATR_NXT",
+              "labelKey": "matr-nxt",
+              "category": "func"
+            }
+          ]
+        },
+        {
+          "id": "matr-sk-1",
+          "keys": [
+            {
+              "id": "matr-idn",
+              "op": "MATR_IDN",
+              "labelKey": "matr-idn",
+              "category": "func"
+            },
+            {
+              "id": "matr-ranm",
+              "op": "MATR_RANM",
+              "labelKey": "matr-ranm",
+              "category": "func"
+            },
+            {
+              "id": "matr-trace",
+              "op": "MATR_TRACE",
+              "labelKey": "matr-trace",
+              "category": "func"
+            },
+            {
+              "id": "matr-inv",
+              "op": "MATR_INV",
+              "labelKey": "matr-inv",
+              "category": "func"
+            },
+            {
+              "id": "matr-size",
+              "op": "MATR_SIZE",
+              "labelKey": "matr-size",
+              "category": "func"
+            },
+            {
+              "id": "matr-sk1-nxt",
+              "op": "MATR_NXT",
+              "labelKey": "matr-nxt",
+              "category": "func"
+            }
+          ]
+        },
+        {
+          "id": "matr-sk-2",
+          "keys": [
+            {
+              "id": "matr-dim",
+              "op": "MATR_DIM",
+              "labelKey": "matr-dim",
+              "category": "func"
+            },
+            {
+              "id": "matr-editmat",
+              "op": "MATR_EDITMAT",
+              "labelKey": "matr-editmat",
+              "category": "func"
+            },
+            {
+              "id": "matr-writer",
+              "op": "MATR_WRITER",
+              "labelKey": "matr-writer",
+              "category": "func"
+            },
+            {
+              "id": "matr-dot",
+              "op": "MATR_DOT",
+              "labelKey": "matr-dot",
+              "category": "func"
+            },
+            {
+              "id": "matr-cross",
+              "op": "MATR_CROSS",
+              "labelKey": "matr-cross",
+              "category": "func"
+            },
+            {
+              "id": "matr-sk2-prv",
+              "op": "MATR_PREV",
+              "labelKey": "matr-prev",
+              "category": "func"
+            }
+          ]
+        },
+        {
+          "id": "matr-sk-3",
+          "keys": [
+            {
+              "id": "matr-con",
+              "op": "MATR_CON",
+              "labelKey": "matr-con",
+              "category": "func"
+            },
+            {
+              "id": "matr-rdm",
+              "op": "MATR_RDM",
+              "labelKey": "matr-rdm",
+              "category": "func"
+            },
+            {
+              "id": "matr-solve",
+              "op": "MATR_SOLVE",
+              "labelKey": "matr-solve",
+              "category": "func"
+            },
+            {
+              "id": "matr-none1",
+              "op": "OP_NONE",
+              "labelKey": "key-blank",
+              "category": "func"
+            },
+            {
+              "id": "matr-none2",
+              "op": "OP_NONE",
+              "labelKey": "key-blank",
+              "category": "func"
+            },
+            {
+              "id": "matr-sk3-prv",
+              "op": "MATR_PREV",
+              "labelKey": "matr-prev",
+              "category": "func"
+            }
+          ]
+        }
+      ]
+    },
+    {
       "id": "top-fn",
       "cols": 6,
       "rows": [

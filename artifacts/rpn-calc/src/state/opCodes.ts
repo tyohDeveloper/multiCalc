@@ -25,7 +25,47 @@ export type MatrixOpCode =
   | "MTRX_SCHUR"
   | "MTRX_EIGV"
   | "MTRX_LU"
-  | "MTRX_QR";
+  | "MTRX_QR"
+  | "MATR_ADD"
+  | "MATR_SUB"
+  | "MATR_MUL"
+  | "MATR_TRN"
+  | "MATR_INV"
+  | "MATR_DET"
+  | "MATR_IDN"
+  | "MATR_RREF"
+  | "MATR_TRACE"
+  | "MATR_EIGEN"
+  | "MATR_CHOLESKY"
+  | "MATR_LU"
+  | "MATR_QR"
+  | "MATR_SOLVE"
+  | "MATR_TO_V2"
+  | "MATR_TO_V3"
+  | "MATR_TO_MAT"
+  | "MATR_TO_LIST"
+  | "MATR_TO_ARRY"
+  | "MATR_ROW_ADD"
+  | "MATR_ROW_SUB"
+  | "MATR_COL_ADD"
+  | "MATR_COL_SUB"
+  | "MATR_RDM"
+  | "MATR_RANM"
+  | "MATR_SIZE"
+  | "MATR_DIM"
+  | "MATR_PUT"
+  | "MATR_GET"
+  | "MATR_PUTI"
+  | "MATR_GETI"
+  | "MATR_CON"
+  | "MATR_DOT"
+  | "MATR_CROSS"
+  | "MATR_SYS"
+  | "MATR_EDITMAT"
+  | "MATR_WRITER"
+  | "MATR_LIN_SOLVE"
+  | "MATR_NXT"
+  | "MATR_PREV";
 
 export type TrigOpCode = "SIN" | "COS" | "TAN" | "ASIN" | "ACOS" | "ATAN";
 
@@ -73,6 +113,16 @@ const EXEC_OPS_SET: ReadonlySet<string> = new Set<ExecOpCode>([
   "MTRX_IDN", "MTRX_CON",
   "MTRX_RNRM", "MTRX_CNRM", "MTRX_TRACE", "MTRX_TRAN",
   "MTRX_RSD", "MTRX_SVD", "MTRX_SCHUR", "MTRX_EIGV", "MTRX_LU", "MTRX_QR",
+  "MATR_ADD", "MATR_SUB", "MATR_MUL", "MATR_TRN", "MATR_INV", "MATR_DET",
+  "MATR_IDN", "MATR_RREF", "MATR_TRACE", "MATR_EIGEN", "MATR_CHOLESKY",
+  "MATR_LU", "MATR_QR", "MATR_SOLVE",
+  "MATR_TO_V2", "MATR_TO_V3", "MATR_TO_MAT", "MATR_TO_LIST", "MATR_TO_ARRY",
+  "MATR_ROW_ADD", "MATR_ROW_SUB", "MATR_COL_ADD", "MATR_COL_SUB",
+  "MATR_RDM", "MATR_RANM", "MATR_SIZE", "MATR_DIM",
+  "MATR_PUT", "MATR_GET", "MATR_PUTI", "MATR_GETI",
+  "MATR_CON", "MATR_DOT", "MATR_CROSS", "MATR_SYS",
+  "MATR_EDITMAT", "MATR_WRITER", "MATR_LIN_SOLVE",
+  "MATR_NXT", "MATR_PREV",
   "SIN", "COS", "TAN", "ASIN", "ACOS", "ATAN",
   "DROP", "SWAP", "ROLL_UP", "ROLL_DOWN", "CLEAR", "LAST_X", "TOGGLE_SIGN",
   "DUP", "OVER", "ROT", "PICK", "ROLL", "ROLLD",
@@ -123,6 +173,7 @@ const PROGRAMMING_OPS: ReadonlySet<string> = new Set<string>([
   "ASM", "CHOOSE", "PURGE", "CRDIR", "RCLF", "STOF", "SF", "CF",
   "UPDIR_CMD", "HOME_CMD", "USER_MODE", "NXT_CMD", "PREV_CMD",
 ]);
+
 const MATRIX_OPS: ReadonlySet<string> = new Set<string>([
   "OP_MTRX",
   "MTRX_TRN", "MTRX_DET", "MTRX_INV", "MTRX_SCALE",
@@ -130,7 +181,18 @@ const MATRIX_OPS: ReadonlySet<string> = new Set<string>([
   "MTRX_IDN", "MTRX_CON",
   "MTRX_RNRM", "MTRX_CNRM", "MTRX_TRACE", "MTRX_TRAN",
   "MTRX_RSD", "MTRX_SVD", "MTRX_SCHUR", "MTRX_EIGV", "MTRX_LU", "MTRX_QR",
+  "MATR_ADD", "MATR_SUB", "MATR_MUL", "MATR_TRN", "MATR_INV", "MATR_DET",
+  "MATR_IDN", "MATR_RREF", "MATR_TRACE", "MATR_EIGEN", "MATR_CHOLESKY",
+  "MATR_LU", "MATR_QR", "MATR_SOLVE",
+  "MATR_TO_V2", "MATR_TO_V3", "MATR_TO_MAT", "MATR_TO_LIST", "MATR_TO_ARRY",
+  "MATR_ROW_ADD", "MATR_ROW_SUB", "MATR_COL_ADD", "MATR_COL_SUB",
+  "MATR_RDM", "MATR_RANM", "MATR_SIZE", "MATR_DIM",
+  "MATR_PUT", "MATR_GET", "MATR_PUTI", "MATR_GETI",
+  "MATR_CON", "MATR_DOT", "MATR_CROSS", "MATR_SYS",
+  "MATR_EDITMAT", "MATR_WRITER", "MATR_LIN_SOLVE",
+  "MATR_NXT", "MATR_PREV",
 ]);
+
 const GRAPHICS_OPS: ReadonlySet<string> = new Set<KeyOpCode>([
   "OP_SYMB", "OP_SOLV", "SIGMA_PLUS",
   "PLOT_RS", "PLOT", "GFX_TYPE", "GFX_SETUP", "GFX_RANGE", "GFX_ZOOM", "GFX_TRACE",

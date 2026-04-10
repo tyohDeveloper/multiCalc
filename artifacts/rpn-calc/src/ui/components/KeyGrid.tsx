@@ -6,9 +6,23 @@ import keyActionTable from "../../generated/keyActionTable";
 import keyData from "../../generated/keyLayoutData";
 import type { CalcAction, ShiftState } from "../../state/calculatorState";
 
+const NO_MATRIX = import.meta.env.VITE_NO_MATRIX === "true";
+const NO_GRAPHICS = import.meta.env.VITE_NO_GRAPHICS === "true";
+const NO_PROGRAMMING = import.meta.env.VITE_NO_PROGRAMMING === "true";
+
+function isSectionSuppressed(suppressedBy: string | undefined): boolean {
+  if (!suppressedBy) return false;
+  if (suppressedBy === "noMatrix" && NO_MATRIX) return true;
+  if (suppressedBy === "noGraphics" && NO_GRAPHICS) return true;
+  if (suppressedBy === "noProgramming" && NO_PROGRAMMING) return true;
+  return false;
+}
+
 interface Props {
   shiftState: ShiftState;
   dispatch: (action: CalcAction) => void;
+  matrMenuPage?: number;
+  matrCatalogOpen?: boolean;
 }
 
 const SOFTKEY_ALPHA = ["A", "B", "C", "D", "E", "F"];
@@ -81,11 +95,68 @@ function getAlphaChar(keyId: string): string | undefined {
   return undefined;
 }
 
-export function KeyGrid({ shiftState, dispatch }: Props) {
+function renderSimpleKeySection(
+  section: typeof keyData.sections[0],
+  shiftState: ShiftState,
+  dispatch: (action: CalcAction) => void,
+) {
+  return (
+    <div key={section.id} className={`key-section key-section-${section.id}`}>
+      {section.rows.map((row) => (
+        <div key={row.id} className="key-row" style={{ gridTemplateColumns: `repeat(${section.cols}, 1fr)` }}>
+          {row.keys.map((key) => {
+            const k = key as { shiftLabelKey?: string; colSpan?: number } & typeof key;
+            const shiftLabel = resolveShiftLabel(k.shiftLabelKey);
+            const aboveClass = `key-above-label${shiftState === "shiftedMagenta" && shiftLabel ? " key-above-active" : ""}`;
+            const colSpan = k.colSpan;
+            const cellStyle = colSpan ? { gridColumn: `span ${colSpan}` } : undefined;
+            const fnKey = makeKeyHandler(key.id, shiftState, dispatch);
+            const alphaChar = getAlphaChar(key.id);
+            const labelOverride = computeEffectiveLabel(
+              { labelKey: key.labelKey, alphaChar },
+              shiftState,
+            );
+            return (
+              <div key={key.id} className="key-cell" style={cellStyle}>
+                <div className={aboveClass}>{shiftLabel || "\u00A0"}</div>
+                <KeyButton
+                  labelKey={key.labelKey}
+                  category={key.category}
+                  isActive={false}
+                  onClick={fnKey}
+                  testId={makeTestId(section.id, row.id, key.id)}
+                  keyOp={key.op}
+                  labelOverride={labelOverride}
+                />
+              </div>
+            );
+          })}
+        </div>
+      ))}
+    </div>
+  );
+}
+
+export function KeyGrid({ shiftState, dispatch, matrMenuPage = 0, matrCatalogOpen = false }: Props) {
   return (
     <div className="key-grid">
       {keyData.sections.map((section) => {
         const isCompact = (section as { compact?: boolean }).compact;
+
+        if (section.id === "matr-softkeys") {
+          const sec = section as { suppressedBy?: string } & typeof section;
+          if (isSectionSuppressed(sec.suppressedBy)) return null;
+          if (!matrCatalogOpen) return null;
+          const pageRow = section.rows[matrMenuPage];
+          if (!pageRow) return null;
+          return renderSimpleKeySection({ ...section, rows: [pageRow] }, shiftState, dispatch);
+        }
+
+        if (section.id === "matrix") {
+          const sec = section as { suppressedBy?: string } & typeof section;
+          if (isSectionSuppressed(sec.suppressedBy)) return null;
+          return renderSimpleKeySection(section, shiftState, dispatch);
+        }
 
         if (section.id === "top-fn") {
           return (

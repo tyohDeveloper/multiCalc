@@ -7,8 +7,8 @@ export function applyPreservingYOp(
   op: (y: Complex, x: Complex) => Complex,
 ): CalcState {
   const s = commitEntry(state);
-  const x = s.stack[0];
-  const y = s.stack[1];
+  const x = s.stack[0] as Complex;
+  const y = s.stack[1] as Complex;
   const result = op(y, x);
   return {
     ...s,

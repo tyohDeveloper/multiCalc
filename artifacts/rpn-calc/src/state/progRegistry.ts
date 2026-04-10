@@ -2,6 +2,7 @@ import type { ProgOpCode } from "./opCodes";
 import type { CalcState } from "./calculatorState";
 import { commitEntry } from "../logic/shared/commitEntry";
 import { cx } from "../logic/complex/complex";
+import type { Complex } from "../logic/complex/complex";
 
 type StateOp = (state: CalcState) => CalcState;
 
@@ -77,7 +78,7 @@ function iftOp(state: CalcState): CalcState {
 
 function ifteOp(state: CalcState): CalcState {
   const s = commitEntry(state);
-  const cond = s.stack[0];
+  const cond = s.stack[0] as Complex;
   const truthy = cond.re !== 0 && !isNaN(cond.re);
   const falseBranch = s.stack[1];
   const trueBranch = s.stack[2];
@@ -117,7 +118,7 @@ function putOp(state: CalcState): CalcState {
 
 function getiOp(state: CalcState): CalcState {
   const s = commitEntry(state);
-  const index = s.stack[0];
+  const index = s.stack[0] as Complex;
   const nextIndex = cx(index.re + 1);
   return {
     ...s,
@@ -130,7 +131,7 @@ function getiOp(state: CalcState): CalcState {
 
 function putiOp(state: CalcState): CalcState {
   const s = commitEntry(state);
-  const index = s.stack[0];
+  const index = s.stack[0] as Complex;
   const nextIndex = cx(index.re + 1);
   return {
     ...s,
@@ -167,7 +168,7 @@ function tailOp(state: CalcState): CalcState {
 
 function purgeOp(state: CalcState): CalcState {
   const s = commitEntry(state);
-  const nameTag = s.stack[0];
+  const nameTag = s.stack[0] as Complex;
   const regIndex = Math.round(nameTag.re);
   if (!isNaN(regIndex) && regIndex >= 0 && regIndex < s.registers.length) {
     const registers = [...s.registers];
@@ -225,8 +226,8 @@ function stofOp(state: CalcState): CalcState {
 
 function sfOp(state: CalcState): CalcState {
   const s = commitEntry(state);
-  const flagNum = Math.round(s.stack[0].re);
-  const currentFlags = s.registers[FLAGS_REG_INDEX]?.re ?? 0;
+  const flagNum = Math.round((s.stack[0] as Complex).re);
+  const currentFlags = (s.registers[FLAGS_REG_INDEX] as Complex)?.re ?? 0;
   const newFlags = isNaN(flagNum) ? currentFlags : (currentFlags | (1 << flagNum));
   const registers = [...s.registers];
   registers[FLAGS_REG_INDEX] = cx(newFlags);
@@ -241,8 +242,8 @@ function sfOp(state: CalcState): CalcState {
 
 function cfOp(state: CalcState): CalcState {
   const s = commitEntry(state);
-  const flagNum = Math.round(s.stack[0].re);
-  const currentFlags = s.registers[FLAGS_REG_INDEX]?.re ?? 0;
+  const flagNum = Math.round((s.stack[0] as Complex).re);
+  const currentFlags = (s.registers[FLAGS_REG_INDEX] as Complex)?.re ?? 0;
   const newFlags = isNaN(flagNum) ? currentFlags : (currentFlags & ~(1 << flagNum));
   const registers = [...s.registers];
   registers[FLAGS_REG_INDEX] = cx(newFlags);

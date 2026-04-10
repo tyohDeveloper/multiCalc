@@ -1,5 +1,5 @@
 import { commitEntry } from "./commitEntry";
-import type { CalcState } from "../../state/calculatorState";
+import type { CalcState, StackValue } from "../../state/calculatorState";
 import type { Complex } from "../complex/complex";
 
 export function applyUnaryOp(
@@ -7,8 +7,8 @@ export function applyUnaryOp(
   op: (x: Complex) => Complex,
 ): CalcState {
   const s = commitEntry(state);
-  const x = s.stack[0];
-  const result = op(x);
+  const x = s.stack[0] as Complex;
+  const result: StackValue = op(x);
   return {
     ...s,
     stack: [result, s.stack[1], s.stack[2], s.stack[3]],

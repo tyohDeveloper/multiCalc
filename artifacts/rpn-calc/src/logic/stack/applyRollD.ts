@@ -1,9 +1,10 @@
 import { commitEntry } from "../shared/commitEntry";
 import type { CalcState } from "../../state/calculatorState";
+import type { Complex } from "../complex/complex";
 
 export function applyRollD(state: CalcState): CalcState {
   const s = commitEntry(state);
-  const nVal = s.stack[0];
+  const nVal = s.stack[0] as Complex;
   const n = Math.round(nVal.re);
   if (n < 1 || n > 3) {
     return { ...s, error: "Bad argument" };

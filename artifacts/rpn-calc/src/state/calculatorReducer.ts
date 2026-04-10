@@ -9,8 +9,21 @@ import { applyImagSep } from "../logic/input/applyImagSep";
 import { opRegistry } from "./opRegistry";
 import { isExecOpCode, isPlaceholderOpCode } from "./opCodes";
 import type { CalcState, CalcAction } from "./calculatorState";
+import { CLEARED_ENTRY } from "./calculatorState";
+import { ZERO } from "../logic/complex/complex";
 
 export function calculatorReducer(state: CalcState, action: CalcAction): CalcState {
+  if (state.matrixWriterOpen) {
+    if (action.type === "MATRIX_WRITER_CLOSE" || action.type === "MATRIX_WRITER_PUSH") {
+    } else if (
+      (action.type === "OP" && action.op === "CLEAR") ||
+      action.type === "CLEAR_ERROR"
+    ) {
+      return { ...state, matrixWriterOpen: false, matrixWriterSeed: null };
+    } else {
+      return state;
+    }
+  }
   if (state.error && action.type !== "CLEAR_ERROR" && action.type !== "OP") {
     if (action.type === "DIGIT" || action.type === "DECIMAL") {
       return { ...state, error: null };
@@ -56,6 +69,12 @@ export function calculatorReducer(state: CalcState, action: CalcAction): CalcSta
     case "OP": {
       const nextShift = state.shiftState === "shiftedBottom" ? "shiftedBottom" as const : "unshifted" as const;
       const s = { ...state, shiftState: nextShift };
+      if (action.op === "OP_MTRX") {
+        return { ...s, matrCatalogOpen: !s.matrCatalogOpen, matrMenuPage: 0 };
+      }
+      if (action.op === "CLEAR" && s.matrCatalogOpen) {
+        return { ...s, matrCatalogOpen: false };
+      }
       if (isExecOpCode(action.op)) return opRegistry[action.op](s);
       if (isPlaceholderOpCode(action.op)) return s;
       return { ...s, error: action.op };
@@ -77,6 +96,22 @@ export function calculatorReducer(state: CalcState, action: CalcAction): CalcSta
       return { ...state, displayMode: action.mode, displayPrecision: action.precision ?? state.displayPrecision, shiftState: nextShift };
     }
     case "CLEAR_ERROR": return { ...state, error: null };
+    case "MATRIX_WRITER_OPEN":
+      return { ...state, matrixWriterOpen: true, matrixWriterSeed: action.seed ?? null };
+    case "MATRIX_WRITER_CLOSE":
+      return { ...state, matrixWriterOpen: false, matrixWriterSeed: null };
+    case "MATRIX_WRITER_PUSH": {
+      const m = action.matrix;
+      return {
+        ...state,
+        stack: [m, state.stack[0], state.stack[1], state.stack[2]],
+        matrixWriterOpen: false,
+        matrixWriterSeed: null,
+        entry: CLEARED_ENTRY,
+        enterFlag: false,
+        error: null,
+      };
+    }
     default: return state;
   }
 }
