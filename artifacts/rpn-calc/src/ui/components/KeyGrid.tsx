@@ -13,6 +13,7 @@ interface Props {
 const SOFTKEY_ALPHA = ["A", "B", "C", "D", "E", "F"];
 
 const ROW2_ALPHA = ["G", "H", "I", "J", "K", "L"];
+const ROW3_ALPHA = ["M", "N", "O", "P", "Q", "R"];
 
 
 export function KeyGrid({ isShifted, dispatch }: Props) {
@@ -84,7 +85,8 @@ export function KeyGrid({ isShifted, dispatch }: Props) {
                   return null;
                 }
 
-                if (rowIdx === 1) {
+                if (rowIdx === 1 || rowIdx === 2) {
+                  const alphaRow = rowIdx === 1 ? ROW2_ALPHA : ROW3_ALPHA;
                   return (
                     <div key={row.id} className="key-row" style={{ gridTemplateColumns: `repeat(${section.cols}, 1fr)` }}>
                       {row.keys.map((key, idx) => {
@@ -108,7 +110,7 @@ export function KeyGrid({ isShifted, dispatch }: Props) {
                               isActive={key.op === "SHIFT_KEY" && isShifted}
                               onClick={() => dispatch(resolveKeyAction(key.op, isShifted, key.shiftLabelKey ? key.shiftOp : undefined))}
                             />
-                            <div className="key-label-alpha">{ROW2_ALPHA[idx] ?? ""}</div>
+                            <div className="key-label-alpha">{alphaRow[idx] ?? ""}</div>
                           </div>
                         );
                       })}

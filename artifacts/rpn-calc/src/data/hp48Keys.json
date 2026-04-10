@@ -43,6 +43,17 @@
             { "id": "hist", "op": "OP_HIST", "labelKey": "hist",  "shiftOp": "SIGMA_PLUS","shiftLabelKey": "sigma-plus",  "category": "func",    "topMerged": "STACK"                      },
             { "id": "on",   "op": "CLEAR",   "labelKey": "nxt",  "shiftOp": "OP_OFF",    "shiftLabelKey": "off",         "category": "control", "topMagenta": "PREV", "topCyan": "MENU"   }
           ]
+        },
+        {
+          "id": "top-fn-2",
+          "keys": [
+            { "id": "fn-m", "op": "SIN",         "labelKey": "key-m", "shiftOp": "ASIN",      "shiftLabelKey": "arc-sine",      "category": "func", "topMagenta": "ASIN",  "topCyan": "D→R"    },
+            { "id": "fn-n", "op": "COS",         "labelKey": "key-n", "shiftOp": "ACOS",      "shiftLabelKey": "arc-cosine",    "category": "func", "topMagenta": "ACOS",  "topCyan": "R→D"    },
+            { "id": "fn-o", "op": "TAN",         "labelKey": "key-o", "shiftOp": "ATAN",      "shiftLabelKey": "arc-tangent",   "category": "func", "topMerged": "HYP"                       },
+            { "id": "fn-p", "op": "LOG",         "labelKey": "key-p", "shiftOp": "POWER",     "shiftLabelKey": "power",         "category": "func", "topMagenta": "10^X",  "topCyan": "Y^X"    },
+            { "id": "fn-q", "op": "LN",          "labelKey": "key-q", "shiftOp": "EXP",       "shiftLabelKey": "exp",           "category": "func", "topMagenta": "E^X",   "topCyan": "EXP"    },
+            { "id": "fn-r", "op": "SQRT",        "labelKey": "key-r", "shiftOp": "SQUARE",    "shiftLabelKey": "square",        "category": "func", "topMagenta": "SQ",    "topCyan": "XROOT"  }
+          ]
         }
       ]
     },
