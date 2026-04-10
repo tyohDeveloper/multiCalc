@@ -1,9 +1,7 @@
 import type { CSSProperties } from "react";
-import { useMemo } from "react";
 import { KeyButton } from "./KeyButton";
 import { resolveShiftLabel } from "../../logic/ui/resolveShiftLabel";
-import { buildKeyFunctionRegistry } from "../../logic/input/buildKeyFunctionRegistry";
-import { resolveKeyFn } from "../../logic/input/keyFunctions";
+import keyActionTable from "../../generated/keyActionTable";
 import keyData from "../../data/hp48Keys.json";
 import type { CalcAction, ShiftState } from "../../state/calculatorState";
 
@@ -24,8 +22,7 @@ const ROW6_ALPHA = ["\u200B", "\u200B", "\u200B", "\u200B", "\u200B", "\u200B"];
 const ROW7_ALPHA = ["\u200B", "\u200B", "\u200B", "\u200B", "\u200B", "\u200B"];
 const ROW8_ALPHA = ["\u200B", "\u200B", "\u200B", "\u200B", "\u200B", "\u200B"];
 
-const ALPHA_ROWS: Record<string, string[]> = {
-  "soft-0": SOFTKEY_ALPHA,
+const ROW_ALPHA_MAP: Record<string, string[]> = {
   "top-fn-1": ROW1_ALPHA,
   "top-fn-2": ROW2_ALPHA,
   "top-fn-3": ROW3_ALPHA,
@@ -38,17 +35,6 @@ const ALPHA_ROWS: Record<string, string[]> = {
 
 const THREE_ZONE_ROWS = new Set(["top-fn-1", "top-fn-2", "top-fn-3", "top-fn-5", "top-fn-6", "top-fn-7", "top-fn-8"]);
 const THREE_ZONE_ROW4 = "top-fn-4";
-
-const ROW_ALPHA_MAP: Record<string, string[]> = {
-  "top-fn-1": ROW1_ALPHA,
-  "top-fn-2": ROW2_ALPHA,
-  "top-fn-3": ROW3_ALPHA,
-  "top-fn-4": ROW4_ALPHA,
-  "top-fn-5": ROW5_ALPHA,
-  "top-fn-6": ROW6_ALPHA,
-  "top-fn-7": ROW7_ALPHA,
-  "top-fn-8": ROW8_ALPHA,
-};
 
 const CALC_NS = "calc-hp48gx";
 
@@ -71,9 +57,14 @@ function resolveTopLabel(topMagenta: string | undefined, topCyan: string | undef
   );
 }
 
-export function KeyGrid({ shiftState, dispatch }: Props) {
-  const registry = useMemo(() => buildKeyFunctionRegistry(dispatch, ALPHA_ROWS), [dispatch]);
+function makeKeyHandler(keyId: string, shiftState: ShiftState, dispatch: (action: CalcAction) => void): () => void {
+  const entry = keyActionTable[keyId];
+  if (!entry) return () => {};
+  const action = entry[shiftState];
+  return () => dispatch(action);
+}
 
+export function KeyGrid({ shiftState, dispatch }: Props) {
   return (
     <div className="key-grid">
       {keyData.sections.map((section) => {
@@ -85,8 +76,7 @@ export function KeyGrid({ shiftState, dispatch }: Props) {
               {section.rows.map((row) => (
                 <div key={row.id} className="key-row" style={{ gridTemplateColumns: `repeat(${section.cols}, 1fr)` }}>
                   {row.keys.map((key, idx) => {
-                    const fns = registry[key.id];
-                    const fnKey = fns ? resolveKeyFn(fns, shiftState) : () => {};
+                    const fnKey = makeKeyHandler(key.id, shiftState, dispatch);
                     return (
                       <div key={key.id} className="key-cell-soft">
                         <KeyButton
@@ -115,6 +105,31 @@ export function KeyGrid({ shiftState, dispatch }: Props) {
                   return null;
                 }
 
+                if (row.id === "top-fn-shift") {
+                  return (
+                    <div key={row.id} className="key-row key-row-shifts" style={{ gridTemplateColumns: `repeat(${row.keys.length}, auto) 1fr` }}>
+                      {row.keys.map((key) => {
+                        const fnKey = makeKeyHandler(key.id, shiftState, dispatch);
+                        const isActive = (key.op === "SHIFT_MAGENTA" && shiftState === "shiftedMagenta")
+                          || (key.op === "SHIFT_CYAN" && shiftState === "shiftedCyan")
+                          || (key.op === "SHIFT_BOTTOM" && shiftState === "shiftedBottom");
+                        return (
+                          <KeyButton
+                            key={key.id}
+                            labelKey={key.labelKey}
+                            category={key.category}
+                            isActive={isActive}
+                            onClick={fnKey}
+                            testId={makeTestId(section.id, row.id, key.id)}
+                            keyOp={key.op}
+                          />
+                        );
+                      })}
+                    </div>
+                  );
+                }
+
+
                 if (THREE_ZONE_ROWS.has(row.id)) {
                   const alphaRow = ROW_ALPHA_MAP[row.id] ?? [];
                   return (
@@ -122,8 +137,7 @@ export function KeyGrid({ shiftState, dispatch }: Props) {
                       {row.keys.map((key, idx) => {
                         const k = key as { topMagenta?: string; topCyan?: string; topMerged?: string } & typeof key;
                         const merged = Boolean(k.topMerged);
-                        const fns = registry[key.id];
-                        const fnKey = fns ? resolveKeyFn(fns, shiftState) : () => {};
+                        const fnKey = makeKeyHandler(key.id, shiftState, dispatch);
                         const isActive = key.op === "SHIFT_MAGENTA" && shiftState === "shiftedMagenta"
                           || key.op === "SHIFT_CYAN" && shiftState === "shiftedCyan"
                           || key.op === "SHIFT_BOTTOM" && shiftState === "shiftedBottom";
@@ -157,8 +171,7 @@ export function KeyGrid({ shiftState, dispatch }: Props) {
                         const colSpan = k.colSpan;
                         const cellStyle: CSSProperties = colSpan ? { gridColumn: `span ${colSpan}` } : {};
                         const merged = Boolean(k.topMerged) || Boolean(k.topMagentaMerged);
-                        const fns = registry[key.id];
-                        const fnKey = fns ? resolveKeyFn(fns, shiftState) : () => {};
+                        const fnKey = makeKeyHandler(key.id, shiftState, dispatch);
                         return (
                           <div key={key.id} className="key-cell-3zone" style={cellStyle}>
                             <div className={`key-cell-top-labels${merged ? " key-cell-top-labels--merged" : ""}`}>
@@ -188,8 +201,7 @@ export function KeyGrid({ shiftState, dispatch }: Props) {
                       const aboveClass = `key-above-label${shiftState === "shiftedMagenta" && shiftLabel ? " key-above-active" : ""}`;
                       const colSpan = k.colSpan;
                       const cellStyle = colSpan ? { gridColumn: `span ${colSpan}` } : undefined;
-                      const fns = registry[key.id];
-                      const fnKey = fns ? resolveKeyFn(fns, shiftState) : () => {};
+                      const fnKey = makeKeyHandler(key.id, shiftState, dispatch);
                       const isActive = key.op === "SHIFT_MAGENTA" && shiftState === "shiftedMagenta"
                         || key.op === "SHIFT_CYAN" && shiftState === "shiftedCyan"
                         || key.op === "SHIFT_BOTTOM" && shiftState === "shiftedBottom";
