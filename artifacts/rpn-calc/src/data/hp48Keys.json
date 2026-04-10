@@ -72,7 +72,7 @@
         {
           "id": "top-fn-5",
           "keys": [
-            { "id": "fn-5a", "op": "SHIFT_BOTTOM", "labelKey": "key-r5-0", "category": "shift-bottom" },
+            { "id": "fn-5a", "op": "SHIFT_BOTTOM", "labelKey": "key-r5-0", "category": "shift-bottom", "topMagenta": "USER", "topCyan": "ENTRY" },
             { "id": "fn-5b", "op": "OP_NONE", "labelKey": "digit-7", "category": "func", "topMagenta": "magenta", "topCyan": "cyan" },
             { "id": "fn-5c", "op": "OP_NONE", "labelKey": "digit-8", "category": "func", "topMagenta": "magenta", "topCyan": "cyan" },
             { "id": "fn-5d", "op": "OP_NONE", "labelKey": "digit-9", "category": "func", "topMagenta": "magenta", "topCyan": "cyan" },
