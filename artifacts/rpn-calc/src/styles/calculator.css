@@ -456,6 +456,7 @@
 .key-cell-soft .key-label-alpha {
   font-size: 6.5px;
   color: rgba(200, 190, 175, 0.65);
+  padding-bottom: 4px;
 }
 
 /* Shift key (alpha / shift-bottom) — no special background, inherits default key style */
