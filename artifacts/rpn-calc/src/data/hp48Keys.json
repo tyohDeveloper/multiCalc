@@ -1,6 +1,57 @@
 {
   "sections": [
     {
+      "id": "matrix",
+      "cols": 6,
+      "suppressedBy": "noMatrix",
+      "rows": [
+        {
+          "id": "mtrx-0",
+          "keys": [
+            { "id": "mtrx-trn",   "op": "MTRX_TRN",   "labelKey": "mtrx-trn",   "category": "func", "suppressedBy": "noMatrix" },
+            { "id": "mtrx-det",   "op": "MTRX_DET",   "labelKey": "mtrx-det",   "category": "func", "suppressedBy": "noMatrix" },
+            { "id": "mtrx-inv",   "op": "MTRX_INV",   "labelKey": "mtrx-inv",   "category": "func", "suppressedBy": "noMatrix" },
+            { "id": "mtrx-scale", "op": "MTRX_SCALE", "labelKey": "mtrx-scale", "category": "func", "suppressedBy": "noMatrix" },
+            { "id": "mtrx-add",   "op": "MTRX_ADD",   "labelKey": "mtrx-add",   "category": "func", "suppressedBy": "noMatrix" },
+            { "id": "mtrx-sub",   "op": "MTRX_SUB",   "labelKey": "mtrx-sub",   "category": "func", "suppressedBy": "noMatrix" }
+          ]
+        },
+        {
+          "id": "mtrx-1",
+          "keys": [
+            { "id": "mtrx-mul",   "op": "MTRX_MUL",   "labelKey": "mtrx-mul",   "category": "func", "suppressedBy": "noMatrix" },
+            { "id": "mtrx-idn",   "op": "MTRX_IDN",   "labelKey": "mtrx-idn",   "category": "func", "suppressedBy": "noMatrix" },
+            { "id": "mtrx-con",   "op": "MTRX_CON",   "labelKey": "mtrx-con",   "category": "func", "suppressedBy": "noMatrix" },
+            { "id": "mtrx-rnrm",  "op": "MTRX_RNRM",  "labelKey": "mtrx-rnrm",  "category": "func", "suppressedBy": "noMatrix" },
+            { "id": "mtrx-cnrm",  "op": "MTRX_CNRM",  "labelKey": "mtrx-cnrm",  "category": "func", "suppressedBy": "noMatrix" },
+            { "id": "mtrx-trace", "op": "MTRX_TRACE",  "labelKey": "mtrx-trace", "category": "func", "suppressedBy": "noMatrix" }
+          ]
+        },
+        {
+          "id": "mtrx-2",
+          "keys": [
+            { "id": "mtrx-tran",  "op": "MTRX_TRAN",  "labelKey": "mtrx-tran",  "category": "func", "suppressedBy": "noMatrix" },
+            { "id": "mtrx-rsd",   "op": "MTRX_RSD",   "labelKey": "mtrx-rsd",   "category": "func", "suppressedBy": "noMatrix" },
+            { "id": "mtrx-svd",   "op": "MTRX_SVD",   "labelKey": "mtrx-svd",   "category": "func", "suppressedBy": "noMatrix" },
+            { "id": "mtrx-schur", "op": "MTRX_SCHUR", "labelKey": "mtrx-schur", "category": "func", "suppressedBy": "noMatrix" },
+            { "id": "mtrx-eigv",  "op": "MTRX_EIGV",  "labelKey": "mtrx-eigv",  "category": "func", "suppressedBy": "noMatrix" },
+            { "id": "mtrx-lu",    "op": "MTRX_LU",    "labelKey": "mtrx-lu",    "category": "func", "suppressedBy": "noMatrix" }
+          ]
+        },
+        {
+          "id": "mtrx-3",
+          "keys": [
+            { "id": "mtrx-qr",    "op": "MTRX_QR",    "labelKey": "mtrx-qr",    "category": "func", "suppressedBy": "noMatrix" },
+            { "id": "mtrx-none1", "op": "OP_NONE",    "labelKey": "key-blank",  "category": "func", "suppressedBy": "noMatrix" },
+            { "id": "mtrx-none2", "op": "OP_NONE",    "labelKey": "key-blank",  "category": "func", "suppressedBy": "noMatrix" },
+            { "id": "mtrx-none3", "op": "OP_NONE",    "labelKey": "key-blank",  "category": "func", "suppressedBy": "noMatrix" },
+            { "id": "mtrx-none4", "op": "OP_NONE",    "labelKey": "key-blank",  "category": "func", "suppressedBy": "noMatrix" },
+            { "id": "mtrx-none5", "op": "OP_NONE",    "labelKey": "key-blank",  "category": "func", "suppressedBy": "noMatrix" }
+          ]
+        }
+      ]
+    },
+    {
       "id": "top-fn",
       "cols": 6,
       "rows": [
@@ -62,7 +113,7 @@
         {
           "id": "top-fn-4",
           "keys": [
-            { "id": "fn-wide", "op": "OP_NONE",  "labelKey": "key-r4-01", "colSpan": 2, "category": "func", "topMagenta": "EQUATION", "topCyan": "MATRIX" },
+            { "id": "fn-wide", "op": "OP_NONE",  "labelKey": "key-r4-01", "colSpan": 2, "category": "func", "topMagenta": "EQUATION", "topCyan": "MATRIX", "topCyanMerged": "MATRIX", "suppressedBy": "noMatrix" },
             { "id": "fn-y",    "op": "EDIT_CMD", "labelKey": "key-r4-2",  "category": "func", "topMagenta": "EDIT", "topCyan": "CMD", "suppressedBy": "noProgramming" },
             { "id": "fn-z",    "op": "PURGE",    "labelKey": "key-r4-3",  "category": "func", "topMagenta": "PURG", "topCyan": "ARG", "suppressedBy": "noProgramming" },
             { "id": "fn-4d",   "op": "MENU_CMD", "labelKey": "key-r4-4",  "category": "func", "topMagentaMerged": "CLEAR", "suppressedBy": "noProgramming" },

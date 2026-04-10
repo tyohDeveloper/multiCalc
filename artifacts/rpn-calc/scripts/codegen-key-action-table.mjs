@@ -66,6 +66,11 @@ const EXEC_OPS = new Set([
   "PERCENT", "PERCENT_CHANGE", "PI", "E_CONST",
   "ABS", "CEIL", "FLOOR", "SIGN",
   "MOD", "INTDIV", "MAX", "MIN",
+  "MTRX_TRN", "MTRX_DET", "MTRX_INV", "MTRX_SCALE",
+  "MTRX_ADD", "MTRX_SUB", "MTRX_MUL",
+  "MTRX_IDN", "MTRX_CON",
+  "MTRX_RNRM", "MTRX_CNRM", "MTRX_TRACE", "MTRX_TRAN",
+  "MTRX_RSD", "MTRX_SVD", "MTRX_SCHUR", "MTRX_EIGV", "MTRX_LU", "MTRX_QR",
   "SIN", "COS", "TAN", "ASIN", "ACOS", "ATAN",
   "DROP", "SWAP", "ROLL_UP", "ROLL_DOWN", "CLEAR", "LAST_X", "TOGGLE_SIGN",
   "DUP", "OVER", "ROT", "PICK", "ROLL", "ROLLD",
@@ -199,7 +204,11 @@ function isKeySuppressed(key) {
 const tableEntries = [];
 
 for (const section of keyData.sections) {
+  // Skip entire section if its suppressedBy flag is active
+  if (section.suppressedBy && activeSuppressions.has(section.suppressedBy)) continue;
   for (const row of section.rows) {
+    // Skip entire row if its suppressedBy flag is active
+    if (row.suppressedBy && activeSuppressions.has(row.suppressedBy)) continue;
     row.keys.forEach((rawKey, idx) => {
       const key = stripSuppressedLabels(rawKey);
       const context = `section "${section.id}", row "${row.id}", key "${key.id}"`;
@@ -344,13 +353,19 @@ function filterKeyForLayout(rawKey) {
   return result;
 }
 
-const filteredSections = keyData.sections.map((section) => ({
-  ...section,
-  rows: section.rows.map((row) => ({
-    ...row,
-    keys: row.keys.map(filterKeyForLayout),
-  })),
-}));
+const filteredSections = keyData.sections
+  .filter((section) => !(section.suppressedBy && activeSuppressions.has(section.suppressedBy)))
+  .map((section) => ({
+    ...section,
+    rows: section.rows
+      .filter((row) => !(row.suppressedBy && activeSuppressions.has(row.suppressedBy)))
+      .map((row) => ({
+        ...row,
+        keys: row.keys
+          .filter((rawKey) => !(rawKey.suppressedBy && activeSuppressions.has(rawKey.suppressedBy)))
+          .map(filterKeyForLayout),
+      })),
+  }));
 
 const layoutJson = JSON.stringify({ sections: filteredSections, ...Object.fromEntries(Object.entries(keyData).filter(([k]) => k !== "sections")) }, null, 2);
 
