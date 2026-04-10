@@ -24,6 +24,7 @@ const ROW7_ALPHA = ["\u200B", "\u200B", "\u200B", "\u200B", "\u200B", "\u200B"];
 const ROW8_ALPHA = ["\u200B", "\u200B", "\u200B", "\u200B", "\u200B", "\u200B"];
 
 const ROW_ALPHA_MAP: Record<string, string[]> = {
+  "soft-0": SOFTKEY_ALPHA,
   "top-fn-1": ROW1_ALPHA,
   "top-fn-2": ROW2_ALPHA,
   "top-fn-3": ROW3_ALPHA,
@@ -34,7 +35,7 @@ const ROW_ALPHA_MAP: Record<string, string[]> = {
   "top-fn-8": ROW8_ALPHA,
 };
 
-const THREE_ZONE_ROWS = new Set(["top-fn-1", "top-fn-2", "top-fn-3", "top-fn-5", "top-fn-6", "top-fn-7", "top-fn-8"]);
+const THREE_ZONE_ROWS = new Set(["soft-0", "top-fn-1", "top-fn-2", "top-fn-3", "top-fn-5", "top-fn-6", "top-fn-7", "top-fn-8"]);
 const THREE_ZONE_ROW4 = "top-fn-4";
 
 const CALC_NS = "calc-hp48gx";
@@ -80,39 +81,6 @@ export function KeyGrid({ shiftState, dispatch }: Props) {
     <div className="key-grid">
       {keyData.sections.map((section) => {
         const isCompact = (section as { compact?: boolean }).compact;
-
-        if (section.id === "softkeys") {
-          return (
-            <div key={section.id} className={`key-section key-section-${section.id}`}>
-              {section.rows.map((row) => (
-                <div key={row.id} className="key-row" style={{ gridTemplateColumns: `repeat(${section.cols}, 1fr)` }}>
-                  {row.keys.map((key, idx) => {
-                    const fnKey = makeKeyHandler(key.id, shiftState, dispatch);
-                    const alphaChar = getAlphaChar(key.id);
-                    const labelOverride = computeEffectiveLabel(
-                      { labelKey: key.labelKey, alphaChar },
-                      shiftState,
-                    );
-                    return (
-                      <div key={key.id} className="key-cell-soft">
-                        <KeyButton
-                          labelKey={key.labelKey}
-                          category={key.category}
-                          isActive={false}
-                          onClick={fnKey}
-                          testId={makeTestId(section.id, row.id, key.id)}
-                          keyOp={key.op}
-                          labelOverride={labelOverride}
-                        />
-                        <div className="key-label-alpha">{SOFTKEY_ALPHA[idx] ?? ""}</div>
-                      </div>
-                    );
-                  })}
-                </div>
-              ))}
-            </div>
-          );
-        }
 
         if (section.id === "top-fn") {
           return (
@@ -164,8 +132,10 @@ export function KeyGrid({ shiftState, dispatch }: Props) {
                           { labelKey: key.labelKey, topMagenta: k.topMagenta, topCyan: k.topCyan, topMerged: k.topMerged, alphaChar },
                           shiftState,
                         );
+                        const isBlank = key.labelKey === "softkey-blank"
+                          && !(shiftState === "shiftedBottom" && alphaRow[idx] && alphaRow[idx] !== "\u200B");
                         return (
-                          <div key={key.id} className="key-cell-3zone">
+                          <div key={key.id} className={`key-cell-3zone${isBlank ? " key-cell--blank" : ""}`}>
                             {topColor ? (
                               <div className="key-cell-top-labels key-cell-top-labels--color-swatch" />
                             ) : (

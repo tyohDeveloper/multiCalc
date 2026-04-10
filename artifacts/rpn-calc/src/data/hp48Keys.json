@@ -1,27 +1,20 @@
 {
   "sections": [
     {
-      "id": "softkeys",
+      "id": "top-fn",
       "cols": 6,
-      "compact": true,
       "rows": [
         {
           "id": "soft-0",
           "keys": [
-            { "id": "sk-a", "op": "SOFTKEY_A", "labelKey": "softkey-blank", "category": "soft" },
-            { "id": "sk-b", "op": "SOFTKEY_B", "labelKey": "softkey-blank", "category": "soft" },
-            { "id": "sk-c", "op": "SOFTKEY_C", "labelKey": "softkey-blank", "category": "soft" },
-            { "id": "sk-d", "op": "SOFTKEY_D", "labelKey": "softkey-blank", "category": "soft" },
-            { "id": "sk-e", "op": "SOFTKEY_E", "labelKey": "softkey-blank", "category": "soft" },
-            { "id": "sk-f", "op": "SOFTKEY_F", "labelKey": "softkey-blank", "category": "soft" }
+            { "id": "sk-a", "op": "SOFTKEY_A", "labelKey": "softkey-blank", "category": "func" },
+            { "id": "sk-b", "op": "SOFTKEY_B", "labelKey": "softkey-blank", "category": "func" },
+            { "id": "sk-c", "op": "SOFTKEY_C", "labelKey": "softkey-blank", "category": "func" },
+            { "id": "sk-d", "op": "SOFTKEY_D", "labelKey": "softkey-blank", "category": "func" },
+            { "id": "sk-e", "op": "SOFTKEY_E", "labelKey": "softkey-blank", "category": "func" },
+            { "id": "sk-f", "op": "SOFTKEY_F", "labelKey": "softkey-blank", "category": "func" }
           ]
-        }
-      ]
-    },
-    {
-      "id": "top-fn",
-      "cols": 6,
-      "rows": [
+        },
         {
           "id": "top-fn-0",
           "keys": [
