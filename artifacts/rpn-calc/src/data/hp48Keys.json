@@ -54,6 +54,17 @@
             { "id": "fn-q", "op": "LN",          "labelKey": "key-q", "shiftOp": "EXP",       "shiftLabelKey": "exp",           "category": "func", "topMerged": "VIEW"                         },
             { "id": "fn-r", "op": "SQRT",        "labelKey": "key-r", "shiftOp": "SQUARE",    "shiftLabelKey": "square",        "category": "func", "topMerged": "SWAP"                         }
           ]
+        },
+        {
+          "id": "top-fn-3",
+          "keys": [
+            { "id": "fn-s", "op": "RECIPROCAL",  "labelKey": "key-s", "shiftOp": "PI",        "shiftLabelKey": "pi",            "category": "func", "topMerged": "ARITH"                        },
+            { "id": "fn-t", "op": "POWER",        "labelKey": "key-t", "shiftOp": "SQUARE",    "shiftLabelKey": "square",        "category": "func", "topMerged": "CONVERT"                      },
+            { "id": "fn-u", "op": "ABS",          "labelKey": "key-u", "shiftOp": "SIGN",      "shiftLabelKey": "sign",          "category": "func", "topMerged": "BASE"                         },
+            { "id": "fn-v", "op": "FLOOR",        "labelKey": "key-v", "shiftOp": "CEIL",      "shiftLabelKey": "ceil",          "category": "func", "topMerged": "REAL"                         },
+            { "id": "fn-w", "op": "MAX",          "labelKey": "key-w", "shiftOp": "MIN",       "shiftLabelKey": "min",           "category": "func", "topMerged": "CMPLX"                        },
+            { "id": "fn-x", "op": "MOD",          "labelKey": "key-x", "shiftOp": "INTDIV",    "shiftLabelKey": "intdiv",        "category": "func", "topMerged": "PROB"                         }
+          ]
         }
       ]
     },

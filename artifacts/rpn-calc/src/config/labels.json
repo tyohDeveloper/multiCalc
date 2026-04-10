@@ -103,5 +103,15 @@
   "key-p": "\u25C0",
   "key-q": "\u25BC",
   "key-r": "\u25B6",
+  "key-s": "1/x",
+  "key-t": "yˣ",
+  "key-u": "ABS",
+  "key-v": "FLOOR",
+  "key-w": "MAX",
+  "key-x": "MOD",
+  "sign": "SGN",
+  "ceil": "CEIL",
+  "min": "MIN",
+  "intdiv": "IDIV",
   "xroot-mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><mroot><mi>x</mi><mi>y</mi></mroot></math>"
 }
