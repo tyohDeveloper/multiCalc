@@ -1,3 +1,6 @@
+---
+title: Typed op registry (semantic key objects)
+---
 # Typed Op Registry
 
 ## What & Why
