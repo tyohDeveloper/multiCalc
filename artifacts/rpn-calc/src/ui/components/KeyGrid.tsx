@@ -1,6 +1,7 @@
 import type { CSSProperties } from "react";
 import { KeyButton } from "./KeyButton";
 import { resolveShiftLabel } from "../../logic/ui/resolveShiftLabel";
+import { computeEffectiveLabel } from "../../logic/ui/computeEffectiveLabel";
 import keyActionTable from "../../generated/keyActionTable";
 import keyData from "../../data/hp48Keys.json";
 import type { CalcAction, ShiftState } from "../../state/calculatorState";
@@ -64,6 +65,16 @@ function makeKeyHandler(keyId: string, shiftState: ShiftState, dispatch: (action
   return () => dispatch(action);
 }
 
+function getAlphaChar(keyId: string): string | undefined {
+  const entry = keyActionTable[keyId];
+  if (!entry) return undefined;
+  const alphaAction = entry["shiftedBottom"];
+  if (alphaAction && alphaAction.type === "ALPHA_CHAR") {
+    return alphaAction.char;
+  }
+  return undefined;
+}
+
 export function KeyGrid({ shiftState, dispatch }: Props) {
   return (
     <div className="key-grid">
@@ -77,6 +88,11 @@ export function KeyGrid({ shiftState, dispatch }: Props) {
                 <div key={row.id} className="key-row" style={{ gridTemplateColumns: `repeat(${section.cols}, 1fr)` }}>
                   {row.keys.map((key, idx) => {
                     const fnKey = makeKeyHandler(key.id, shiftState, dispatch);
+                    const alphaChar = getAlphaChar(key.id);
+                    const labelOverride = computeEffectiveLabel(
+                      { labelKey: key.labelKey, alphaChar },
+                      shiftState,
+                    );
                     return (
                       <div key={key.id} className="key-cell-soft">
                         <KeyButton
@@ -86,6 +102,7 @@ export function KeyGrid({ shiftState, dispatch }: Props) {
                           onClick={fnKey}
                           testId={makeTestId(section.id, row.id, key.id)}
                           keyOp={key.op}
+                          labelOverride={labelOverride}
                         />
                         <div className="key-label-alpha">{SOFTKEY_ALPHA[idx] ?? ""}</div>
                       </div>
@@ -142,6 +159,11 @@ export function KeyGrid({ shiftState, dispatch }: Props) {
                         const isActive = key.op === "SHIFT_MAGENTA" && shiftState === "shiftedMagenta"
                           || key.op === "SHIFT_CYAN" && shiftState === "shiftedCyan"
                           || key.op === "SHIFT_BOTTOM" && shiftState === "shiftedBottom";
+                        const alphaChar = getAlphaChar(key.id);
+                        const labelOverride = computeEffectiveLabel(
+                          { labelKey: key.labelKey, topMagenta: k.topMagenta, topCyan: k.topCyan, topMerged: k.topMerged, alphaChar },
+                          shiftState,
+                        );
                         return (
                           <div key={key.id} className="key-cell-3zone">
                             {topColor ? (
@@ -159,6 +181,7 @@ export function KeyGrid({ shiftState, dispatch }: Props) {
                               testId={makeTestId(section.id, row.id, key.id)}
                               keyOp={key.op}
                               topColor={topColor}
+                              labelOverride={labelOverride}
                             />
                             <div className={shiftState === "shiftedBottom" && alphaRow[idx] && alphaRow[idx] !== "\u200B" ? "key-label-alpha key-label-active" : "key-label-alpha"}>{alphaRow[idx] ?? ""}</div>
                           </div>
@@ -178,6 +201,11 @@ export function KeyGrid({ shiftState, dispatch }: Props) {
                         const cellStyle: CSSProperties = colSpan ? { gridColumn: `span ${colSpan}` } : {};
                         const merged = Boolean(k.topMerged) || Boolean(k.topMagentaMerged);
                         const fnKey = makeKeyHandler(key.id, shiftState, dispatch);
+                        const alphaChar = getAlphaChar(key.id);
+                        const labelOverride = computeEffectiveLabel(
+                          { labelKey: key.labelKey, topMagenta: k.topMagenta, topCyan: k.topCyan, topMerged: k.topMerged, topMagentaMerged: k.topMagentaMerged, alphaChar },
+                          shiftState,
+                        );
                         return (
                           <div key={key.id} className="key-cell-3zone" style={cellStyle}>
                             <div className={`key-cell-top-labels${merged ? " key-cell-top-labels--merged" : ""}`}>
@@ -190,6 +218,7 @@ export function KeyGrid({ shiftState, dispatch }: Props) {
                               onClick={fnKey}
                               testId={makeTestId(section.id, row.id, key.id)}
                               keyOp={key.op}
+                              labelOverride={labelOverride}
                             />
                             <div className={shiftState === "shiftedBottom" && alphaRow[idx] && alphaRow[idx] !== "\u200B" ? "key-label-alpha key-label-active" : "key-label-alpha"}>{alphaRow[idx] ?? ""}</div>
                           </div>
@@ -211,6 +240,11 @@ export function KeyGrid({ shiftState, dispatch }: Props) {
                       const isActive = key.op === "SHIFT_MAGENTA" && shiftState === "shiftedMagenta"
                         || key.op === "SHIFT_CYAN" && shiftState === "shiftedCyan"
                         || key.op === "SHIFT_BOTTOM" && shiftState === "shiftedBottom";
+                      const alphaChar = getAlphaChar(key.id);
+                      const labelOverride = computeEffectiveLabel(
+                        { labelKey: key.labelKey, alphaChar },
+                        shiftState,
+                      );
                       return (
                         <div key={key.id} className="key-cell" style={cellStyle}>
                           {!isCompact && (
@@ -223,6 +257,7 @@ export function KeyGrid({ shiftState, dispatch }: Props) {
                             onClick={fnKey}
                             testId={makeTestId(section.id, row.id, key.id)}
                             keyOp={key.op}
+                            labelOverride={labelOverride}
                           />
                         </div>
                       );

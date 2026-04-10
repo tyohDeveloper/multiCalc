@@ -8,11 +8,13 @@ interface Props {
   testId?: string;
   keyOp?: string;
   topColor?: string;
+  labelOverride?: string;
 }
 
-export function KeyButton({ labelKey, onClick, category, isActive, testId, keyOp }: Props) {
+export function KeyButton({ labelKey, onClick, category, isActive, testId, keyOp, labelOverride }: Props) {
   const vm = buildKeyButtonViewModel(labelKey, category, isActive);
-  const isMathML = vm.displayLabel.trimStart().startsWith("<math");
+  const displayText = labelOverride !== undefined ? labelOverride : vm.displayLabel;
+  const isMathML = displayText.trimStart().startsWith("<math");
   return (
     <button
       className={vm.className}
@@ -23,9 +25,9 @@ export function KeyButton({ labelKey, onClick, category, isActive, testId, keyOp
       data-key-op={keyOp}
     >
       {isMathML ? (
-        <span className="key-main-label key-main-label--mathml" dangerouslySetInnerHTML={{ __html: vm.displayLabel }} />
+        <span className="key-main-label key-main-label--mathml" dangerouslySetInnerHTML={{ __html: displayText }} />
       ) : (
-        <span className="key-main-label">{vm.displayLabel}</span>
+        <span className="key-main-label">{displayText}</span>
       )}
     </button>
   );
