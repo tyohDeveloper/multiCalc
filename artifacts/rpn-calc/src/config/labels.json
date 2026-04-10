@@ -113,5 +113,16 @@
   "ceil": "CEIL",
   "min": "MIN",
   "intdiv": "IDIV",
-  "xroot-mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><mroot><mi>x</mi><mi>y</mi></mroot></math>"
+  "xroot-mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><mroot><mi>x</mi><mi>y</mi></mroot></math>",
+  "key-r4-01": "#4 0-1",
+  "key-r4-2": "#4 2",
+  "key-r4-3": "#4 3",
+  "key-r4-4": "#4 4",
+  "key-r4-5": "#4 5",
+  "key-r5-0": "#5 0",
+  "key-r5-1": "#5 1",
+  "key-r5-2": "#5 2",
+  "key-r5-3": "#5 3",
+  "key-r5-4": "#5 4",
+  "key-r5-5": "#5 5"
 }

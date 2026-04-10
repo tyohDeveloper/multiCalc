@@ -65,6 +65,27 @@
             { "id": "fn-w", "op": "MAX",          "labelKey": "key-w", "shiftOp": "MIN",       "shiftLabelKey": "min",           "category": "func", "topMagenta": "10ˣ",   "topCyan": "LOG"   },
             { "id": "fn-x", "op": "MOD",          "labelKey": "key-x", "shiftOp": "INTDIV",    "shiftLabelKey": "intdiv",        "category": "func", "topMagenta": "eˣ",    "topCyan": "LN"    }
           ]
+        },
+        {
+          "id": "top-fn-4",
+          "keys": [
+            { "id": "fn-wide", "op": "OP_NONE", "labelKey": "key-r4-01", "colSpan": 2, "category": "func" },
+            { "id": "fn-y",    "op": "OP_NONE", "labelKey": "key-r4-2",  "category": "func" },
+            { "id": "fn-z",    "op": "OP_NONE", "labelKey": "key-r4-3",  "category": "func" },
+            { "id": "fn-4d",   "op": "OP_NONE", "labelKey": "key-r4-4",  "category": "func" },
+            { "id": "fn-4e",   "op": "OP_NONE", "labelKey": "key-r4-5",  "category": "func" }
+          ]
+        },
+        {
+          "id": "top-fn-5",
+          "keys": [
+            { "id": "fn-5a", "op": "OP_NONE", "labelKey": "key-r5-0", "category": "func" },
+            { "id": "fn-5b", "op": "OP_NONE", "labelKey": "key-r5-1", "category": "func" },
+            { "id": "fn-5c", "op": "OP_NONE", "labelKey": "key-r5-2", "category": "func" },
+            { "id": "fn-5d", "op": "OP_NONE", "labelKey": "key-r5-3", "category": "func" },
+            { "id": "fn-5e", "op": "OP_NONE", "labelKey": "key-r5-4", "category": "func" },
+            { "id": "fn-5f", "op": "OP_NONE", "labelKey": "key-r5-5", "category": "func" }
+          ]
         }
       ]
     },

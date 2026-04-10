@@ -15,6 +15,7 @@ const SOFTKEY_ALPHA = ["A", "B", "C", "D", "E", "F"];
 const ROW1_ALPHA = ["G", "H", "I", "J", "K", "L"];
 const ROW2_ALPHA = ["M", "N", "O", "P", "Q", "R"];
 const ROW3_ALPHA = ["S", "T", "U", "V", "W", "X"];
+const ROW4_ALPHA: (string | null)[] = [null, "Y", "Z", null, null];
 
 
 export function KeyGrid({ isShifted, dispatch }: Props) {
@@ -119,6 +120,54 @@ export function KeyGrid({ isShifted, dispatch }: Props) {
                   );
                 }
 
+                if (rowIdx === 4) {
+                  return (
+                    <div key={row.id} className="key-row" style={{ gridTemplateColumns: `repeat(${section.cols}, 1fr)` }}>
+                      {row.keys.map((key, idx) => {
+                        const colSpan = (key as { colSpan?: number }).colSpan;
+                        const cellStyle: CSSProperties = colSpan ? { gridColumn: `span ${colSpan}` } : {};
+                        const alpha = ROW4_ALPHA[idx] ?? null;
+                        return (
+                          <div key={key.id} className="key-cell-3zone" style={cellStyle}>
+                            <div className="key-cell-top-labels">
+                              <span className="key-label-magenta"></span>
+                              <span className="key-label-cyan"></span>
+                            </div>
+                            <KeyButton
+                              labelKey={key.labelKey}
+                              category={key.category}
+                              isActive={false}
+                              onClick={() => dispatch(resolveKeyAction(key.op, isShifted, undefined))}
+                            />
+                            <div className="key-label-alpha">{alpha ?? ""}</div>
+                          </div>
+                        );
+                      })}
+                    </div>
+                  );
+                }
+
+                if (rowIdx === 5) {
+                  return (
+                    <div key={row.id} className="key-row" style={{ gridTemplateColumns: `repeat(${section.cols}, 1fr)` }}>
+                      {row.keys.map((key) => (
+                        <div key={key.id} className="key-cell-3zone">
+                          <div className="key-cell-top-labels">
+                            <span className="key-label-magenta"></span>
+                            <span className="key-label-cyan"></span>
+                          </div>
+                          <KeyButton
+                            labelKey={key.labelKey}
+                            category={key.category}
+                            isActive={false}
+                            onClick={() => dispatch(resolveKeyAction(key.op, isShifted, undefined))}
+                          />
+                          <div className="key-label-alpha"></div>
+                        </div>
+                      ))}
+                    </div>
+                  );
+                }
 
                 return (
                   <div key={row.id} className="key-row" style={{ gridTemplateColumns: `repeat(${section.cols}, 1fr)` }}>
