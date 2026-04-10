@@ -14,6 +14,7 @@ export interface EntryState {
 export interface CalcState {
   stack: [number, number, number, number];
   lastX: number;
+  registers: number[];
   entry: EntryState;
   enterFlag: boolean;
   angleMode: AngleMode;
@@ -32,6 +33,8 @@ export type CalcAction =
   | { type: "SHIFT"; target: ShiftState }
   | { type: "ALPHA_CHAR"; char: string }
   | { type: "OP"; op: KeyOpCode }
+  | { type: "STO"; reg: number }
+  | { type: "RCL"; reg: number }
   | { type: "ANGLE_MODE"; mode: AngleMode }
   | { type: "DISPLAY_MODE"; mode: DisplayMode; precision?: number }
   | { type: "CLEAR_ERROR" };
@@ -48,6 +51,7 @@ const clearedEntry: EntryState = {
 export const initialState: CalcState = {
   stack: [0, 0, 0, 0],
   lastX: 0,
+  registers: Array(10).fill(0) as number[],
   entry: clearedEntry,
   enterFlag: false,
   angleMode: "DEG",

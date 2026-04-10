@@ -17,6 +17,14 @@ import { opTenPow } from "../logic/math/opTenPow";
 import { opReciprocal } from "../logic/math/opReciprocal";
 import { opPercent } from "../logic/math/opPercent";
 import { opPercentChange } from "../logic/math/opPercentChange";
+import { opAbs } from "../logic/math/opAbs";
+import { opCeil } from "../logic/math/opCeil";
+import { opFloor } from "../logic/math/opFloor";
+import { opSign } from "../logic/math/opSign";
+import { opMod } from "../logic/math/opMod";
+import { opIntDiv } from "../logic/math/opIntDiv";
+import { opMax } from "../logic/math/opMax";
+import { opMin } from "../logic/math/opMin";
 import type { MathOpCode } from "./opCodes";
 import type { CalcState } from "./calculatorState";
 
@@ -29,6 +37,10 @@ export const mathRegistry: Record<MathOpCode, StateOp> = {
   DIVIDE: s => applyBinaryOp(s, opDivide),
   POWER: s => applyBinaryOp(s, opPower),
   XROOT: s => applyBinaryOp(s, opXroot),
+  MOD: s => applyBinaryOp(s, opMod),
+  INTDIV: s => applyBinaryOp(s, opIntDiv),
+  MAX: s => applyBinaryOp(s, opMax),
+  MIN: s => applyBinaryOp(s, opMin),
   SQRT: s => applyUnaryOp(s, opSqrt),
   SQUARE: s => applyUnaryOp(s, opSquare),
   EXP: s => applyUnaryOp(s, opExp),
@@ -36,6 +48,10 @@ export const mathRegistry: Record<MathOpCode, StateOp> = {
   LOG: s => applyUnaryOp(s, opLog),
   TENPOW: s => applyUnaryOp(s, opTenPow),
   RECIPROCAL: s => applyUnaryOp(s, opReciprocal),
+  ABS: s => applyUnaryOp(s, opAbs),
+  CEIL: s => applyUnaryOp(s, opCeil),
+  FLOOR: s => applyUnaryOp(s, opFloor),
+  SIGN: s => applyUnaryOp(s, opSign),
   PI: s => applyPushConstant(s, Math.PI),
   E_CONST: s => applyPushConstant(s, Math.E),
   PERCENT: s => applyPreservingYOp(s, opPercent),

@@ -3,6 +3,8 @@ import { applyDecimal } from "../logic/input/applyDecimal";
 import { applyEex } from "../logic/input/applyEex";
 import { applyBackspace } from "../logic/input/applyBackspace";
 import { applyEnter } from "../logic/stack/applyEnter";
+import { applySto } from "../logic/stack/applySto";
+import { applyRcl } from "../logic/stack/applyRcl";
 import { opRegistry } from "./opRegistry";
 import { isExecOpCode, isPlaceholderOpCode } from "./opCodes";
 import type { CalcState, CalcAction } from "./calculatorState";
@@ -38,6 +40,8 @@ export function calculatorReducer(state: CalcState, action: CalcAction): CalcSta
       if (isPlaceholderOpCode(action.op)) return s;
       return { ...s, error: action.op };
     }
+    case "STO": return applySto(state, action.reg);
+    case "RCL": return applyRcl(state, action.reg);
     case "ANGLE_MODE": return { ...state, angleMode: action.mode, shiftState: "unshifted" };
     case "DISPLAY_MODE": return { ...state, displayMode: action.mode, displayPrecision: action.precision ?? state.displayPrecision, shiftState: "unshifted" };
     case "CLEAR_ERROR": return { ...state, error: null };

@@ -2,7 +2,9 @@ export type MathOpCode =
   | "ADD" | "SUBTRACT" | "MULTIPLY" | "DIVIDE"
   | "SQRT" | "SQUARE" | "POWER" | "XROOT"
   | "EXP" | "LN" | "LOG" | "TENPOW" | "RECIPROCAL"
-  | "PERCENT" | "PERCENT_CHANGE" | "PI" | "E_CONST";
+  | "PERCENT" | "PERCENT_CHANGE" | "PI" | "E_CONST"
+  | "ABS" | "CEIL" | "FLOOR" | "SIGN"
+  | "MOD" | "INTDIV" | "MAX" | "MIN";
 
 export type TrigOpCode = "SIN" | "COS" | "TAN" | "ASIN" | "ACOS" | "ATAN";
 
@@ -16,7 +18,7 @@ export type PlaceholderOpCode =
   | "OP_OFF" | "OP_PREV" | "OP_NXT" | "OP_SOLV" | "OP_DIR" | "OP_SYMB"
   | "OP_MTRX" | "OP_STO" | "OP_RCL" | "OP_EVAL"
   | "SOFTKEY_A" | "SOFTKEY_B" | "SOFTKEY_C" | "SOFTKEY_D" | "SOFTKEY_E" | "SOFTKEY_F"
-  | "ABS" | "CEIL" | "FLOOR" | "INTDIV" | "MAX" | "MIN" | "MOD" | "SIGN" | "SIGMA_PLUS";
+  | "SIGMA_PLUS";
 
 export type KeyOpCode = ExecOpCode | PlaceholderOpCode;
 
@@ -25,6 +27,8 @@ const EXEC_OPS_SET: ReadonlySet<string> = new Set<ExecOpCode>([
   "SQRT", "SQUARE", "POWER", "XROOT",
   "EXP", "LN", "LOG", "TENPOW", "RECIPROCAL",
   "PERCENT", "PERCENT_CHANGE", "PI", "E_CONST",
+  "ABS", "CEIL", "FLOOR", "SIGN",
+  "MOD", "INTDIV", "MAX", "MIN",
   "SIN", "COS", "TAN", "ASIN", "ACOS", "ATAN",
   "DROP", "SWAP", "ROLL_UP", "ROLL_DOWN", "CLEAR", "LAST_X", "TOGGLE_SIGN",
 ]);
@@ -34,7 +38,7 @@ export const PLACEHOLDER_OPS: ReadonlySet<string> = new Set<PlaceholderOpCode>([
   "OP_OFF", "OP_PREV", "OP_NXT", "OP_SOLV", "OP_DIR", "OP_SYMB",
   "OP_MTRX", "OP_STO", "OP_RCL", "OP_EVAL",
   "SOFTKEY_A", "SOFTKEY_B", "SOFTKEY_C", "SOFTKEY_D", "SOFTKEY_E", "SOFTKEY_F",
-  "ABS", "CEIL", "FLOOR", "INTDIV", "MAX", "MIN", "MOD", "SIGN", "SIGMA_PLUS",
+  "SIGMA_PLUS",
 ]);
 
 export function isExecOpCode(op: string): op is ExecOpCode {
