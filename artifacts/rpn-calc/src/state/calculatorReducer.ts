@@ -5,6 +5,7 @@ import { applyBackspace } from "../logic/input/applyBackspace";
 import { applyEnter } from "../logic/stack/applyEnter";
 import { applySto } from "../logic/stack/applySto";
 import { applyRcl } from "../logic/stack/applyRcl";
+import { applyImagSep } from "../logic/input/applyImagSep";
 import { opRegistry } from "./opRegistry";
 import { isExecOpCode, isPlaceholderOpCode } from "./opCodes";
 import type { CalcState, CalcAction } from "./calculatorState";
@@ -44,9 +45,12 @@ export function calculatorReducer(state: CalcState, action: CalcAction): CalcSta
     case "ALPHA_CHAR": {
       const char = action.char;
       if (!char || char === "\u200B") return state;
+      if (char === "I" && state.entry.isActive) {
+        return applyImagSep(state);
+      }
       const entry = state.entry.isActive
         ? { ...state.entry, buffer: state.entry.buffer + char }
-        : { isActive: true, buffer: char, hasDecimal: false, isEnteringExp: false };
+        : { isActive: true, buffer: char, hasDecimal: false, isEnteringExp: false, imagBuffer: "", isEnteringImag: false, imagHasDecimal: false, imagIsEnteringExp: false };
       return { ...state, entry };
     }
     case "OP": {

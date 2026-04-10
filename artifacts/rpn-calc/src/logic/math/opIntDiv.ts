@@ -1,3 +1,5 @@
-export function opIntDiv(y: number, x: number): number {
-  return Math.trunc(y / x);
+import type { Complex } from "../complex/complex";
+
+export function opIntDiv(y: Complex, x: Complex): Complex {
+  return { re: Math.trunc(y.re / x.re), im: 0 };
 }

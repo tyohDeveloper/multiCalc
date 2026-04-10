@@ -1,3 +1,6 @@
-export function opAdd(y: number, x: number): number {
-  return y + x;
+import type { Complex } from "../complex/complex";
+import { add } from "../complex/complex";
+
+export function opAdd(y: Complex, x: Complex): Complex {
+  return add(y, x);
 }

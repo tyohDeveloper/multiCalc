@@ -3,14 +3,36 @@ import type { CalcState } from "../../state/calculatorState";
 
 export function applyEex(state: CalcState): CalcState {
   if (state.error) return { ...state, error: null };
+
   if (!state.entry.isActive) {
-    const entry = { isActive: true, buffer: "1E", hasDecimal: false, isEnteringExp: true };
+    const entry = {
+      isActive: true,
+      buffer: "1E",
+      hasDecimal: false,
+      isEnteringExp: true,
+      imagBuffer: "",
+      isEnteringImag: false,
+      imagHasDecimal: false,
+      imagIsEnteringExp: false,
+    };
     return startEntryWithAutoLift(state, entry);
   }
-  if (state.entry.isEnteringExp) return state;
-  const buf = state.entry.buffer || "1";
+
+  const { entry } = state;
+
+  if (entry.isEnteringImag) {
+    if (entry.imagIsEnteringExp) return state;
+    const buf = entry.imagBuffer || "1";
+    return {
+      ...state,
+      entry: { ...entry, imagBuffer: buf + "E", imagIsEnteringExp: true },
+    };
+  }
+
+  if (entry.isEnteringExp) return state;
+  const buf = entry.buffer || "1";
   return {
     ...state,
-    entry: { ...state.entry, buffer: buf + "E", isEnteringExp: true },
+    entry: { ...entry, buffer: buf + "E", isEnteringExp: true },
   };
 }

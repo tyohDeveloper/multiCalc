@@ -1,3 +1,5 @@
-export function opSign(x: number): number {
-  return Math.sign(x);
+import type { Complex } from "../complex/complex";
+
+export function opSign(x: Complex): Complex {
+  return { re: Math.sign(x.re), im: 0 };
 }

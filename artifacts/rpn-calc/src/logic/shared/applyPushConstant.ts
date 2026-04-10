@@ -1,7 +1,8 @@
 import { commitEntry } from "./commitEntry";
 import type { CalcState } from "../../state/calculatorState";
+import type { Complex } from "../complex/complex";
 
-export function applyPushConstant(state: CalcState, value: number): CalcState {
+export function applyPushConstant(state: CalcState, value: Complex): CalcState {
   const s = commitEntry(state);
   return {
     ...s,

@@ -1,3 +1,6 @@
-export function opXroot(y: number, x: number): number {
-  return Math.pow(y, 1 / x);
+import type { Complex } from "../complex/complex";
+import { pow, reciprocal } from "../complex/complex";
+
+export function opXroot(y: Complex, x: Complex): Complex {
+  return pow(y, reciprocal(x));
 }

@@ -1,5 +1,10 @@
-export function formatEntryBuffer(buffer: string): string {
-  if (!buffer) return "0";
-  if (buffer === "-") return "-0";
-  return buffer;
+import type { EntryState } from "../../state/calculatorState";
+
+export function formatEntryBuffer(entry: EntryState): string {
+  const realPart = entry.buffer || "0";
+  if (!entry.isEnteringImag && !entry.imagBuffer) {
+    return realPart;
+  }
+  const imagPart = entry.imagBuffer;
+  return `${realPart}i${imagPart}`;
 }

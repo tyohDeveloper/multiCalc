@@ -25,6 +25,7 @@ import { opMod } from "../logic/math/opMod";
 import { opIntDiv } from "../logic/math/opIntDiv";
 import { opMax } from "../logic/math/opMax";
 import { opMin } from "../logic/math/opMin";
+import { cx } from "../logic/complex/complex";
 import type { MathOpCode } from "./opCodes";
 import type { CalcState } from "./calculatorState";
 
@@ -52,8 +53,8 @@ export const mathRegistry: Record<MathOpCode, StateOp> = {
   CEIL: s => applyUnaryOp(s, opCeil),
   FLOOR: s => applyUnaryOp(s, opFloor),
   SIGN: s => applyUnaryOp(s, opSign),
-  PI: s => applyPushConstant(s, Math.PI),
-  E_CONST: s => applyPushConstant(s, Math.E),
+  PI: s => applyPushConstant(s, cx(Math.PI)),
+  E_CONST: s => applyPushConstant(s, cx(Math.E)),
   PERCENT: s => applyPreservingYOp(s, opPercent),
   PERCENT_CHANGE: s => applyPreservingYOp(s, opPercentChange),
 };

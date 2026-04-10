@@ -1,3 +1,6 @@
-export function opSquare(x: number): number {
-  return x * x;
+import type { Complex } from "../complex/complex";
+import { mul } from "../complex/complex";
+
+export function opSquare(x: Complex): Complex {
+  return mul(x, x);
 }

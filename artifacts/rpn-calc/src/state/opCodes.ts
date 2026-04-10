@@ -11,7 +11,9 @@ export type TrigOpCode = "SIN" | "COS" | "TAN" | "ASIN" | "ACOS" | "ATAN";
 export type StackOpCode =
   | "DROP" | "SWAP" | "ROLL_UP" | "ROLL_DOWN" | "CLEAR" | "LAST_X" | "TOGGLE_SIGN";
 
-export type ExecOpCode = MathOpCode | TrigOpCode | StackOpCode;
+export type InputOpCode = "IMAG_SEP";
+
+export type ExecOpCode = MathOpCode | TrigOpCode | StackOpCode | InputOpCode;
 
 export type PlaceholderOpCode =
   | "OP_NONE" | "OP_MTH" | "OP_PRG" | "OP_CST" | "OP_VAR" | "OP_HIST"
@@ -31,6 +33,7 @@ const EXEC_OPS_SET: ReadonlySet<string> = new Set<ExecOpCode>([
   "MOD", "INTDIV", "MAX", "MIN",
   "SIN", "COS", "TAN", "ASIN", "ACOS", "ATAN",
   "DROP", "SWAP", "ROLL_UP", "ROLL_DOWN", "CLEAR", "LAST_X", "TOGGLE_SIGN",
+  "IMAG_SEP",
 ]);
 
 export const PLACEHOLDER_OPS: ReadonlySet<string> = new Set<PlaceholderOpCode>([

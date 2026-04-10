@@ -1,3 +1,5 @@
-export function opMin(y: number, x: number): number {
-  return Math.min(y, x);
+import type { Complex } from "../complex/complex";
+
+export function opMin(y: Complex, x: Complex): Complex {
+  return { re: Math.min(y.re, x.re), im: 0 };
 }

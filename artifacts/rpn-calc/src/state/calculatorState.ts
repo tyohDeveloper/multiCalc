@@ -1,4 +1,6 @@
 import type { KeyOpCode } from "./opCodes";
+import type { Complex } from "../logic/complex/complex";
+import { ZERO } from "../logic/complex/complex";
 
 export type AngleMode = "DEG" | "RAD" | "GRAD";
 export type DisplayMode = "STD" | "FIX" | "SCI" | "ENG";
@@ -9,12 +11,16 @@ export interface EntryState {
   buffer: string;
   hasDecimal: boolean;
   isEnteringExp: boolean;
+  imagBuffer: string;
+  isEnteringImag: boolean;
+  imagHasDecimal: boolean;
+  imagIsEnteringExp: boolean;
 }
 
 export interface CalcState {
-  stack: [number, number, number, number];
-  lastX: number;
-  registers: number[];
+  stack: [Complex, Complex, Complex, Complex];
+  lastX: Complex;
+  registers: Complex[];
   entry: EntryState;
   enterFlag: boolean;
   angleMode: AngleMode;
@@ -46,12 +52,16 @@ const clearedEntry: EntryState = {
   buffer: "",
   hasDecimal: false,
   isEnteringExp: false,
+  imagBuffer: "",
+  isEnteringImag: false,
+  imagHasDecimal: false,
+  imagIsEnteringExp: false,
 };
 
 export const initialState: CalcState = {
-  stack: [0, 0, 0, 0],
-  lastX: 0,
-  registers: Array(10).fill(0) as number[],
+  stack: [ZERO, ZERO, ZERO, ZERO],
+  lastX: ZERO,
+  registers: Array(10).fill(ZERO) as Complex[],
   entry: clearedEntry,
   enterFlag: false,
   angleMode: "DEG",

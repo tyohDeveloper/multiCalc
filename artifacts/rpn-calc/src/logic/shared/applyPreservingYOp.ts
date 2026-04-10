@@ -1,9 +1,10 @@
 import { commitEntry } from "./commitEntry";
 import type { CalcState } from "../../state/calculatorState";
+import type { Complex } from "../complex/complex";
 
 export function applyPreservingYOp(
   state: CalcState,
-  op: (y: number, x: number) => number,
+  op: (y: Complex, x: Complex) => Complex,
 ): CalcState {
   const s = commitEntry(state);
   const x = s.stack[0];

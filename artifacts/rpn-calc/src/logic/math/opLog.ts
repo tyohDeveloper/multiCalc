@@ -1,3 +1,6 @@
-export function opLog(x: number): number {
-  return Math.log10(x);
+import type { Complex } from "../complex/complex";
+import { log10 } from "../complex/complex";
+
+export function opLog(x: Complex): Complex {
+  return log10(x);
 }

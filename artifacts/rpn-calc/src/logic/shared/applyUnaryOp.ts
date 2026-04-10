@@ -1,9 +1,10 @@
 import { commitEntry } from "./commitEntry";
 import type { CalcState } from "../../state/calculatorState";
+import type { Complex } from "../complex/complex";
 
 export function applyUnaryOp(
   state: CalcState,
-  op: (x: number) => number,
+  op: (x: Complex) => Complex,
 ): CalcState {
   const s = commitEntry(state);
   const x = s.stack[0];

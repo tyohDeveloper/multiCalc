@@ -4,7 +4,7 @@ import { CLEARED_ENTRY } from "../../state/calculatorState";
 
 export function commitEntry(state: CalcState): CalcState {
   if (!state.entry.isActive) return state;
-  const value = parseEntryBuffer(state.entry.buffer);
+  const value = parseEntryBuffer(state.entry.buffer, state.entry.imagBuffer);
   return {
     ...state,
     stack: [value, state.stack[1], state.stack[2], state.stack[3]],
