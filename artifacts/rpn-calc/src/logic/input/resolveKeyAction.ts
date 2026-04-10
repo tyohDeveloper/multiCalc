@@ -1,4 +1,4 @@
-import type { CalcAction } from "../../state/calculatorState";
+import type { CalcAction, KeyOpCode } from "../../state/calculatorState";
 
 export function resolveKeyAction(op: string): CalcAction {
   if (op === "SHIFT_KEY" || op === "SHIFT_MAGENTA") return { type: "SHIFT", target: "shiftedMagenta" };
@@ -16,5 +16,5 @@ export function resolveKeyAction(op: string): CalcAction {
   if (op === "DISPLAY_FIX") return { type: "DISPLAY_MODE", mode: "FIX" };
   if (op === "DISPLAY_SCI") return { type: "DISPLAY_MODE", mode: "SCI" };
   if (op === "DISPLAY_ENG") return { type: "DISPLAY_MODE", mode: "ENG" };
-  return { type: "OP", op };
+  return { type: "OP", op: op as KeyOpCode };
 }

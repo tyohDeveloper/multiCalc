@@ -1,3 +1,5 @@
+import type { KeyOpCode } from "./opCodes";
+
 export type AngleMode = "DEG" | "RAD" | "GRAD";
 export type DisplayMode = "STD" | "FIX" | "SCI" | "ENG";
 export type ShiftState = "unshifted" | "shiftedMagenta" | "shiftedCyan" | "shiftedBottom";
@@ -29,10 +31,12 @@ export type CalcAction =
   | { type: "ENTER" }
   | { type: "SHIFT"; target: ShiftState }
   | { type: "ALPHA_CHAR"; char: string }
-  | { type: "OP"; op: string }
+  | { type: "OP"; op: KeyOpCode }
   | { type: "ANGLE_MODE"; mode: AngleMode }
   | { type: "DISPLAY_MODE"; mode: DisplayMode; precision?: number }
   | { type: "CLEAR_ERROR" };
+
+export { type KeyOpCode } from "./opCodes";
 
 const clearedEntry: EntryState = {
   isActive: false,

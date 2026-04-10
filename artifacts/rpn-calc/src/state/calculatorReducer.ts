@@ -34,7 +34,7 @@ export function calculatorReducer(state: CalcState, action: CalcAction): CalcSta
     }
     case "OP": {
       const s = { ...state, shiftState: "unshifted" as const };
-      const fn = opRegistry[action.op];
+      const fn = (opRegistry as Record<string, ((st: CalcState) => CalcState) | undefined>)[action.op];
       if (fn) return fn(s);
       if (PLACEHOLDER_OPS.has(action.op)) return s;
       return { ...s, error: action.op };

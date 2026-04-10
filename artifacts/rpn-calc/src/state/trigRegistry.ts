@@ -5,11 +5,12 @@ import { opTan } from "../logic/trig/opTan";
 import { opAsin } from "../logic/trig/opAsin";
 import { opAcos } from "../logic/trig/opAcos";
 import { opAtan } from "../logic/trig/opAtan";
+import type { TrigOpCode } from "./opCodes";
 import type { CalcState } from "./calculatorState";
 
 type StateOp = (state: CalcState) => CalcState;
 
-export const trigRegistry: Record<string, StateOp> = {
+export const trigRegistry: Record<TrigOpCode, StateOp> = {
   SIN: s => applyUnaryOp(s, x => opSin(x, s.angleMode)),
   COS: s => applyUnaryOp(s, x => opCos(x, s.angleMode)),
   TAN: s => applyUnaryOp(s, x => opTan(x, s.angleMode)),

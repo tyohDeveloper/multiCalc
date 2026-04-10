@@ -17,11 +17,12 @@ import { opTenPow } from "../logic/math/opTenPow";
 import { opReciprocal } from "../logic/math/opReciprocal";
 import { opPercent } from "../logic/math/opPercent";
 import { opPercentChange } from "../logic/math/opPercentChange";
+import type { MathOpCode } from "./opCodes";
 import type { CalcState } from "./calculatorState";
 
 type StateOp = (state: CalcState) => CalcState;
 
-export const mathRegistry: Record<string, StateOp> = {
+export const mathRegistry: Record<MathOpCode, StateOp> = {
   ADD: s => applyBinaryOp(s, opAdd),
   SUBTRACT: s => applyBinaryOp(s, opSubtract),
   MULTIPLY: s => applyBinaryOp(s, opMultiply),
