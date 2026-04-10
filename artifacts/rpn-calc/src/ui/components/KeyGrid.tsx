@@ -3,7 +3,7 @@ import { KeyButton } from "./KeyButton";
 import { resolveShiftLabel } from "../../logic/ui/resolveShiftLabel";
 import { computeEffectiveLabel } from "../../logic/ui/computeEffectiveLabel";
 import keyActionTable from "../../generated/keyActionTable";
-import keyData from "../../data/hp48Keys.json";
+import keyData from "../../generated/keyLayoutData";
 import type { CalcAction, ShiftState } from "../../state/calculatorState";
 
 interface Props {

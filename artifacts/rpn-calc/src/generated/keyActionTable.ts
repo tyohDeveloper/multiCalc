@@ -253,12 +253,6 @@ const keyActionTable: KeyActionTable = {
     shiftedCyan:   { type: "OP", op: "OP_NONE" },
     shiftedBottom: { type: "OP", op: "OP_NONE" },
   },
-  "fn-5f": {
-    unshifted:     { type: "OP", op: "OP_NONE" },
-    shiftedMagenta: { type: "OP", op: "OP_NONE" },
-    shiftedCyan:   { type: "OP", op: "OP_NONE" },
-    shiftedBottom: { type: "OP", op: "OP_NONE" },
-  },
   "fn-6a": {
     unshifted:     { type: "SHIFT", target: "shiftedMagenta" },
     shiftedMagenta: { type: "SHIFT", target: "shiftedMagenta" },
@@ -284,12 +278,6 @@ const keyActionTable: KeyActionTable = {
     shiftedBottom: { type: "OP", op: "OP_NONE" },
   },
   "fn-6e": {
-    unshifted:     { type: "OP", op: "OP_NONE" },
-    shiftedMagenta: { type: "OP", op: "OP_NONE" },
-    shiftedCyan:   { type: "OP", op: "OP_NONE" },
-    shiftedBottom: { type: "OP", op: "OP_NONE" },
-  },
-  "fn-6f": {
     unshifted:     { type: "OP", op: "OP_NONE" },
     shiftedMagenta: { type: "OP", op: "OP_NONE" },
     shiftedCyan:   { type: "OP", op: "OP_NONE" },
@@ -325,12 +313,6 @@ const keyActionTable: KeyActionTable = {
     shiftedCyan:   { type: "OP", op: "OP_NONE" },
     shiftedBottom: { type: "OP", op: "OP_NONE" },
   },
-  "fn-7f": {
-    unshifted:     { type: "OP", op: "OP_NONE" },
-    shiftedMagenta: { type: "OP", op: "OP_NONE" },
-    shiftedCyan:   { type: "OP", op: "OP_NONE" },
-    shiftedBottom: { type: "OP", op: "OP_NONE" },
-  },
   "fn-8a": {
     unshifted:     { type: "OP", op: "CLEAR" },
     shiftedMagenta: { type: "OP", op: "OP_NONE" },
@@ -356,12 +338,6 @@ const keyActionTable: KeyActionTable = {
     shiftedBottom: { type: "OP", op: "OP_NONE" },
   },
   "fn-8e": {
-    unshifted:     { type: "OP", op: "OP_NONE" },
-    shiftedMagenta: { type: "OP", op: "OP_NONE" },
-    shiftedCyan:   { type: "OP", op: "OP_NONE" },
-    shiftedBottom: { type: "OP", op: "OP_NONE" },
-  },
-  "fn-8f": {
     unshifted:     { type: "OP", op: "OP_NONE" },
     shiftedMagenta: { type: "OP", op: "OP_NONE" },
     shiftedCyan:   { type: "OP", op: "OP_NONE" },
