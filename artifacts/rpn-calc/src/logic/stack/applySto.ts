@@ -9,7 +9,6 @@ export function applySto(state: CalcState, reg: number): CalcState {
     ...s,
     registers: registers as CalcState["registers"],
     enterFlag: false,
-    shiftState: "unshifted",
     error: null,
   };
 }

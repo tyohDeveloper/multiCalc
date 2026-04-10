@@ -47,12 +47,14 @@ function buildFunctions(
   const fnKeyMagenta: () => void = isNonEmpty(key.topMagenta) || isNonEmpty(magentaOp)
     ? (magentaOp
       ? (): void => { dispatch(resolveKeyAction(magentaOp)); }
-      : noOp)
+      : (): void => { dispatch(resolveKeyAction("OP_NONE")); })
     : noOp;
 
   const cyanOp = key.cyanOp;
-  const fnKeyCyan: () => void = isNonEmpty(key.topCyan) && cyanOp
-    ? (): void => { dispatch(resolveKeyAction(cyanOp)); }
+  const fnKeyCyan: () => void = isNonEmpty(key.topCyan)
+    ? (cyanOp
+      ? (): void => { dispatch(resolveKeyAction(cyanOp)); }
+      : (): void => { dispatch(resolveKeyAction("OP_NONE")); })
     : noOp;
 
   const fnKeyBottom: () => void = isNonEmpty(bottomAlpha) && bottomAlpha !== undefined

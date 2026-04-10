@@ -7,7 +7,6 @@ export function applyPushConstant(state: CalcState, value: number): CalcState {
     ...s,
     stack: [value, s.stack[0], s.stack[1], s.stack[2]],
     enterFlag: false,
-    shiftState: "unshifted",
     error: null,
   };
 }

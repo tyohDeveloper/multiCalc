@@ -7,7 +7,6 @@ export function applyLastX(state: CalcState): CalcState {
     ...s,
     stack: [s.lastX, s.stack[0], s.stack[1], s.stack[2]],
     enterFlag: false,
-    shiftState: "unshifted",
     error: null,
   };
 }

@@ -7,7 +7,6 @@ export function applyDrop(state: CalcState): CalcState {
     ...s,
     stack: [s.stack[1], s.stack[2], s.stack[3], s.stack[3]],
     enterFlag: false,
-    shiftState: "unshifted",
     error: null,
   };
 }

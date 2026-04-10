@@ -10,7 +10,6 @@ export function applyClearStack(state: CalcState): CalcState {
       : state.lastX,
     entry: CLEARED_ENTRY,
     enterFlag: false,
-    shiftState: "unshifted",
     error: null,
   };
 }

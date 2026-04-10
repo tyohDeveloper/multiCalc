@@ -14,7 +14,6 @@ export function applyPreservingYOp(
     stack: [result, y, s.stack[2], s.stack[3]],
     lastX: x,
     enterFlag: false,
-    shiftState: "unshifted",
     error: null,
   };
 }

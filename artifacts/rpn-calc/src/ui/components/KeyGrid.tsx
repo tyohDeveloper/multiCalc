@@ -115,31 +115,6 @@ export function KeyGrid({ shiftState, dispatch }: Props) {
                   return null;
                 }
 
-                if (row.id === "top-fn-shift") {
-                  return (
-                    <div key={row.id} className="key-row key-row-shifts" style={{ gridTemplateColumns: `repeat(${row.keys.length}, auto) 1fr` }}>
-                      {row.keys.map((key) => {
-                        const fns = registry[key.id];
-                        const fnKey = fns ? resolveKeyFn(fns, shiftState) : () => {};
-                        const isActive = (key.op === "SHIFT_MAGENTA" && shiftState === "shiftedMagenta")
-                          || (key.op === "SHIFT_CYAN" && shiftState === "shiftedCyan")
-                          || (key.op === "SHIFT_BOTTOM" && shiftState === "shiftedBottom");
-                        return (
-                          <KeyButton
-                            key={key.id}
-                            labelKey={key.labelKey}
-                            category={key.category}
-                            isActive={isActive}
-                            onClick={fnKey}
-                            testId={makeTestId(section.id, row.id, key.id)}
-                            keyOp={key.op}
-                          />
-                        );
-                      })}
-                    </div>
-                  );
-                }
-
                 if (THREE_ZONE_ROWS.has(row.id)) {
                   const alphaRow = ROW_ALPHA_MAP[row.id] ?? [];
                   return (
