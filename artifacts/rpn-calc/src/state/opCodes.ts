@@ -51,3 +51,16 @@ export function isExecOpCode(op: string): op is ExecOpCode {
 export function isPlaceholderOpCode(op: string): op is PlaceholderOpCode {
   return PLACEHOLDER_OPS.has(op);
 }
+
+export type SuppressionFlag = "noGraphics" | "noProgramming" | "noMatrix";
+
+const PROGRAMMING_OPS: ReadonlySet<string> = new Set<KeyOpCode>(["OP_PRG", "OP_EVAL"]);
+const MATRIX_OPS: ReadonlySet<string> = new Set<KeyOpCode>(["OP_MTRX"]);
+const GRAPHICS_OPS: ReadonlySet<string> = new Set<KeyOpCode>(["OP_SYMB", "OP_SOLV", "SIGMA_PLUS"]);
+
+export function opSuppressedBy(op: string): SuppressionFlag | null {
+  if (PROGRAMMING_OPS.has(op)) return "noProgramming";
+  if (MATRIX_OPS.has(op)) return "noMatrix";
+  if (GRAPHICS_OPS.has(op)) return "noGraphics";
+  return null;
+}
