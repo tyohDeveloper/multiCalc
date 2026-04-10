@@ -7,8 +7,7 @@ import { applySto } from "../logic/stack/applySto";
 import { applyRcl } from "../logic/stack/applyRcl";
 import { applyImagSep } from "../logic/input/applyImagSep";
 import { opRegistry } from "./opRegistry";
-import { isExecOpCode, isPlaceholderOpCode, opSuppressedBy } from "./opCodes";
-import { NO_GRAPHICS, NO_PROGRAMMING, NO_MATRIX } from "./suppressionFlags";
+import { isExecOpCode, isPlaceholderOpCode } from "./opCodes";
 import type { CalcState, CalcAction } from "./calculatorState";
 
 export function calculatorReducer(state: CalcState, action: CalcAction): CalcState {
@@ -55,10 +54,6 @@ export function calculatorReducer(state: CalcState, action: CalcAction): CalcSta
       return { ...state, entry };
     }
     case "OP": {
-      const suppressedBy = opSuppressedBy(action.op);
-      if (suppressedBy === "noGraphics" && NO_GRAPHICS) return state;
-      if (suppressedBy === "noProgramming" && NO_PROGRAMMING) return state;
-      if (suppressedBy === "noMatrix" && NO_MATRIX) return state;
       const nextShift = state.shiftState === "shiftedBottom" ? "shiftedBottom" as const : "unshifted" as const;
       const s = { ...state, shiftState: nextShift };
       if (isExecOpCode(action.op)) return opRegistry[action.op](s);
