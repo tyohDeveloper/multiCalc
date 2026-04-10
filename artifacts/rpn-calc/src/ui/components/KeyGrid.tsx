@@ -17,6 +17,11 @@ const ROW2_ALPHA = ["M", "N", "O", "P", "Q", "R"];
 const ROW3_ALPHA = ["S", "T", "U", "V", "W", "X"];
 const ROW4_ALPHA: (string | null)[] = [null, "Y", "Z", null, null];
 
+const ROW5_ALPHA = ["", "", "", "", "", ""];
+const ROW6_ALPHA = ["", "", "", "", "", ""];
+const ROW7_ALPHA = ["", "", "", "", "", ""];
+const ROW8_ALPHA = ["", "", "", "", "", ""];
+
 
 export function KeyGrid({ isShifted, dispatch }: Props) {
   return (
@@ -115,23 +120,34 @@ export function KeyGrid({ isShifted, dispatch }: Props) {
                 }
 
                 if (rowIdx === 5 || rowIdx === 6 || rowIdx === 7 || rowIdx === 8) {
+                  const alphaRow = rowIdx === 5 ? ROW5_ALPHA : rowIdx === 6 ? ROW6_ALPHA : rowIdx === 7 ? ROW7_ALPHA : ROW8_ALPHA;
                   return (
                     <div key={row.id} className="key-row" style={{ gridTemplateColumns: `repeat(${section.cols}, 1fr)` }}>
-                      {row.keys.map((key) => (
-                        <div key={key.id} className="key-cell-3zone">
-                          <div className="key-cell-top-labels">
-                            <span className="key-label-magenta"></span>
-                            <span className="key-label-cyan"></span>
+                      {row.keys.map((key, idx) => {
+                        const k = key as { topMagenta?: string; topCyan?: string; topMerged?: string } & typeof key;
+                        const merged = Boolean(k.topMerged);
+                        return (
+                          <div key={key.id} className="key-cell-3zone">
+                            <div className={`key-cell-top-labels${merged ? " key-cell-top-labels--merged" : ""}`}>
+                              {merged ? (
+                                <span className="key-label-cyan">{k.topMerged}</span>
+                              ) : (
+                                <>
+                                  <span className="key-label-magenta">{k.topMagenta ?? ""}</span>
+                                  <span className="key-label-cyan">{k.topCyan ?? ""}</span>
+                                </>
+                              )}
+                            </div>
+                            <KeyButton
+                              labelKey={key.labelKey}
+                              category={key.category}
+                              isActive={false}
+                              onClick={() => dispatch(resolveKeyAction(key.op, isShifted, undefined))}
+                            />
+                            <div className="key-label-alpha">{alphaRow[idx] ?? ""}</div>
                           </div>
-                          <KeyButton
-                            labelKey={key.labelKey}
-                            category={key.category}
-                            isActive={false}
-                            onClick={() => dispatch(resolveKeyAction(key.op, isShifted, undefined))}
-                          />
-                          <div className="key-label-alpha"></div>
-                        </div>
-                      ))}
+                        );
+                      })}
                     </div>
                   );
                 }
