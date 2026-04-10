@@ -1,33 +1,35 @@
 # I/O and Library Suppression Flag
 
 ## What & Why
-Add a `noIO` build-time suppression flag covering all HP-48 GX I/O and library functions, menu keys, and related keyboard entries. When the flag is enabled (the default), every I/O and library surface is stripped from the build identically to how `noGraphics`, `noProgramming`, and `noMatrix` already work.
+Add a `NO_IO` build-time suppression flag covering all HP-48 GX I/O and library functions. When enabled (the default), every I/O and library label is stripped from key faces at codegen time and all related actions resolve to `OP_NONE`. Key buttons are never removed — the layout stays structurally identical regardless of this flag, consistent with the existing suppression architecture.
 
 ## Done looks like
-- `suppressionFlags.ts` (or its build-time equivalent after the #59 refactor) has a `NO_IO` constant defaulting to `true`.
-- All I/O and library operations have named op code entries (an `IoOpCode` union type or equivalent) in `opCodes.ts` and are collected in an `IO_OPS` set.
-- Every entry in `hp48Keys.json` that belongs to this category carries `"suppressedBy": "noIO"` so codegen strips it automatically.
-- The keys and shift labels below are absent from the rendered calculator when `NO_IO` is `true`:
-  - **Functions:** IO, IOPAR, RECV, SEND, SERVER, CLIENT, XMIT, SRECV, PR1, PR2, INFRARED, WIRE, \RESTORE, BACKUP, RESTORE PORT, FREE, MERGE, PORT0, PORT1, PORT2, LIBRARY, ATTACH, DETACH, LIBS, VERSION, MEM, NEWOB, PURGE, ARCHIVE, RESTORE (from port), EQNLIB, equation library menus.
-  - **Keys / labels:** left-shift 1 (I/O), IOPAR menu key, SEND menu key, RECV menu key, IR menu key, BAUD menu key, TRANS menu key, VAR key (library variables), left-shift 2 (LIBRARY), LIBRARY menu key, ATTACH menu key, DETACH menu key, NXT, PREV, ON+1 (print screen shortcut), PR1 key sequence (print stack), PR2 key sequence (print graph).
-- Toggling `NO_IO` to `false` and re-running codegen causes all I/O and library items to reappear without any other code changes.
+- `suppressionConfig.json` has a `NO_IO: true` entry alongside the existing `NO_GRAPHICS`, `NO_PROGRAMMING`, and `NO_MATRIX` flags.
+- All I/O and library operations have named op code entries (e.g., `IoOpCode` union type) in `opCodes.ts`, collected in an `IO_OPS` set, so `opSuppressedBy` returns `"noIO"` for every one.
+- Every relevant entry in `hp48Keys.json` has its label fields (e.g., `topCyan`, `topMagenta`, `shiftOp`) tagged with `suppressedBy: "noIO"` — the key entry itself is never removed.
+- Codegen strips those label fields and emits `OP_NONE` in the action table for all `noIO`-tagged actions when the flag is active.
+- The following function labels are absent from key faces when `NO_IO` is `true` (keys remain):
+  - I/O functions: IO, IOPAR, RECV, SEND, SERVER, CLIENT, XMIT, SRECV, PR1, PR2, INFRARED, WIRE, BACKUP, RESTORE, FREE, MERGE, PORT0, PORT1, PORT2
+  - Library functions: LIBRARY, ATTACH, DETACH, LIBS, VERSION, MEM, NEWOB, PURGE, ARCHIVE, RESTORE (port), EQNLIB
+  - Shift labels: left-shift I/O, left-shift LIBRARY, and related menu labels on shared keys
+- Toggling `NO_IO` to `false` and re-running codegen causes all I/O and library labels to reappear; key count does not change.
 
 ## Out of scope
-- Implementing actual I/O or library logic (all ops are stubs/placeholders).
+- Implementing actual I/O or library logic (all ops are stubs/`OP_NONE`).
 - UI for managing library attachments or port contents.
 - Equation library UI beyond the suppression stub.
+- Removing any key buttons from the layout.
 
 ## Tasks
-1. **Add `NO_IO` flag** — Add the `NO_IO` boolean constant (default `true`) to the suppression flags source used by the codegen script, matching the exact pattern of the existing `NO_GRAPHICS`, `NO_PROGRAMMING`, `NO_MATRIX` constants.
-2. **Register I/O op codes** — Add all listed I/O and library functions as named placeholder op codes in `opCodes.ts` (e.g., `IoOpCode` union), collected in an `IO_OPS` set, and guarded by the `NO_IO` flag in the reducer (no-op when suppressed).
-3. **Tag keys and labels in source data** — Add `"suppressedBy": "noIO"` to all I/O and library key entries and shift labels in `hp48Keys.json` (or equivalent canonical data source) so the codegen filter removes them when `NO_IO` is `true`.
-4. **Run codegen and verify** — Execute `pnpm codegen`, confirm the generated layout and action table contain no I/O or library entries, and confirm the calculator renders correctly with those keys absent.
+1. **Add `NO_IO` to `suppressionConfig.json`** — Add `"NO_IO": true` to the build-time config file. Update the codegen script to recognize `"noIO"` as a valid suppression tag, following the same pattern used for `noGraphics`, `noProgramming`, and `noMatrix`.
+2. **Register I/O op codes in `opCodes.ts`** — Add all listed I/O and library functions as named op codes (e.g., `IoOpCode` union), collected in an `IO_OPS` set, with `opSuppressedBy` returning `"noIO"` for each.
+3. **Tag label fields in `hp48Keys.json`** — For each I/O and library key, tag only the specific label fields (`topCyan`, `topMagenta`, `shiftLabel`, `shiftOp`, etc.) with `suppressedBy: "noIO"`. Never tag or remove the entire key entry.
+4. **Run codegen and verify** — Execute `pnpm codegen`, confirm the generated layout has the same key count with `NO_IO` on or off, confirm I/O labels are absent when the flag is active, and confirm the calculator renders without errors.
 
 ## Relevant files
-- `artifacts/rpn-calc/src/state/suppressionFlags.ts`
-- `artifacts/rpn-calc/src/state/opCodes.ts`
-- `artifacts/rpn-calc/src/state/calculatorReducer.ts`
-- `artifacts/rpn-calc/src/data/hp48Keys.json`
+- `artifacts/rpn-calc/scripts/suppressionConfig.json`
 - `artifacts/rpn-calc/scripts/codegen-key-action-table.mjs`
+- `artifacts/rpn-calc/src/state/opCodes.ts`
+- `artifacts/rpn-calc/src/data/hp48Keys.json`
 - `artifacts/rpn-calc/src/generated/keyLayoutData.ts`
 - `artifacts/rpn-calc/src/generated/keyActionTable.ts`
