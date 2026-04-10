@@ -114,7 +114,7 @@ export function KeyGrid({ isShifted, dispatch }: Props) {
                   );
                 }
 
-                if (rowIdx === 5) {
+                if (rowIdx === 5 || rowIdx === 6 || rowIdx === 7 || rowIdx === 8) {
                   return (
                     <div key={row.id} className="key-row" style={{ gridTemplateColumns: `repeat(${section.cols}, 1fr)` }}>
                       {row.keys.map((key) => (
