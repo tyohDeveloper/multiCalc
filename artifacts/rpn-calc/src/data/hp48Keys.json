@@ -93,10 +93,10 @@
           "id": "top-fn-7",
           "keys": [
             { "id": "fn-7a", "op": "SHIFT_CYAN", "labelKey": "key-r7-0", "category": "shift-cyan", "topColor": "cyan" },
-            { "id": "fn-7b", "op": "OP_NONE", "labelKey": "key-r7-1", "category": "func", "topMagenta": "magenta", "topCyan": "cyan" },
-            { "id": "fn-7c", "op": "OP_NONE", "labelKey": "key-r7-2", "category": "func", "topMagenta": "magenta", "topCyan": "cyan" },
-            { "id": "fn-7d", "op": "OP_NONE", "labelKey": "key-r7-3", "category": "func", "topMagenta": "magenta", "topCyan": "cyan" },
-            { "id": "fn-7e", "op": "OP_NONE", "labelKey": "key-r7-4", "category": "func", "topMagenta": "magenta", "topCyan": "cyan" }
+            { "id": "fn-7b", "op": "OP_NONE", "labelKey": "key-r7-1", "category": "func", "topCyanMerged": "I/O" },
+            { "id": "fn-7c", "op": "OP_NONE", "labelKey": "key-r7-2", "category": "func", "topCyanMerged": "LIBRARY" },
+            { "id": "fn-7d", "op": "OP_NONE", "labelKey": "key-r7-3", "category": "func", "topCyanMerged": "EQ LIB" },
+            { "id": "fn-7e", "op": "OP_NONE", "labelKey": "key-r7-4", "category": "func", "topMagenta": "«»", "topCyan": "\"\"", "topMagentaBig": true, "topCyanBig": true }
           ]
         },
         {
