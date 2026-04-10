@@ -83,10 +83,10 @@
           "id": "top-fn-6",
           "keys": [
             { "id": "fn-6a", "op": "SHIFT_MAGENTA", "labelKey": "key-r6-0", "category": "shift-magenta", "topColor": "magenta" },
-            { "id": "fn-6b", "op": "OP_NONE", "labelKey": "key-r6-1", "category": "func", "topMagenta": "magenta", "topCyan": "cyan" },
-            { "id": "fn-6c", "op": "OP_NONE", "labelKey": "key-r6-2", "category": "func", "topMagenta": "magenta", "topCyan": "cyan" },
-            { "id": "fn-6d", "op": "OP_NONE", "labelKey": "key-r6-3", "category": "func", "topMagenta": "magenta", "topCyan": "cyan" },
-            { "id": "fn-6e", "op": "OP_NONE", "labelKey": "key-r6-4", "category": "func", "topMagenta": "magenta", "topCyan": "cyan" }
+            { "id": "fn-6b", "op": "OP_NONE", "labelKey": "key-r6-1", "category": "func", "topCyanMerged": "TIME" },
+            { "id": "fn-6c", "op": "OP_NONE", "labelKey": "key-r6-2", "category": "func", "topCyanMerged": "STAT" },
+            { "id": "fn-6d", "op": "OP_NONE", "labelKey": "key-r6-3", "category": "func", "topCyanMerged": "UNIT" },
+            { "id": "fn-6e", "op": "OP_NONE", "labelKey": "key-r6-4", "category": "func", "topMagenta": "[]", "topCyan": "_" }
           ]
         },
         {
