@@ -79,6 +79,20 @@ src/
 └── styles/                    # CSS files
 ```
 
+## Counting and Indexing
+
+All positional references — rows, keys within a row, stack levels, registers,
+panes, or any other ordered sequence — are **0-indexed** throughout: in code,
+in JSON data files, and in task descriptions.
+
+**Cross-check rule:** Whenever a task description (or code comment) identifies
+something by both its numeric position *and* its name or label, both must agree
+under 0-based counting before the description is finalised.
+
+Example: if the keyboard grid has rows 0–5 and row 0 is the top row containing
+the "HOME" key, then "Row 0, key 0 (HOME)" is correct. Writing "Row 1, key 0
+(HOME)" is wrong because row 1 is the second row, which holds different keys.
+
 ## Op Codes
 
 The `op` field in button definitions drives all calculator operations.
